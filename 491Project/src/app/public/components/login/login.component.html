@@ -1,0 +1,40 @@
+<p class="title"> resell<span style="color: #FFD100">U </span></p>
+<form (ngSubmit)="login()" [formGroup]="loginForm" autocomplete="off">
+  <div style="display: flex; justify-content: center">
+    <mat-card class="form-container">
+      <mat-card-title>Login</mat-card-title>
+
+      <!-- Username -->
+      <div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Ex. user"
+            formControlName="email"
+          />
+        </mat-form-field>
+      </div>
+      <!-- /Username -->
+
+      <!-- Password -->
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Ex. pass"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </div>
+      <!-- /Password -->
+
+      <div>
+        <button type="submit" mat-raised-button color="primary">Login</button>
+      </div>
+    </mat-card>
+  </div>
+</form>
+
