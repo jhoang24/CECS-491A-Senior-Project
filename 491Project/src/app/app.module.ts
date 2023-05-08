@@ -3,12 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< Updated upstream
-import { LoginComponent } from './components/login/login.component';
-=======
 import { LoginComponent } from './public/components/login/login.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
->>>>>>> Stashed changes
 
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
@@ -109,7 +105,6 @@ export function tokenGetter() {
         allowedDomains: ['localhost:3000', 'localhost:8080']
       }
     })
->>>>>>> Stashed changes
   ],
   providers: [],
   bootstrap: [AppComponent]
