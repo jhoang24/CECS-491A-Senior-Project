@@ -1,12 +1,12 @@
 <div>
-  <a [routerLink]="['../register']">Go to Register</a>
+  
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
 
         <mat-form-field>
-          <input type="email" matInput placeholder="Email" formControlName="email">
+          <input type="email" matInput placeholder="Username" formControlName="username">
           <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
            with the .touched check we only display the hints if the input was touched by the users -->
           <mat-error *ngIf="this.loginForm.get('email')?.touched && this.loginForm.get('email')?.hasError('required')">

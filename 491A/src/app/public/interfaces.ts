@@ -10,20 +10,16 @@ export interface RefreshToken {
   expiryDate: Date;
 }
 
-/*
-Interface for the Login Response
-*/
 export interface LoginResponse {
-  accessToken: string;
-  refreshToken: RefreshToken;
-  tokenType: string;
+  username: string;
+  token: string;
 }
 
 /*
-Interface for the Login Request
+Interface for the Login Request (can look different, based on your backend api)
 */
 export interface LoginRequest {
-  email: string;
+  username: string;
   password: string;
 }
 

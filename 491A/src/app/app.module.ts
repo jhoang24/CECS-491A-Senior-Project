@@ -6,11 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 import { JwtModule } from '@auth0/angular-jwt';
 
 // specify the key where the token is stored in the local storage
-export const LOCALSTORAGE_TOKEN_KEY = 'angular_material_login_and_register_example';
+export const LOCALSTORAGE_TOKEN_KEY = 'user-token';
 
 // specify tokenGetter for the angular jwt package
 export function tokenGetter() {
@@ -25,11 +28,10 @@ export function tokenGetter() {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // Import our Routes for this module
     AppRoutingModule,
-    // Angular Material Imports
     MatSnackBarModule,
-    // Jwt Helper Module Import
+    MatIconModule,
+    MatToolbarModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
