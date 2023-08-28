@@ -1,6 +1,9 @@
 <div>
   
   <mat-card>
+    <a [routerLink]="['../register']">Go to Register</a>
+    <a [routerLink]="['../home']">Go to Home</a>
+
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
