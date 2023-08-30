@@ -17,6 +17,7 @@ mat-card {
         width: 100%;
         min-width: 300px;
       }
+      
 
       .error {
         padding: 16px;
@@ -26,9 +27,48 @@ mat-card {
       }
 
       .button {
-        display: flex;
-        justify-content: flex-end;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #2774AE;
+        height:40px;
+      
+        margin-top: 5px;
+        margin-bottom: 10px;
+
+        color: #FFFFFF;
       }
+
     }
   }
+}
+
+.title{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 87px;
+  color: #2774AE;
+}
+a{
+  margin-top: 0px;
+}
+
+#login{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 28px;
+  color: black;
+}
+
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+ 
 }
