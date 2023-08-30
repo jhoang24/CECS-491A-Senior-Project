@@ -1,7 +1,7 @@
 <div class >
   <mat-card>
     
-    <mat-card-title class="title">resell<span style="color: #FFD100">U </span>  </mat-card-title>
+    <a [routerLink]="['../home']" style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </a>
      
     <mat-card-title id= "login">Login</mat-card-title>
     <mat-card-content>
@@ -23,12 +23,8 @@
             *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
             Password is required</mat-error>
         </mat-form-field>
-
-        <!-- <div style="position:absolute; left:20px; bottom:25px;">
-          <a [routerLink]="['../register']">Go to Register</a>
-          <a [routerLink]="['../home']">Go to Home</a>
-        </div> -->
-
+        
+        <a [routerLink]="['../home']">Forgot your password?</a>
 
         <div class="button">
           <!-- Button is disabled(not clickable), if our LoginForm contains Validation Errors -->
@@ -38,7 +34,6 @@
         <div class = "flexbox">
           Don't have an account?
           <a [routerLink]="['../register']">Create an account</a>
-          <a [routerLink]="['../home']">Go to Home</a>
         </div>
 
       </form>

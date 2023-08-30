@@ -27,14 +27,14 @@ mat-card {
       }
 
       .button {
-        display:flex;
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: #2774AE;
         height:40px;
       
-        margin-top: 5px;
+        margin-top: 10px;
         margin-bottom: 10px;
 
         color: #FFFFFF;
@@ -50,10 +50,10 @@ mat-card {
   font-weight: bold;
   font-size: 50px;
   line-height: 87px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #2774AE;
-}
-a{
-  margin-top: 0px;
 }
 
 #login{
@@ -70,5 +70,5 @@ a{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
- 
+  
 }
