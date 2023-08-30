@@ -1,16 +1,18 @@
-mat-card {
+// Mixin flex property for reusability
+@mixin flexbox{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
+}
+mat-card {
+  @include flexbox();
+
   max-width: 400px;
 
   mat-card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    @include flexbox();
 
     form {
       .mat-form-field {
@@ -29,13 +31,12 @@ mat-card {
 }
 
 .flexbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox()
 }
 
 .title{
+  line-height: 40px !important;
+  margin: 30px;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: bold;
