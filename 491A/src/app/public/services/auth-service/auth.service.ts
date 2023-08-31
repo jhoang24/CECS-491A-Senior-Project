@@ -71,7 +71,8 @@ export class AuthService {
   */
   register(registerRequest: RegisterRequest): Observable<RegisterResponse> {
     // TODO
-    return of(Register).pipe(
+    const url = `https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/register`;
+    return this.http.post<any>(url, registerRequest).pipe(
       tap((res: RegisterResponse) => this.snackbar.open(`User created successfully`, 'Close', {
         duration: 2000, horizontalPosition: 'right', verticalPosition: 'top'
       })),

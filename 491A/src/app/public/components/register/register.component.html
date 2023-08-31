@@ -57,10 +57,11 @@
           *ngIf="this.registerForm.get('passwordConfirm')?.dirty && this.registerForm.hasError('passwordsNotMatching')">
           Passwords are not matching!</mat-error>
         
+        <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid">Continue</button>
+
       </form>
       
     <!-- Button is disabled(not clickable), if our RegisterForm contains Validation Errors -->
-    <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid">Continue</button>
 
 
     <div>
