@@ -9,12 +9,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CreateListingComponent } from './components/create-listing/create-listing.component';
+
 
 @NgModule({
   declarations: [
     // Own Components
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateListingComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ]
 })
 export class PublicModule { }
