@@ -10,6 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './components/create-listing/create-listing.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 @NgModule({
@@ -32,6 +35,8 @@ import { CreateListingComponent } from './components/create-listing/create-listi
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
+    MatSelectModule
   ]
 })
 export class PublicModule { }
