@@ -2,7 +2,6 @@ const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const registerService = require('./register');
 const loginService = require('./login');
-const createListingService = require('/createlisting')
 //const verifyService = require('./verify');
 const util = require('./utils');
 
@@ -10,7 +9,6 @@ const registerPath = '/register';
 const healthPath = '/health';
 const loginPath = '/login';
 const verifyPath = '/verify';
-const createListing = '/createlisting';
 exports.handler = async(event) => {
     console.log(event);
     let response;
@@ -29,10 +27,6 @@ exports.handler = async(event) => {
         case event.httpMethod === 'POST' && event.path === verifyPath:
             const verifyBody = JSON.parse(event.body);
             response = util.buildResponse(200);
-            break;
-        case event.httpMethod === 'POST' && event.path === createListing:
-            const createListingBody = JSON.parse(event.body);
-            response = await createListingService.createListing(createListingBody);
             break;
         default:
             response = util.buildResponse(404, '404 not fouind');

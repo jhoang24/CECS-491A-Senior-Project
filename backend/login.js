@@ -12,21 +12,21 @@ const userTable = '491-users';
 async function login(user){
     const username = user.username;
     const password = user.password;
-    // if(!user || !username || !password){
-    //     return util.buildResposne(401, {
-    //         message: 'username and password are require'
-    //     })
-    // }
+    if(!user || !username || !password){
+        return util.buildResposne(401, {
+            message: 'username and password are require'
+        })
+    }
 
 
     const dynamoUser = await getUser(username);
     if(!dynamoUser || !dynamoUser.username){
-        return util.buildResponse(403, {message: 'user doesnot exist'});
+        return util.buildResponse(403, {message: 'user does not exist'});
     }
 
-    // // if(!bcrypt.compareSync(password, dynamoUser.password)){
-    // //     return util.buildResponse(403, {message: 'password is incorrect'});
-    // // }
+    if(!bcrypt.compareSync(password, dynamoUser.password)){
+        return util.buildResponse(403, {message: 'password is incorrect'});
+    }
 
     const userInfo = {
         username: dynamoUser.username
