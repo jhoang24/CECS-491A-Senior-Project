@@ -10,7 +10,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import { CreateListingComponent } from './public/components/create-listing/create-listing.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogConfirmComponent } from './public/components/dialog-confirm/dialog-confirm.component';
+import { FileDragNDropDirective } from './public/components/create-listing/file-drag-n-drop.directive';
+
+
 
 
 
@@ -30,6 +34,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     HomeComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,7 @@ export function tokenGetter() {
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

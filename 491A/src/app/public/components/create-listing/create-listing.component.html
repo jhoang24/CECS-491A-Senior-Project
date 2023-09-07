@@ -26,33 +26,23 @@
       <mat-card-title id="createAccount">Create a Listing</mat-card-title>
   
       <mat-card-content>
-        <form [formGroup]="registerForm">
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Images</mat-label>
-
-            <input matInput placeholder="Enter an Image" formControlName="image">
-            <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
-             with the .touched check we only display the hints if the input was touched by the users -->
-            <mat-error
-              *ngIf="this.registerForm.get('image')?.touched && this.registerForm.get('image')?.hasError('required')">
-              Pictures are required</mat-error>
-          </mat-form-field>
+        
+        <form [formGroup]="createListingForm">
   
           <mat-form-field appearance="outline">
             <mat-label>Item Name</mat-label>
 
             <input type="text" matInput placeholder="Item Name" formControlName="itemName">
             <mat-error
-              *ngIf="this.registerForm.get('itemName')?.touched && this.registerForm.get('itemName')?.hasError('required')">
+              *ngIf="this.createListingForm.get('itemName')?.touched && this.createListingForm.get('itemName')?.hasError('required')">
               Item Name is required</mat-error>
           </mat-form-field>
   
           <mat-form-field appearance="outline">
             <mat-label>Item Description</mat-label>
-            <input type="text" matInput placeholder="Enter Item Description" formControlName="itemDescription">
+            <textarea type="text" matInput placeholder="Enter Item Description" formControlName="itemDescription" ></textarea>
             <mat-error
-              *ngIf="this.registerForm.get('itemDescription')?.touched && this.registerForm.get('itemDescription')?.hasError('required')">
+              *ngIf="this.createListingForm.get('itemDescription')?.touched && this.createListingForm.get('itemDescription')?.hasError('required')">
               Description is required</mat-error>
           </mat-form-field>
   
@@ -85,22 +75,27 @@
             <mat-label>Price</mat-label>
             <input type="number" matInput placeholder="Enter Price" formControlName="price">
             <mat-error
-              *ngIf="this.registerForm.get('price')?.touched && this.registerForm.get('price')?.hasError('required')">
+              *ngIf="this.createListingForm.get('price')?.touched && this.createListingForm.get('price')?.hasError('required')">
               Price is required</mat-error>
           </mat-form-field>
 
+          <div style="padding: 15px;">
+            <div>
+              <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
+                <div class="text-wrapper">
+                  <div class="centered">
+                    <input type="file" name="file" id="file" (change)="onFileChange($any($event.target))" multiple>
+                    <label for="file"><span class="textLink">Select your file</span> or Drop it here!</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </form>
         
-      <!-- Button is disabled(not clickable), if our RegisterForm contains Validation Errors -->
-      <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid">Create Listing</button>
-
-      <div
-        class="drop-zone"
-        (dragover)="onDragOver($event)"
-        (drop)="onDrop($event)"
-      >
-        Drag and drop an image here or click to select an image.
-      </div>
+      <!-- Button is disabled(not clickable), if our createListingForm contains Validation Errors -->
+      <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!createListingForm.valid">Create Listing</button>
   
   
       <div>
@@ -112,4 +107,15 @@
       </mat-card-content>
   
     </mat-card>
+
+    <hr>
+    <h3 mat-subheader>Files</h3>
+    <div class="row fileItem" *ngFor="let f of files; let ind = index">
+      <div class="col-sm-12 fileItemIconDiv" (click)="openConfirmDialog(ind);">
+        <i class="fa-6x fileItemIcon"></i>
+      </div>
+      <div class="col-sm-12 fileItemText">
+        <span>{{f.name}}</span>
+      </div>
+    </div>
   </div>

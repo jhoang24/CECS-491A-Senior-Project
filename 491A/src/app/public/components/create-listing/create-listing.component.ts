@@ -3,10 +3,9 @@ import { CustomValidators } from '../../custom-validator';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-
-
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 
 @Component({
   selector: 'app-create-listing',
@@ -15,44 +14,47 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateListingComponent{
 
-  constructor(private http: HttpClient) { }
+  //array to hold the files you input
+  public files: any[] = [];
 
-  onDragOver(event: DragEvent): void {
-    event.preventDefault();
+
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog){}
+
+  onFileChange(pFileList: File[]){
+    this.files = Object.keys(pFileList).map(key => pFileList[<any>key]);
+    this._snackBar.open("Successfully upload!", 'Close', {
+      duration: 2000,
+    });
   }
 
+  deleteFile(f: File){
+    this.files = this.files.filter(function(w){ return w.name != File.name });
+    this._snackBar.open("Successfully delete!", 'Close', {
+      duration: 2000,
+    });
+  }
 
-  async onDrop(event: DragEvent): Promise<void> {
-    event.preventDefault();
+  deleteFromArray(index: any) {
+    console.log(this.files);
+    this.files.splice(index, 1);
+  }
 
-    const files = event.dataTransfer?.files;
+  openConfirmDialog(pIndex:any): void {
+    const dialogRef = this.dialog.open(DialogConfirmComponent, {
+      panelClass: 'modal-xs'
+    });
+    dialogRef.componentInstance.fName = this.files[pIndex].name;
+    dialogRef.componentInstance.fIndex = pIndex;
 
-    if (files && files.length > 0) {
-      const imageFile = files[0];
 
-      if (imageFile.type === 'image/jpeg') {
-        await this.uploadImage(imageFile);
-      } else {
-        console.error('Invalid file format. Please drop a .jpg image.');
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        this.deleteFromArray(result);
       }
-    }
+    });
   }
 
-  async uploadImage(imageFile: File): Promise<void> {
-    const formData = new FormData();
-    formData.append('image', imageFile);
-
-    try {
-      const response = await this.http.post<any>('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev', formData).toPromise();
-      console.log('Image uploaded:', response);
-    } catch (error) {
-      console.error('Error uploading image:', error);
-    }
-  }
-  
-
-
-  registerForm = new FormGroup({
+  createListingForm = new FormGroup({
     image: new FormControl(null, [Validators.required]),
     itemName: new FormControl(null, [Validators.required]),
     itemDescription: new FormControl(null, [Validators.required]),
