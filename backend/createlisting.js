@@ -7,7 +7,7 @@ const util = require('./utils');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const listingsTable = '491-listings';
 
-async function createlisting(itemInfo){
+async function createListing(itemInfo){
     const itemName = itemInfo.itemName
     const itemDescription = itemInfo.itemDescription
     const condition = itemInfo.condition
@@ -103,7 +103,7 @@ async function saveItem(item){
     return await dynamodb.put(params).promise().then(() => {
         return true;
     }, error =>{
-        console.error('There is an error saving user: ', error);
+        console.error('There is an error saving item: ', error);
     })
 }
 
