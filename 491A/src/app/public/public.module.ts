@@ -12,6 +12,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { CreateListingComponent } from './components/create-listing/create-listing.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
+import { FileDragNDropDirective } from './components/create-listing/file-drag-n-drop.directive';
+
+
 
 
 
@@ -20,7 +23,8 @@ import {MatSelectModule} from '@angular/material/select';
     // Own Components
     LoginComponent,
     RegisterComponent,
-    CreateListingComponent
+    CreateListingComponent,
+    FileDragNDropDirective
   ],
   imports: [
     CommonModule,

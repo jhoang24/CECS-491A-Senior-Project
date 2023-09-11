@@ -12,6 +12,13 @@ import {MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatMenuModule} from '@angular/material/menu'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogConfirmComponent } from './public/components/dialog-confirm/dialog-confirm.component';
+import { FileDragNDropDirective } from './public/components/create-listing/file-drag-n-drop.directive';
+
+
+
+
 
 
 import { JwtModule } from '@auth0/angular-jwt';
@@ -30,6 +37,7 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     HomeComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +52,8 @@ export function tokenGetter() {
     MatDividerModule,
     MatMenuModule,
     
+
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
