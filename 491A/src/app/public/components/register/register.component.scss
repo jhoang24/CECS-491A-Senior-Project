@@ -15,6 +15,7 @@ mat-card {
     @include flexbox();
 
     form {
+      @include flexbox();
       .mat-form-field {
         width: 100%;
         min-width: 300px;
