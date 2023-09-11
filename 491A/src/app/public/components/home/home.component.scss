@@ -50,3 +50,11 @@ body {
   outline: none;
 }
 
+mat-toolbar{
+  button{
+    width: 200px;
+  }
+  mat-menu{
+    width: 200px;
+  }
+}
