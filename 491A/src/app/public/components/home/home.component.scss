@@ -50,11 +50,13 @@ body {
   outline: none;
 }
 
-mat-toolbar{
+mat-toolbar#categories{
+  display: flex;
+  justify-content: space-around;
   button{
     width: 200px;
   }
-  mat-menu{
-    width: 200px;
+  ::ng-deep.mat-menu {
+    width: 200px !important;
   }
 }
