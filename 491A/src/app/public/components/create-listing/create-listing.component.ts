@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-create-listing',
@@ -14,11 +15,13 @@ import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.compone
 })
 export class CreateListingComponent{
 
+
+
   //array to hold the files you input
   public files: any[] = [];
 
 
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog){}
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService){}
 
   onFileChange(pFileList: File[]){
     this.files = Object.keys(pFileList).map(key => pFileList[<any>key]);
@@ -55,7 +58,8 @@ export class CreateListingComponent{
   }
 
   createListingForm = new FormGroup({
-    image: new FormControl(null, [Validators.required]),
+    //image: new FormControl(null, [Validators.required]),
+    uuid: new FormControl(null, [Validators.required]),
     itemName: new FormControl(null, [Validators.required]),
     itemDescription: new FormControl(null, [Validators.required]),
     condition: new FormControl(null, [Validators.required]),
@@ -63,7 +67,12 @@ export class CreateListingComponent{
     price: new FormControl(null, [Validators.required])
   })
 
-  
+  createListing(){
+    if(!this.createListingForm.valid){
+      return;
+    }
+    this.authService.createListing(this.createListingForm.value).subscribe();
+  }
 
   ngOnInit(): void {
   }
