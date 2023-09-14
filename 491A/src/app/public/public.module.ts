@@ -9,10 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CreateListingComponent } from './components/create-listing/create-listing.component';
+//import { CreateListingComponent } from '../protected/create-listing/create-listing.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
-import { FileDragNDropDirective } from './components/create-listing/file-drag-n-drop.directive';
+//import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-drop.directive';
 
 
 
@@ -23,8 +23,8 @@ import { FileDragNDropDirective } from './components/create-listing/file-drag-n-
     // Own Components
     LoginComponent,
     RegisterComponent,
-    CreateListingComponent,
-    FileDragNDropDirective
+    //CreateListingComponent,
+    //FileDragNDropDirective
   ],
   imports: [
     CommonModule,

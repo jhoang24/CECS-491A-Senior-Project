@@ -14,7 +14,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogConfirmComponent } from './public/components/dialog-confirm/dialog-confirm.component';
-import { FileDragNDropDirective } from './public/components/create-listing/file-drag-n-drop.directive';
+import { FileDragNDropDirective } from './protected/create-listing/file-drag-n-drop.directive';
 
 
 
@@ -22,8 +22,9 @@ import { FileDragNDropDirective } from './public/components/create-listing/file-
 
 
 import { JwtModule } from '@auth0/angular-jwt';
-import { HomeComponent } from './public/components/home/home.component';
-import { CreateListingComponent } from './public/components/create-listing/create-listing.component';
+import { HomeComponent } from './protected/home/home.component';
+import { CreateListingComponent } from './protected/create-listing/create-listing.component';
+import { CustomIconComponent } from './custom-icon/custom-icon.component';
 
 // specify the key where the token is stored in the local storage
 export const LOCALSTORAGE_TOKEN_KEY = 'user-token';
@@ -38,6 +39,7 @@ export function tokenGetter() {
     AppComponent,
     HomeComponent,
     DialogConfirmComponent,
+    CustomIconComponent,
   ],
   imports: [
     BrowserModule,

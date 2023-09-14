@@ -27,7 +27,23 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+
 }
+
+.resellLogo{
+  margin-right: 10px;
+}
+
+.address{
+  margin-left: 10px;
+}
+
+
+//stylizes the post listing button
+.postButton{
+  background-color: #FFD100
+}
+
 
 //create the bar design
 #searchQueryInput {
@@ -49,4 +65,5 @@ body {
   border: none;
   outline: none;
 }
+
 
