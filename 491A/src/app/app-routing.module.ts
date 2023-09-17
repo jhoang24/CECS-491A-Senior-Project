@@ -16,7 +16,13 @@ const routes: Routes = [
     loadChildren: () => import('./protected/protected.module').then(m => m.ProtectedModule)
   },
   {
-    // Redirects all paths that are not matching to the 'public' PageNotFound
+    // Redirects an empty path to public/home. http://localhost:4200/ will go to http://localhost:4200/public/home
+    path: '',
+    redirectTo: 'public/home',
+    pathMatch: 'full'
+  },
+  {
+    // Redirects all paths that are not matching public, protected, or empty path to public/PageNotFound
     path: '**',
     redirectTo: 'public/PageNotFound',
     pathMatch: 'full'
