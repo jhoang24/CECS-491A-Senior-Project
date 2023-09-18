@@ -60,3 +60,9 @@ mat-toolbar#categories{
     width: 200px !important;
   }
 }
+
+// Removes underline from all a tag links
+a{
+  text-decoration:none;
+  color: inherit;
+}

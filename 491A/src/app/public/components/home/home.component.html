@@ -20,15 +20,26 @@
 
 
 <mat-toolbar id=categories style="background-color: white;">
-  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger"
-  (mouseover)="menuTrigger1.openMenu()">Electronics</button>
+  <a [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()">
+    <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger">Electronics</button>
+  </a>
   <mat-menu #menu1="matMenu">
     <span (mouseleave)="menuTrigger1.closeMenu()">
-      <button mat-menu-item>Computers</button>
-      <button mat-menu-item>Phones</button>
-      <button mat-menu-item>Game Consoles</button>
-      <button mat-menu-item>Chargers</button>
-      <button mat-menu-item>Electronic Accessories</button>
+      <a [routerLink]="['../home/computers']">
+        <button mat-menu-item>Computers</button>
+      </a>  
+      <a [routerLink]="['../home/phones']">
+         <button mat-menu-item>Phones</button>
+      </a>  
+      <a [routerLink]="['../home/consoles']">
+        <button mat-menu-item>Game Consoles</button>
+      </a>  
+      <a [routerLink]="['../chargers']">
+         <button mat-menu-item>Chargers</button>
+      </a>  
+      <a [routerLink]="['../accessories']">
+          <button mat-menu-item>Electronic Accessories</button>
+      </a>  
     </span>
   </mat-menu>
   
