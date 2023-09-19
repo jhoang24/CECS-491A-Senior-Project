@@ -13,6 +13,7 @@ import { CreateListingComponent } from './components/create-listing/create-listi
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { FileDragNDropDirective } from './components/create-listing/file-drag-n-drop.directive';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
@@ -24,7 +25,8 @@ import { FileDragNDropDirective } from './components/create-listing/file-drag-n-
     LoginComponent,
     RegisterComponent,
     CreateListingComponent,
-    FileDragNDropDirective
+    FileDragNDropDirective,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,
