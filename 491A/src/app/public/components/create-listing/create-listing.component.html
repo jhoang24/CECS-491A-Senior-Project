@@ -19,7 +19,6 @@
 </mat-toolbar>
 
 
-
 <div class="listingbox">
     <mat-card-title class="title">resell<span style="color: #FFD100">U </span>  </mat-card-title>
     <mat-card>
@@ -27,7 +26,16 @@
   
       <mat-card-content>
         
-        <form [formGroup]="createListingForm">
+        <form [formGroup]="createListingForm" (ngSubmit)="createListing()">
+
+          <mat-form-field appearance="outline">
+            <mat-label>UUID</mat-label>
+
+            <input type="text" matInput placeholder="UUID" formControlName="uuid">
+            <mat-error
+              *ngIf="this.createListingForm.get('uuid')?.touched && this.createListingForm.get('uuid')?.hasError('uuid')">
+              UUID is required</mat-error>
+          </mat-form-field>
   
           <mat-form-field appearance="outline">
             <mat-label>Item Name</mat-label>
@@ -90,20 +98,23 @@
                 </div>
               </div>
             </div>
-
           </div>
+
+
+          <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!createListingForm.valid">Continue</button>
+
+
+          
         </form>
+      
+      
         
       <!-- Button is disabled(not clickable), if our createListingForm contains Validation Errors -->
-      <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!createListingForm.valid">Create Listing</button>
-  
-  
       <div>
         Already have an account?
         <a [routerLink]="['../login']">Sign in.</a>
       </div>
   
-              
       </mat-card-content>
   
     </mat-card>
