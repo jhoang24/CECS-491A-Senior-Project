@@ -13,7 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatMenuModule} from '@angular/material/menu'; 
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogConfirmComponent } from './public/components/dialog-confirm/dialog-confirm.component';
+import { DialogConfirmComponent } from './protected/dialog-confirm/dialog-confirm.component';
 import { FileDragNDropDirective } from './protected/create-listing/file-drag-n-drop.directive';
 
 
