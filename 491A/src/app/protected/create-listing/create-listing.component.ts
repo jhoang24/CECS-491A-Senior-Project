@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomValidators } from '../../custom-validator';
+import { CustomValidators } from '../../public/custom-validator';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
-import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-create-listing',

@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { CreateListingComponent } from './components/create-listing/create-listing.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 // Routes for child Module (publicModule). Since public module is lazy loaded in in the 
@@ -18,23 +17,17 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'create-listing',
-    component: CreateListingComponent
-
-  },
-  {
-    path: '',
-    component: HomeComponent
-
+    path:'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
     path: '**',
     component: PageNotFoundComponent
+
+    // redirectTo: 'login',
+   // pathMatch: 'full'
   }
+
 ];
 
 @NgModule({
