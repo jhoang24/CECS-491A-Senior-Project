@@ -18,37 +18,84 @@
 </mat-toolbar>
 
 
-<mat-toolbar style="background-color: white;">
-  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger="matMenuTrigger"
-  (mouseover)="openMyMenu(menuTrigger)" >Electronics</button>
-  <mat-menu #menu1="matMenu" >
-    <button mat-menu-item>Item 1</button>
+<mat-toolbar id=categories style="background-color: white;">
+  <a [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()">
+    <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger">Electronics</button>
+  </a>
+  <mat-menu #menu1="matMenu">
+    <span (mouseleave)="menuTrigger1.closeMenu()">
+      <a [routerLink]="['../home/computers']">
+        <button mat-menu-item>Computers</button>
+      </a>  
+      <a [routerLink]="['../home/phones']">
+         <button mat-menu-item>Phones</button>
+      </a>  
+      <a [routerLink]="['../home/consoles']">
+        <button mat-menu-item>Game Consoles</button>
+      </a>  
+      <a [routerLink]="['../chargers']">
+         <button mat-menu-item>Chargers</button>
+      </a>  
+      <a [routerLink]="['../accessories']">
+          <button mat-menu-item>Electronic Accessories</button>
+      </a>  
+    </span>
   </mat-menu>
   
   <button mat-button [matMenuTriggerFor]="menu2" #menuTrigger2="matMenuTrigger"
-  (mouseover)="openMyMenu(menuTrigger2)" >Clothing & Accessories</button>
+  (mouseover)="menuTrigger2.openMenu()" >Clothing & Accessories</button>
   <mat-menu #menu2="matMenu">
-    <button mat-menu-item>Item 1</button>
+    <span (mouseleave)="menuTrigger2.closeMenu()">
+      <button mat-menu-item>Men's Tops</button>
+      <button mat-menu-item>Women's Tops</button>
+      <button mat-menu-item>Men's pants</button>
+      <button mat-menu-item>Shoes</button>
+      <button mat-menu-item>Socks</button>
+    </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu3" #menuTrigger3="matMenuTrigger"
-  (mouseover)="openMyMenu(menuTrigger3)" >Books</button>
+  <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
+  (mouseover)="menuTrigger3.openMenu()">Books</button>
   <mat-menu #menu3="matMenu">
-    <button mat-menu-item>Item 1</button>
+    <span (mouseleave)="menuTrigger3.closeMenu()">
+      <button mat-menu-item>Textbooks</button>
+      <button mat-menu-item>Novels</button>
+      <button mat-menu-item>Fiction</button>
+      <button mat-menu-item>Nonfiction</button>
+      <button mat-menu-item>Manga & Light Novels</button>
+    </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu4" #menuTrigger4="matMenuTrigger"
-  (mouseover)="openMyMenu(menuTrigger4)" >School Appliances</button>
+  <button mat-button [matMenuTriggerFor]="menu4"  #menuTrigger4="matMenuTrigger"
+  (mouseover)="menuTrigger4.openMenu()">School Appliances</button>
   <mat-menu #menu4="matMenu">
-    <button mat-menu-item>Item 1</button>
+    <span (mouseleave)="menuTrigger4.closeMenu()">
+      <button mat-menu-item>Notebooks</button>
+      <button mat-menu-item>Pencils & Pens</button>
+      <button mat-menu-item>Backpacks</button>
+      <button mat-menu-item>Erasers</button>
+    </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu5" #menuTrigger5="matMenuTrigger"
-  (mouseover)="openMyMenu(menuTrigger5)" >Furniture</button>
+  <button mat-button [matMenuTriggerFor]="menu5"  #menuTrigger5="matMenuTrigger"
+  (mouseover)="menuTrigger5.openMenu()">Furniture</button>
   <mat-menu #menu5="matMenu">
-    <button mat-menu-item>Item 1</button>
+    <span (mouseleave)="menuTrigger5.closeMenu()">
+      <button mat-menu-item>Tables</button>
+      <button mat-menu-item>Chairs</button>
+      <button mat-menu-item>Lamps</button>
+      <button mat-menu-item>Beds</button>
+      <button mat-menu-item>Drawers</button>
+    </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu6" #menuTrigger6="matMenuTrigger"
-  (mouseover)="openMyMenu(menuTrigger6)" >Sports & Outdoors</button>
+  <button mat-button [matMenuTriggerFor]="menu6"  #menuTrigger6="matMenuTrigger"
+  (mouseover)="menuTrigger6.openMenu()">Sports & Outdoors</button>
   <mat-menu #menu6="matMenu">
-    <button mat-menu-item>Item 1</button>
+    <span (mouseleave)="menuTrigger6.closeMenu()">
+      <button mat-menu-item>Exercise</button>
+      <button mat-menu-item>Yoga</button>
+      <button mat-menu-item>Cycling</button>
+      <button mat-menu-item>Skateboarding</button>
+      <button mat-menu-item>Camping</button>
+    </span>
   </mat-menu>
+  
 </mat-toolbar>
 <mat-divider></mat-divider>

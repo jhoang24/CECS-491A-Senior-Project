@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-drop.directive';
 
 
 
@@ -23,6 +25,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    PageNotFoundComponent
   ],
   imports: [
     CommonModule,

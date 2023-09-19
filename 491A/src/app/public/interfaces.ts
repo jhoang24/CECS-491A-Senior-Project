@@ -41,3 +41,19 @@ export interface RegisterResponse {
   status: number;
   message: string;
 }
+
+
+//interface for create-listing 
+export interface CreateListingRequest{
+  listing: string;
+  itemName: string;
+  itemDescription: string;
+  condition: string;
+  catagory: string;
+  price: string;
+}
+
+export interface CreateListingResponse{
+  status: number;
+  message: string;
+}

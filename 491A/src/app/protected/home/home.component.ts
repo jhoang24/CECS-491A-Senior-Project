@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,8 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openMyMenu(menuTrigger: MatMenuTrigger) {
-    menuTrigger.openMenu();
-  }
 
+  
 }
