@@ -21,11 +21,12 @@ const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
+    path: '',
+    component: LoginComponent
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
-
-    // redirectTo: 'login',
-   // pathMatch: 'full'
   }
 
 ];
