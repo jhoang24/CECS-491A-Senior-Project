@@ -18,7 +18,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { HomeComponent } from './home/home.component';
 import {MatDividerModule} from '@angular/material/divider'; 
-import {MatMenuModule} from '@angular/material/menu'; 
+import {MatMenuModule} from '@angular/material/menu';
+import { HeaderComponent } from './header/header.component'; 
 
 
 
@@ -31,6 +32,7 @@ import {MatMenuModule} from '@angular/material/menu';
     CreateListingComponent,
     FileDragNDropDirective,
     HomeComponent,
+    HeaderComponent,
      
   ],
   imports: [
