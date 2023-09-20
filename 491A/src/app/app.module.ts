@@ -22,7 +22,6 @@ import { FileDragNDropDirective } from './protected/create-listing/file-drag-n-d
 
 
 import { JwtModule } from '@auth0/angular-jwt';
-import { HomeComponent } from './protected/home/home.component';
 import { CreateListingComponent } from './protected/create-listing/create-listing.component';
 import { CustomIconComponent } from './custom-icon/custom-icon.component';
 
@@ -37,7 +36,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     DialogConfirmComponent,
     CustomIconComponent,
   ],

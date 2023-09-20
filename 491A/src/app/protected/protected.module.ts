@@ -16,6 +16,11 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
+import { HomeComponent } from './home/home.component';
+import {MatDividerModule} from '@angular/material/divider'; 
+import {MatMenuModule} from '@angular/material/menu';
+import { HeaderComponent } from './header/header.component'; 
+
 
 
 @NgModule({
@@ -25,7 +30,10 @@ import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.componen
     FavoritesComponent,
     MessagesComponent,
     CreateListingComponent,
-     FileDragNDropDirective,
+    FileDragNDropDirective,
+    HomeComponent,
+    HeaderComponent,
+     
   ],
   imports: [
     CommonModule,
@@ -42,7 +50,9 @@ import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.componen
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule,
+    MatMenuModule
   ]
 })
 export class ProtectedModule { }

@@ -1,50 +1,20 @@
-
-<mat-toolbar color="primary" class="mat-elevation-z8">
-  <div class="resellLogo"><mat-icon>eco</mat-icon> ResellU</div>
-  
-  <div class="wrapper">
-      <div class="searchBar">
-        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
-      </div>
-  </div>
-  <div class ="address">Current Address</div>
- 
-  <div class="spacer"></div>
-  <a mat-button [routerLink]="['../favorites']">Favorites</a>
-  <a mat-button [routerLink]="['../messages']">Messages</a>
-  <a mat-button [routerLink]="['../profile']">Profile</a>
-  <a mat-raised-button [routerLink]="['../create-listing']" class="postButton">Post Listing</a>
-
-</mat-toolbar>
-
+<app-header> </app-header>
 
 <mat-toolbar id=categories style="background-color: white;">
-  <a [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()">
-    <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger">Electronics</button>
-  </a>
-  <mat-menu #menu1="matMenu">
+  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()"  >Electronics</button>
+  <mat-menu #menu1="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger1.closeMenu()">
-      <a [routerLink]="['../home/computers']">
-        <button mat-menu-item>Computers</button>
-      </a>  
-      <a [routerLink]="['../home/phones']">
-         <button mat-menu-item>Phones</button>
-      </a>  
-      <a [routerLink]="['../home/consoles']">
-        <button mat-menu-item>Game Consoles</button>
-      </a>  
-      <a [routerLink]="['../chargers']">
-         <button mat-menu-item>Chargers</button>
-      </a>  
-      <a [routerLink]="['../accessories']">
-          <button mat-menu-item>Electronic Accessories</button>
-      </a>  
+        <button mat-menu-item [routerLink]="['../home/computers']">Computers</button>
+        <button mat-menu-item  [routerLink]="['../home/phones']">Phones</button>
+        <button mat-menu-item [routerLink]="['../home/consoles']">Game Consoles</button>
+        <button mat-menu-item [routerLink]="['../home/chargers']">Chargers</button>
+        <button mat-menu-item  [routerLink]="['../home/accessories']">Electronic Accessories</button>
     </span>
   </mat-menu>
   
   <button mat-button [matMenuTriggerFor]="menu2" #menuTrigger2="matMenuTrigger"
   (mouseover)="menuTrigger2.openMenu()" >Clothing & Accessories</button>
-  <mat-menu #menu2="matMenu">
+  <mat-menu #menu2="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger2.closeMenu()">
       <button mat-menu-item>Men's Tops</button>
       <button mat-menu-item>Women's Tops</button>
@@ -55,7 +25,7 @@
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
   (mouseover)="menuTrigger3.openMenu()">Books</button>
-  <mat-menu #menu3="matMenu">
+  <mat-menu #menu3="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger3.closeMenu()">
       <button mat-menu-item>Textbooks</button>
       <button mat-menu-item>Novels</button>
@@ -66,7 +36,7 @@
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu4"  #menuTrigger4="matMenuTrigger"
   (mouseover)="menuTrigger4.openMenu()">School Appliances</button>
-  <mat-menu #menu4="matMenu">
+  <mat-menu #menu4="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger4.closeMenu()">
       <button mat-menu-item>Notebooks</button>
       <button mat-menu-item>Pencils & Pens</button>
@@ -76,7 +46,7 @@
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu5"  #menuTrigger5="matMenuTrigger"
   (mouseover)="menuTrigger5.openMenu()">Furniture</button>
-  <mat-menu #menu5="matMenu">
+  <mat-menu #menu5="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger5.closeMenu()">
       <button mat-menu-item>Tables</button>
       <button mat-menu-item>Chairs</button>
@@ -87,7 +57,7 @@
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu6"  #menuTrigger6="matMenuTrigger"
   (mouseover)="menuTrigger6.openMenu()">Sports & Outdoors</button>
-  <mat-menu #menu6="matMenu">
+  <mat-menu #menu6="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger6.closeMenu()">
       <button mat-menu-item>Exercise</button>
       <button mat-menu-item>Yoga</button>
