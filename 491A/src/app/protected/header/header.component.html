@@ -11,8 +11,15 @@
     <div class="spacer"></div>
     <a mat-button routerLink="home">Favorites</a>
     <a mat-button routerLink="services">Messages</a>
-    <a mat-button routerLink="projects">Post Listing</a>
-    <a mat-button routerLink="../profile">Profile</a>
-  
     <a mat-raised-button color="accent" [routerLink]="['../create-listing']">Create Listing</a>
-</mat-toolbar>
+    <button mat-button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger">Profile</button>
+    <mat-menu #menu1="matMenu" [hasBackdrop]="false">
+      <span>
+          <button mat-menu-item [routerLink]="['../home/computers']">Computers</button>
+          <button mat-menu-item  [routerLink]="['../home/phones']">Phones</button>
+          <button mat-menu-item [routerLink]="['../home/consoles']">Game Consoles</button>
+          <button mat-menu-item [routerLink]="['../home/chargers']">Chargers</button>
+          <button mat-menu-item  [routerLink]="['../home/accessories']">Electronic Accessories</button>
+      </span>
+    </mat-menu>
+  </mat-toolbar>
