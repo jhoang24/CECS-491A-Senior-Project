@@ -15,18 +15,23 @@
     <button mat-button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger">Profile</button>
     <mat-menu #menu1="matMenu" [hasBackdrop]="false">
       <span>
-        <button mat-menu-item [routerLink]="['../protected/profile']">
-          <mat-card> 
+        <button class="profile-button" mat-menu-item [routerLink]="['../protected/profile']">
+          <!-- <mat-card class="profile-card"> 
               <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
+                <div mat-card-avatar class="avatar"></div>
                 <mat-card-title>Username</mat-card-title>
                 <mat-card-subtitle>View public profile</mat-card-subtitle>
               </mat-card-header>  
-            </mat-card>
-          </button>
-          <button mat-menu-item [routerLink]="['../home/computers']">Selling</button>
-          <button mat-menu-item  [routerLink]="['../home/phones']">Account Settings</button>
-          <button mat-menu-item [routerLink]="['../home/consoles']">Log out</button>
+          </mat-card> -->
+          <div>
+            
+            Username
+            View Public Profile
+          </div>
+        </button>
+        <button mat-menu-item [routerLink]="['../home/computers']">Selling</button>
+        <button mat-menu-item  [routerLink]="['../home/phones']">Account Settings</button>
+        <button mat-menu-item [routerLink]="['../home/consoles']">Log out</button>
       </span>
     </mat-menu>
   </mat-toolbar>
