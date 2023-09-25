@@ -1,1 +1,46 @@
-<app-header> </app-header>
+<app-header></app-header>
+<div class = "card-content">
+  <mat-card >
+  <form (submit)="saveProfile()">
+    
+<!--      
+  <div class="profile-picture">
+  
+      <img [src]="profilePicture" alt="Profile Picture" class="profile-picture" />
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        style="display: none;"
+        #fileInput
+      />
+      <button mat-button color="primary" (click)="fileInput.click()">Upload Picture</button>
+  </div> -->
+
+  <mat-card-content>
+  <div class="profile-picture">
+    <div class="profile-picture-frame">
+      <img [src]="profilePicture" alt="Profile Picture" class="profile-picture" />
+    </div>
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+      style="display: none;"
+      id="fileInput"
+      #fileInput
+    />
+    <label for="fileInput" class="mat-icon-button">
+      <mat-icon>cloud_upload</mat-icon>
+    </label>
+  </div>
+
+    <div class = "name">
+      <input type="text" matInput placeholder="Your Name" [(ngModel)]="name" name="name" required style ="border: none;"/>
+    </div>
+
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </mat-card-content>
+  </form>
+</mat-card>
+</div>
