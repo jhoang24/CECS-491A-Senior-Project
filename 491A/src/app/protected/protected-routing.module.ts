@@ -22,11 +22,6 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
-    path: '**',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  {
     path: 'home',
     component: HomeComponent
   },
@@ -42,6 +37,11 @@ const routes: Routes = [
     path: 'create-listing',
     component: CreateListingComponent
 
+  },
+  {
+    path: '/public/login',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
 ];
 

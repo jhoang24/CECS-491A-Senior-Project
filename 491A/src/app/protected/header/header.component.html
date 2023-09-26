@@ -1,5 +1,5 @@
-<mat-toolbar color="primary" class="mat-elevation-z8">
-    <span><mat-icon>eco</mat-icon> ResellU</span>
+<mat-toolbar color="primary">
+    <button mat-button routerLink="../home"> <span><mat-icon>eco</mat-icon> ResellU</span> </button>
     
     <div class="wrapper">
         <div class="searchBar">
@@ -12,10 +12,11 @@
     <a mat-button routerLink="home">Favorites</a>
     <a mat-button routerLink="services">Messages</a>
     <a mat-raised-button color="accent" [routerLink]="['../create-listing']">Create Listing</a>
-    <button mat-button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger">Profile</button>
+    <button mat-button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger"> <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
+    </button>
     <mat-menu #menu1="matMenu" [hasBackdrop]="false">
       <span>
-        <button class="profile-button" mat-menu-item [routerLink]="['../protected/profile']">
+        <button class="profile-button" mat-menu-item [routerLink]="['../profile']">
           <!-- <mat-card class="profile-card"> 
               <mat-card-header>
                 <div mat-card-avatar class="avatar"></div>
@@ -24,14 +25,14 @@
               </mat-card-header>  
           </mat-card> -->
           <div>
+            <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
             
-            Username
-            View Public Profile
+              View Public Profile
           </div>
         </button>
-        <button mat-menu-item [routerLink]="['../home/computers']">Selling</button>
-        <button mat-menu-item  [routerLink]="['../home/phones']">Account Settings</button>
-        <button mat-menu-item [routerLink]="['../home/consoles']">Log out</button>
+        <button mat-menu-item [routerLink]="['/home/selling']">Selling</button>
+        <button mat-menu-item  [routerLink]="['/home/setting']">Account Settings</button>
+        <button mat-menu-item [routerLink]="['/public/login']">Log out</button>
       </span>
     </mat-menu>
   </mat-toolbar>
