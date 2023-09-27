@@ -9,12 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  //user: any;
+  
   name: string = '';
-  bio: string = '';
-  email: string = '';
-  phone: string = '';
-  profilePicture: string | ArrayBuffer | null = null; // Hold the selected image
+  profilePicture: string | ArrayBuffer | null = null; 
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
@@ -33,18 +31,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
    //default data for testing
-   this.name = 'John Doe';
-    this.bio = 'A passionate user of OfferUp.';
-    this.email = 'john@example.com';
-    this.phone = '123-456-7890';
+   this.name = 'Tony Hawk';
   }
 
   saveProfile(){
     console.log('Profile changes saved ',{ 
       name: this.name, 
-      bio: this.bio, 
-      email: this.email, 
-      phone: this.phone,
       profilePicture: this.profilePicture,});
   }
 
