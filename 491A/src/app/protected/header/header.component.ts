@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
-
 
 
 @Component({
@@ -12,30 +11,39 @@ import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private http: HttpClient) { 
+  public   profileData: Object = "";
+
+  constructor(private http: HttpClient, private authservice: AuthService) { 
 
   }
-
 
   ngOnInit(): void {
-    this.profileData = this.getProfileInfo();
-    console.log(this.profileData);
+    this.getProfileInfo();
+    console.log(this.profileData)
+
   }
 
-  private profileData: any;
 
- 
-  getProfileInfo(){
+  getProfileInfo(): void{
     this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/get-profile",{"username":"cone"})
 
     .subscribe({
-      next: (res) => {return res;}
+      next: (res) => {
+        this.profileData=res;
+      
+      }
     })
 
-    // const url = `https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/get-profile`;
+    // this.http.get("https://dummyjson.com/products/1")
+
+    // .subscribe({
+    //   next: (res) => {return res}
+    // })
+
+    // const url = 'https://dummyjson.com/products/1';
     // return this.http.post<any>(url, {"username":"cone"}).pipe(
     // tap((res: any) => {
-    //   console.log(res)
+    //   console.log(res.json())
 
     // }))
     
