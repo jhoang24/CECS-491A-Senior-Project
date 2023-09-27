@@ -1,22 +1,46 @@
-
-<mat-toolbar color="primary" class="mat-elevation-z8">
-  <div class="resellLogo"><mat-icon>eco</mat-icon> ResellU</div>
+<!-- Top navbar -->
+<mat-toolbar color="primary">
+  <button mat-button routerLink="../home"> <span><mat-icon>eco</mat-icon> ResellU</span> </button>
   
   <div class="wrapper">
       <div class="searchBar">
         <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
       </div>
   </div>
-  <div class ="address">Current Address</div>
- 
+  <span>Current Address</span>
+  
   <div class="spacer"></div>
-  <a mat-button [routerLink]="['../favorites']">Favorites</a>
-  <a mat-button [routerLink]="['../messages']">Messages</a>
-  <a mat-button [routerLink]="['../profile']">Profile</a>
-  <a mat-raised-button [routerLink]="['../create-listing']" class="postButton">Post Listing</a>
+  <a mat-button routerLink="home">Favorites</a>
+  <a mat-button routerLink="services">Messages</a>
+  <a mat-raised-button color="accent" class="postButton" [routerLink]="['../create-listing']">Create Listing</a>
+  <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
+  </button>
+  <mat-menu #dropdown="matMenu" [hasBackdrop]="false">
+    <span>
+      <button class="profile-button" mat-menu-item [routerLink]="['../profile']">
+        <!-- <mat-card class="profile-card"> 
+            <mat-card-header>
+              <div mat-card-avatar class="avatar"></div>
+              <mat-card-title>Username</mat-card-title>
+              <mat-card-subtitle>View public profile</mat-card-subtitle>
+            </mat-card-header>  
+        </mat-card> -->
+        <div>
+          <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
+          View Public Profile
+        </div>
+      </button>
+      <button mat-menu-item [routerLink]="['../selling']">Selling</button>
+      <button mat-menu-item  [routerLink]="['../setting']">Account Settings</button>
+      <button mat-menu-item (click)="logout()">Log out</button>
+    </span>
+  </mat-menu>
 </mat-toolbar>
+
+
+<!-- Category bar -->
 <mat-toolbar id=categories style="background-color: white;">
-  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()"  >Electronics</button>
+  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()">Electronics</button>
   <mat-menu #menu1="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger1.closeMenu()">
         <button mat-menu-item [routerLink]="['../home/computers']">Computers</button>
@@ -83,6 +107,4 @@
   </mat-menu>
   
 </mat-toolbar>
-<mat-divider></mat-divider>
-
 <mat-divider></mat-divider>

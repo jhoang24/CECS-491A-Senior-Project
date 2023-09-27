@@ -6,6 +6,7 @@ import { HomeComponent } from '../protected/home/home.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 
 
 
@@ -20,11 +21,6 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'login',
-    pathMatch: 'full'
   },
   {
     path: 'home',
@@ -42,6 +38,16 @@ const routes: Routes = [
     path: 'create-listing',
     component: CreateListingComponent
 
+  },
+  {
+    path: 'setting',
+    component: ProfileSettingComponent
+
+  },
+  {
+    path: '/public/login',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
 ];
 

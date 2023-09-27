@@ -66,20 +66,31 @@ border: none;
 outline: none;
 }
 
+.profile-button{
+  height:100px;
+}
 
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+
+// Category bar style
 mat-toolbar#categories{
-display: flex;
-justify-content: space-around;
-button{
-  width: 200px;
-}
-::ng-deep.mat-menu {
-  width: 200px !important;
-}
+  display: flex;
+  justify-content: space-around;
+  button{
+    width: 100px;
+  }
+  ::ng-deep.mat-menu {
+    width: 200px !important;
+  }
 }
 
 // Removes underline from all a tag links
 a{
-text-decoration:none;
-color: inherit;
+  text-decoration:none;
+  color: inherit;
 }
