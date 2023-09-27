@@ -75,3 +75,22 @@ img {
   width: 50px;
   border-radius: 50%;
 }
+
+
+// Category bar style
+mat-toolbar#categories{
+  display: flex;
+  justify-content: space-around;
+  button{
+    width: 100px;
+  }
+  ::ng-deep.mat-menu {
+    width: 200px !important;
+  }
+}
+
+// Removes underline from all a tag links
+a{
+  text-decoration:none;
+  color: inherit;
+}

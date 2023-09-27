@@ -2,6 +2,8 @@ import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
+import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,9 +13,9 @@ import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  public   profileData: Object = "";
+  public profileData: Object = "";
 
-  constructor(private http: HttpClient, private authservice: AuthService) { 
+  constructor(private http: HttpClient, private authservice: AuthService, private router:Router) { 
 
   }
 
@@ -33,6 +35,13 @@ export class HeaderComponent implements OnInit {
       
       }
     })
+  }
+
+  logout(): void{
+    // Removes the jwt token from the local storage, so the user gets logged out & then navigate back to the "public" routes
+    localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
+    this.router.navigate(['../../']);
+  }
 
     // this.http.get("https://dummyjson.com/products/1")
 
@@ -47,6 +56,4 @@ export class HeaderComponent implements OnInit {
 
     // }))
     
-  }
-
 }
