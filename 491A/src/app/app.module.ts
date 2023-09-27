@@ -10,13 +10,20 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import { CreateListingComponent } from './public/components/create-listing/create-listing.component';
+import {MatDividerModule} from '@angular/material/divider'; 
+import {MatMenuModule} from '@angular/material/menu'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogConfirmComponent } from './protected/dialog-confirm/dialog-confirm.component';
+import { FileDragNDropDirective } from './protected/create-listing/file-drag-n-drop.directive';
+
+
 
 
 
 
 import { JwtModule } from '@auth0/angular-jwt';
-import { HomeComponent } from './public/components/home/home.component';
+import { CreateListingComponent } from './protected/create-listing/create-listing.component';
+import { CustomIconComponent } from './custom-icon/custom-icon.component';
 
 // specify the key where the token is stored in the local storage
 export const LOCALSTORAGE_TOKEN_KEY = 'user-token';
@@ -29,7 +36,8 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    DialogConfirmComponent,
+    CustomIconComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +49,11 @@ export function tokenGetter() {
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
+    MatDividerModule,
+    MatMenuModule,
+    
+
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

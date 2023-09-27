@@ -1,0 +1,18 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+    <span><mat-icon>eco</mat-icon> ResellU</span>
+    
+    <div class="wrapper">
+        <div class="searchBar">
+          <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+        </div>
+    </div>
+    <span>Current Address</span>
+   
+    <div class="spacer"></div>
+    <a mat-button routerLink="home">Favorites</a>
+    <a mat-button routerLink="services">Messages</a>
+    <a mat-button routerLink="projects">Post Listing</a>
+    <a mat-button routerLink="../profile">Profile</a>
+  
+    <a mat-raised-button color="accent" [routerLink]="['../create-listing']">Create Listing</a>
+</mat-toolbar>

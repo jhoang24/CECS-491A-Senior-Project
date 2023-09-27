@@ -1,0 +1,71 @@
+<app-header> </app-header>
+
+<mat-toolbar id=categories style="background-color: white;">
+  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()"  >Electronics</button>
+  <mat-menu #menu1="matMenu" [hasBackdrop]="false">
+    <span (mouseleave)="menuTrigger1.closeMenu()">
+        <button mat-menu-item [routerLink]="['../home/computers']">Computers</button>
+        <button mat-menu-item  [routerLink]="['../home/phones']">Phones</button>
+        <button mat-menu-item [routerLink]="['../home/consoles']">Game Consoles</button>
+        <button mat-menu-item [routerLink]="['../home/chargers']">Chargers</button>
+        <button mat-menu-item  [routerLink]="['../home/accessories']">Electronic Accessories</button>
+    </span>
+  </mat-menu>
+  
+  <button mat-button [matMenuTriggerFor]="menu2" #menuTrigger2="matMenuTrigger"
+  (mouseover)="menuTrigger2.openMenu()" >Clothing & Accessories</button>
+  <mat-menu #menu2="matMenu" [hasBackdrop]="false">
+    <span (mouseleave)="menuTrigger2.closeMenu()">
+      <button mat-menu-item>Men's Tops</button>
+      <button mat-menu-item>Women's Tops</button>
+      <button mat-menu-item>Men's pants</button>
+      <button mat-menu-item>Shoes</button>
+      <button mat-menu-item>Socks</button>
+    </span>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
+  (mouseover)="menuTrigger3.openMenu()">Books</button>
+  <mat-menu #menu3="matMenu" [hasBackdrop]="false">
+    <span (mouseleave)="menuTrigger3.closeMenu()">
+      <button mat-menu-item>Textbooks</button>
+      <button mat-menu-item>Novels</button>
+      <button mat-menu-item>Fiction</button>
+      <button mat-menu-item>Nonfiction</button>
+      <button mat-menu-item>Manga & Light Novels</button>
+    </span>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menu4"  #menuTrigger4="matMenuTrigger"
+  (mouseover)="menuTrigger4.openMenu()">School Appliances</button>
+  <mat-menu #menu4="matMenu" [hasBackdrop]="false">
+    <span (mouseleave)="menuTrigger4.closeMenu()">
+      <button mat-menu-item>Notebooks</button>
+      <button mat-menu-item>Pencils & Pens</button>
+      <button mat-menu-item>Backpacks</button>
+      <button mat-menu-item>Erasers</button>
+    </span>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menu5"  #menuTrigger5="matMenuTrigger"
+  (mouseover)="menuTrigger5.openMenu()">Furniture</button>
+  <mat-menu #menu5="matMenu" [hasBackdrop]="false">
+    <span (mouseleave)="menuTrigger5.closeMenu()">
+      <button mat-menu-item>Tables</button>
+      <button mat-menu-item>Chairs</button>
+      <button mat-menu-item>Lamps</button>
+      <button mat-menu-item>Beds</button>
+      <button mat-menu-item>Drawers</button>
+    </span>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menu6"  #menuTrigger6="matMenuTrigger"
+  (mouseover)="menuTrigger6.openMenu()">Sports & Outdoors</button>
+  <mat-menu #menu6="matMenu" [hasBackdrop]="false">
+    <span (mouseleave)="menuTrigger6.closeMenu()">
+      <button mat-menu-item>Exercise</button>
+      <button mat-menu-item>Yoga</button>
+      <button mat-menu-item>Cycling</button>
+      <button mat-menu-item>Skateboarding</button>
+      <button mat-menu-item>Camping</button>
+    </span>
+  </mat-menu>
+  
+</mat-toolbar>
+<mat-divider></mat-divider>
