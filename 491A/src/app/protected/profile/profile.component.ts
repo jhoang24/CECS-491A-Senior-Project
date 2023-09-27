@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +29,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private router:Router) {}
 
   ngOnInit(): void {
    //default data for testing
@@ -44,6 +46,12 @@ export class ProfileComponent implements OnInit {
       email: this.email, 
       phone: this.phone,
       profilePicture: this.profilePicture,});
+  }
+
+  logout() {
+    // Removes the jwt token from the local storage, so the user gets logged out & then navigate back to the "public" routes
+    localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
+    this.router.navigate(['../../']);
   }
 
 }
