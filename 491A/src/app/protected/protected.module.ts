@@ -19,7 +19,8 @@ import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.componen
 import { HomeComponent } from './home/home.component';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatMenuModule} from '@angular/material/menu';
-import { HeaderComponent } from './header/header.component'; 
+import { HeaderComponent } from './header/header.component';
+import { ListingComponent } from './listing/listing.component'; 
 
 
 
@@ -33,6 +34,7 @@ import { HeaderComponent } from './header/header.component';
     FileDragNDropDirective,
     HomeComponent,
     HeaderComponent,
+    ListingComponent,
      
   ],
   imports: [

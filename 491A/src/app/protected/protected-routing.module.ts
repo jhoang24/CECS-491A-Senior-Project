@@ -6,6 +6,7 @@ import { HomeComponent } from '../protected/home/home.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
+import { ListingComponent } from './listing/listing.component';
 
 
 
@@ -43,6 +44,10 @@ const routes: Routes = [
     component: CreateListingComponent
 
   },
+  {
+    path: 'listing',
+    component: ListingComponent
+  }
 ];
 
 @NgModule({
