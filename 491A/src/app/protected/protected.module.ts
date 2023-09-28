@@ -20,7 +20,7 @@ import { HomeComponent } from './home/home.component';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
-import { ListingComponent } from './listing/listing.component'; 
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component'; 
 
 
 
@@ -34,7 +34,7 @@ import { ListingComponent } from './listing/listing.component';
     FileDragNDropDirective,
     HomeComponent,
     HeaderComponent,
-    ListingComponent,
+    ProfileSettingComponent,
      
   ],
   imports: [

@@ -4,11 +4,12 @@ import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-profile-setting',
+  templateUrl: './profile-setting.component.html',
+  styleUrls: ['./profile-setting.component.scss']
 })
-export class ProfileComponent implements OnInit {
+
+export class ProfileSettingComponent implements OnInit {
   
   name: string = '';
   profilePicture: string | ArrayBuffer | null = null; 
