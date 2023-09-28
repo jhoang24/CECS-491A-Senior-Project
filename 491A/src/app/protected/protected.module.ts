@@ -21,6 +21,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component'; 
+import { ListingComponent } from './listing/listing.component';
 
 
 
@@ -35,6 +36,7 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
     HomeComponent,
     HeaderComponent,
     ProfileSettingComponent,
+    ListingComponent
      
   ],
   imports: [
