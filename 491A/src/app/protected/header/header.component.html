@@ -14,7 +14,7 @@
   <a mat-button routerLink="services">Messages</a>
   <a mat-raised-button color="accent" class="postButton" [routerLink]="['../create-listing']">Create Listing</a>
   <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
-    <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
+    <img [src]="picture"> 
   </button>
   <mat-menu #dropdown="matMenu" [hasBackdrop]="false">
     <span>
