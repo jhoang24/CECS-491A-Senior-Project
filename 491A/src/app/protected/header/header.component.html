@@ -13,7 +13,8 @@
   <a mat-button routerLink="home">Favorites</a>
   <a mat-button routerLink="services">Messages</a>
   <a mat-raised-button color="accent" class="postButton" [routerLink]="['../create-listing']">Create Listing</a>
-  <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
+  <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
+    <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
   </button>
   <mat-menu #dropdown="matMenu" [hasBackdrop]="false">
     <span>
@@ -26,8 +27,7 @@
             </mat-card-header>  
         </mat-card> -->
         <div>
-          <img src="https://material.angular.io/assets/img/examples/shiba1.jpg"> 
-          View Public Profile
+          <img [src]=profilePicture> 
         </div>
       </button>
       <button mat-menu-item [routerLink]="['../selling']">Selling</button>

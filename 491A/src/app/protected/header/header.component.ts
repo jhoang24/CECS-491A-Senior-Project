@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
-
+import { GetProfileResponse } from 'src/app/public/interfaces';
+import { profile } from 'console';
 
 @Component({
   selector: 'app-header',
@@ -12,19 +13,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  public profileData: Object = "";
-
+  profileData: any = {
+    user: "",
+    picture: ""
+  }
+  
   constructor(private http: HttpClient, private authservice: AuthService, private router:Router) { 
-
   }
 
   ngOnInit(): void {
     this.getProfileInfo();
-    console.log(this.profileData)
 
   }
 
+  // Since profileData's fields are initialized as empty, this get function will update this.profileData.picture after the http post request
+  get profilePicture(): string{
+    return "data:image/png;base64," + this.profileData.picture;
+  }
 
   getProfileInfo(): void{
     this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/get-profile",{"username":"cone"})
@@ -42,18 +47,5 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
     this.router.navigate(['../../']);
   }
-
-    // this.http.get("https://dummyjson.com/products/1")
-
-    // .subscribe({
-    //   next: (res) => {return res}
-    // })
-
-    // const url = 'https://dummyjson.com/products/1';
-    // return this.http.post<any>(url, {"username":"cone"}).pipe(
-    // tap((res: any) => {
-    //   console.log(res.json())
-
-    // }))
     
 }
