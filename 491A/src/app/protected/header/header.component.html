@@ -17,7 +17,7 @@
     <img [src]="picture"> 
   </button>
   <mat-menu #dropdown="matMenu" [hasBackdrop]="false">
-    <span>
+    <span (mouseleave)="menuTrigger.closeMenu()">
       <button class="profile-button" mat-menu-item [routerLink]="['../profile']">
         <!-- <mat-card class="profile-card"> 
             <mat-card-header>
