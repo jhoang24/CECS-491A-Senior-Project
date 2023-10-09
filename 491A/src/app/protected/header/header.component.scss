@@ -83,7 +83,7 @@ mat-toolbar#categories{
   display: flex;
   justify-content: space-around;
   button{
-    width: 100px;
+    width: fit-content;
   }
   ::ng-deep.mat-menu {
     width: 200px !important;

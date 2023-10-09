@@ -40,7 +40,7 @@
 
 <!-- Category bar -->
 <mat-toolbar id=categories style="background-color: white;">
-  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" [routerLink]="['../home/electronics']" (mouseenter)="menuTrigger1.openMenu()" (mouseleave)="menuTrigger1.closeMenu()">Electronics</button>
+  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" [routerLink]="['../home/electronics']" (mouseover)="menuTrigger1.openMenu()">Electronics</button>
   <mat-menu #menu1="matMenu" [hasBackdrop]="false">
     <span (mouseleave)="menuTrigger1.closeMenu()">
         <button mat-menu-item [routerLink]="['../home/computers']">Computers</button>
@@ -61,7 +61,7 @@
       <button mat-menu-item>Shoes</button>
       <button mat-menu-item>Socks</button>
     </span>
-  </mat-menu>
+  </mat-menu> 
   <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
   (mouseover)="menuTrigger3.openMenu()">Books</button>
   <mat-menu #menu3="matMenu" [hasBackdrop]="false">
