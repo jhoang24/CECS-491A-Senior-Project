@@ -13,19 +13,15 @@
   <a mat-button routerLink="home">Favorites</a>
   <a mat-button routerLink="services">Messages</a>
   <a mat-raised-button color="accent" class="postButton" [routerLink]="['../create-listing']">Create Listing</a>
+
+
+  <!-- Dropdown menu for profile-->
   <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
     <img [src]="picture"> 
   </button>
-  <mat-menu #dropdown="matMenu" [hasBackdrop]="false">
-    <span (mouseleave)="menuTrigger.closeMenu()">
+  <mat-menu #dropdown="matMenu">
+    <span>
       <button class="profile-button" mat-menu-item [routerLink]="['../profile']">
-        <!-- <mat-card class="profile-card"> 
-            <mat-card-header>
-              <div mat-card-avatar class="avatar"></div>
-              <mat-card-title>Username</mat-card-title>
-              <mat-card-subtitle>View public profile</mat-card-subtitle>
-            </mat-card-header>  
-        </mat-card> -->
         <div>
           <img [src]=picture> 
         </div>
