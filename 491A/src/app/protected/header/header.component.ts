@@ -1,9 +1,8 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { AuthService } from 'src/app/public/services/auth-service/auth.service';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
+import { GetProfileResponse } from 'src/app/public/interfaces';
+import { ProfileService } from '../services/profile.service';
 
 
 @Component({
@@ -11,49 +10,61 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit{
+  enteredButton = false;
+  isMatMenuOpen = false;
 
-  public profileData: Object = "";
 
-  constructor(private http: HttpClient, private authservice: AuthService, private router:Router) { 
-
+  constructor(private router:Router, private profileService: ProfileService) { 
   }
 
   ngOnInit(): void {
-    this.getProfileInfo();
-    console.log(this.profileData)
-
+    this.profileService.getProfileInfo();
   }
 
-
-  getProfileInfo(): void{
-    this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/get-profile",{"username":"cone"})
-
-    .subscribe({
-      next: (res) => {
-        this.profileData=res;
-      
-      }
-    })
+  // Since profileData's fields are initialized as empty, this get function will update this.profileData.picture after the http post request
+  get picture() {
+    return "data:image/png;base64," + this.profileService.profilePicture;
   }
-
+  
+  
   logout(): void{
     // Removes the jwt token from the local storage, so the user gets logged out & then navigate back to the "public" routes
     localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
     this.router.navigate(['../../']);
   }
 
-    // this.http.get("https://dummyjson.com/products/1")
+  menuenter() {
+    this.isMatMenuOpen = true;
+  }
 
-    // .subscribe({
-    //   next: (res) => {return res}
-    // })
+  menuLeave(trigger: any) {
+    setTimeout(() => {
+      if (!this.enteredButton) {
+        this.isMatMenuOpen = false;
+        trigger.closeMenu();
+      } else {
+        this.isMatMenuOpen = false;
+      }
+    }, 80)
+  }
 
-    // const url = 'https://dummyjson.com/products/1';
-    // return this.http.post<any>(url, {"username":"cone"}).pipe(
-    // tap((res: any) => {
-    //   console.log(res.json())
+  buttonEnter(trigger: any) {
+    setTimeout(() => {
+        trigger.openMenu();
+    })
+  }
 
-    // }))
+  buttonLeave(trigger: any) {
+    setTimeout(() => {
+      if (this.enteredButton && !this.isMatMenuOpen) {
+        trigger.closeMenu();
+      } if (!this.isMatMenuOpen) {
+        trigger.closeMenu();
+      } else {
+        this.enteredButton = false;
+      }
+    }, 100)
+  }
     
 }
