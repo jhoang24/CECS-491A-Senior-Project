@@ -90,7 +90,7 @@ export class AuthService {
    */
   getLoggedInUser() {
     const decodedToken = this.jwtService.decodeToken();
-    return decodedToken.user;
+    return decodedToken;
   }
 
   /*
