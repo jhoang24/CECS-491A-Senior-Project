@@ -1,9 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
-import { GetProfileResponse } from 'src/app/public/interfaces';
 import { ProfileService } from '../services/profile.service';
-
 
 @Component({
   selector: 'app-header',
@@ -18,14 +16,24 @@ export class HeaderComponent implements OnInit{
   constructor(private router:Router, private profileService: ProfileService) { 
   }
 
+
  picture: string = "data:image/png;base64,"
 
+ // If localstorage for picture is empty, then get profile image fromand store it
   ngOnInit(): void {
-    this.profileService.getProfileInfo()
-    .subscribe(
-      res => this.picture += res.picture
-    );
-  
+    if (localStorage.getItem("picture")  == null){
+      this.profileService.getProfileInfo()
+      .subscribe(
+        (res) => 
+        {
+          localStorage.setItem("picture", res.picture)
+          this.picture += localStorage.getItem("picture")
+        }
+      );
+    }
+    else {
+      this.picture += localStorage.getItem("picture")
+    } 
   }  
   
   logout(): void{
@@ -33,6 +41,8 @@ export class HeaderComponent implements OnInit{
     localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
     this.router.navigate(['../../']);
   }
+
+
 
   menuenter() {
     this.isMatMenuOpen = true;

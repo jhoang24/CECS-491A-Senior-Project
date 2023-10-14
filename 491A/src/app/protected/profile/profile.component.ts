@@ -12,12 +12,21 @@ export class ProfileComponent implements OnInit {
 
   picture: string = "data:image/png;base64,"
 
-  ngOnInit(): void {
-    this.profileService.getProfileInfo()
-    .subscribe(
-      res => this.picture += res.picture
-    );
-  
-  }  
+  // If localstorage for picture is empty, then get profile image fromand store it
+   ngOnInit(): void {
+     if (localStorage.getItem("picture")  == null){
+       this.profileService.getProfileInfo()
+       .subscribe(
+         (res) => 
+         {
+           localStorage.setItem("picture", res.picture)
+           this.picture += localStorage.getItem("picture")
+         }
+       );
+     }
+     else {
+       this.picture += localStorage.getItem("picture")
+     } 
+   }  
 
 }
