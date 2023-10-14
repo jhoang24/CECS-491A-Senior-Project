@@ -18,15 +18,15 @@ export class HeaderComponent implements OnInit{
   constructor(private router:Router, private profileService: ProfileService) { 
   }
 
-  ngOnInit(): void {
-    this.profileService.getProfileInfo();
-  }
+ picture: string = "data:image/png;base64,"
 
-  // Since profileData's fields are initialized as empty, this get function will update this.profileData.picture after the http post request
-  get picture() {
-    return "data:image/png;base64," + this.profileService.profilePicture;
-  }
+  ngOnInit(): void {
+    this.profileService.getProfileInfo()
+    .subscribe(
+      res => this.picture += res.picture
+    );
   
+  }  
   
   logout(): void{
     // Removes the jwt token from the local storage, so the user gets logged out & then navigate back to the "public" routes

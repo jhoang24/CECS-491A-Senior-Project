@@ -10,14 +10,14 @@ export class ProfileComponent implements OnInit {
   
   constructor(private profileService: ProfileService) {}
 
+  picture: string = "data:image/png;base64,"
+
   ngOnInit(): void {
-    this.profileService.getProfileInfo();
-  }
-
-  get picture() {
-    return "data:image/png;base64," + this.profileService.profilePicture;
-  }
+    this.profileService.getProfileInfo()
+    .subscribe(
+      res => this.picture += res.picture
+    );
   
-
+  }  
 
 }
