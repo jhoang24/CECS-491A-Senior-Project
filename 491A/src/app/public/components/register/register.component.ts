@@ -1,4 +1,4 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { CustomValidators } from '../../custom-validator';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -12,8 +12,18 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  csulbEmailValidator(control: AbstractControl) {
+    const email = control.value as string;
+  
+    if (email && !email.toLowerCase().endsWith('csulb.edu')) {
+      return { csulbEmail: true }; // Return a validation error
+    }
+  
+    return null; // No validation error
+  }
+
   registerForm = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    email: new FormControl(null, [Validators.required, Validators.email, this.csulbEmailValidator]),
     username: new FormControl(null, [Validators.required]),
     firstname: new FormControl(null, [Validators.required]),
     lastname: new FormControl(null, [Validators.required]),

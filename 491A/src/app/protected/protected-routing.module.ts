@@ -18,10 +18,10 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent
   },
-  // {
-  //   path: 'profile',
-  //   component: ProfileComponent
-  // },
+  {
+    path: 'profile',
+    component: ProfileComponent
+  },
   {
     path: 'profile/:username',
     component: ProfileComponent

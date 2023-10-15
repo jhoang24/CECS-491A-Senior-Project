@@ -77,7 +77,6 @@ img {
   border: 1px solid black;
 }
 
-
 // Category bar style
 mat-toolbar#categories{
   display: flex;
@@ -85,10 +84,30 @@ mat-toolbar#categories{
   button{
     width: fit-content;
   }
-  ::ng-deep.mat-menu {
-    width: 200px !important;
-  }
+  z-index: 1000;
+  
 }
+
+::ng-deep.mat-menu {
+  
+  width: 200px !important;
+  position: absolute;
+  z-index: 2000; 
+}
+
+
+// Category bar style
+// mat-toolbar#categories{
+//   display: flex;
+//   justify-content: space-around;
+//   button{
+//     width: fit-content;
+//   }
+//   z-index: 1000;
+//   ::ng-deep.mat-menu {
+//     width: 200px !important;
+//   }
+// }
 
 // Removes underline from all a tag links
 a{

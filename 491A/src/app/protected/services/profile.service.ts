@@ -18,5 +18,9 @@ export class ProfileService {
   getProfileInfo(username: any): Observable<any>{
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/get-profile",{"username":username})
   }
+
+  saveProfilePicture(username: any, picture: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/edit-profile",{"username":username, "image":picture})
+  }
   
 }
