@@ -10,14 +10,23 @@ export class ProfileComponent implements OnInit {
   
   constructor(private profileService: ProfileService) {}
 
-  ngOnInit(): void {
-    this.profileService.getProfileInfo();
-  }
+  picture: string = "data:image/png;base64,"
 
-  get picture() {
-    return "data:image/png;base64," + this.profileService.profilePicture;
-  }
-  
-
+  // If localstorage for picture is empty, then get profile image fromand store it
+   ngOnInit(): void {
+     if (localStorage.getItem("picture")  == null){
+       this.profileService.getProfileInfo()
+       .subscribe(
+         (res) => 
+         {
+           localStorage.setItem("picture", res.picture)
+           this.picture += localStorage.getItem("picture")
+         }
+       );
+     }
+     else {
+       this.picture += localStorage.getItem("picture")
+     } 
+   }  
 
 }
