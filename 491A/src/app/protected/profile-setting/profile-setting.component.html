@@ -6,7 +6,7 @@
   <mat-card-content>
   <div class="profile-picture">
     <div class="profile-picture-frame">
-      <img [src]="profilePicture" alt="Profile Picture" class="profile-picture" />
+      <img [src]="picture" alt="Profile Picture" class="profile-picture" />
     </div>
     <input
       type="file"
@@ -22,7 +22,7 @@
   </div>
 
     <div class = "name">
-      <input type="text" matInput placeholder="Your Name" [(ngModel)]="name" name="name" required style ="border: none;"/>
+      <input type="text" matInput placeholder="Your Name" [(ngModel)]="username" name="username" required style ="border: none;"/>
       <mat-icon class ="nameEdit">edit</mat-icon>
     </div>
       <hr class ="line">

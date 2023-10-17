@@ -1,6 +1,6 @@
 <!-- Top navbar -->
 <mat-toolbar color="primary">
-  <button mat-button routerLink="../home"> <span><mat-icon>eco</mat-icon> ResellU</span> </button>
+  <button mat-button routerLink="/protected/home"> <span><mat-icon>eco</mat-icon> ResellU</span> </button>
   
   <div class="wrapper">
       <div class="searchBar">
@@ -12,16 +12,16 @@
   <div class="spacer"></div>
   <a mat-button routerLink="home">Favorites</a>
   <a mat-button routerLink="services">Messages</a>
-  <a mat-raised-button color="accent" class="postButton" [routerLink]="['../create-listing']">Create Listing</a>
+  <a mat-raised-button color="accent" class="postButton" [routerLink]="['/protected/create-listing']">Create Listing</a>
 
 
   <!-- Dropdown menu for profile-->
   <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
     <img [src]="picture"> 
   </button>
-  <mat-menu #dropdown="matMenu">
+  <mat-menu #dropdown="matMenu" >
     <span>
-      <button class="profile-button" mat-menu-item [routerLink]="['../profile']">
+      <button class="profile-button" mat-menu-item [routerLink]="['/protected/profile']">
         <div>
           <img [src]=picture> 
         </div>
@@ -35,71 +35,71 @@
 
 
 <!-- Category bar -->
-<mat-toolbar id=categories style="background-color: white;">
+<mat-toolbar id=categories style="background-color: white; z-index: 1000;">
   <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" 
-  [routerLink]="['../home/electronics']" (mouseenter)="buttonEnter(menuTrigger1)" (mouseleave)="buttonLeave(menuTrigger1)" style="z-index:1050">Electronics</button>
+  [routerLink]="['/protected/home/electronics']" (mouseenter)="buttonEnter(menuTrigger1)" (mouseleave)="buttonLeave(menuTrigger1)" style="z-index:1050">Electronics</button>
   <mat-menu #menu1="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger1)">
-        <button mat-menu-item [routerLink]="['../home/computers']">Computers</button>
-        <button mat-menu-item  [routerLink]="['../home/phones']">Phones</button>
-        <button mat-menu-item [routerLink]="['../home/consoles']">Game Consoles</button>
-        <button mat-menu-item [routerLink]="['../home/chargers']">Chargers</button>
-        <button mat-menu-item  [routerLink]="['../home/accessories']">Electronic Accessories</button>
+        <button mat-menu-item [routerLink]="['/protected/home/computers']">Computers</button>
+        <button mat-menu-item  [routerLink]="['/protected/home/phones']">Phones</button>
+        <button mat-menu-item [routerLink]="['/protected/home/consoles']">Game Consoles</button>
+        <button mat-menu-item [routerLink]="['/protected/home/chargers']">Chargers</button>
+        <button mat-menu-item  [routerLink]="['/protected/home/accessories']">Electronic Accessories</button>
     </span>
   </mat-menu>
   
   <button mat-button [matMenuTriggerFor]="menu2" #menuTrigger2="matMenuTrigger"
-  [routerLink]="['../home/clothing']" (mouseenter)="buttonEnter(menuTrigger2)" (mouseleave)="buttonLeave(menuTrigger2)" style="z-index:1050">Clothing & Accessories</button>
+  [routerLink]="['/protected/home/clothing']" (mouseenter)="buttonEnter(menuTrigger2)" (mouseleave)="buttonLeave(menuTrigger2)" style="z-index:1050">Clothing & Accessories</button>
   <mat-menu #menu2="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger2)">
-      <button mat-menu-item [routerLink]="['../home/mentops']">Men's Tops</button>
-      <button mat-menu-item [routerLink]="['../home/womentops']">Women's Tops</button>
-      <button mat-menu-item [routerLink]="['../home/pants']">Men's pants</button>
-      <button mat-menu-item [routerLink]="['../home/shoes']">Shoes</button>
-      <button mat-menu-item [routerLink]="['../home/socks']">Socks</button>
+      <button mat-menu-item [routerLink]="['/protected/home/mentops']">Men's Tops</button>
+      <button mat-menu-item [routerLink]="['/protected/home/womentops']">Women's Tops</button>
+      <button mat-menu-item [routerLink]="['/protected/home/pants']">Men's pants</button>
+      <button mat-menu-item [routerLink]="['/protected/home/shoes']">Shoes</button>
+      <button mat-menu-item [routerLink]="['/protected/home/socks']">Socks</button>
     </span>
   </mat-menu> 
   <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
-  [routerLink]="['../home/books']" (mouseenter)="buttonEnter(menuTrigger3)" (mouseleave)="buttonLeave(menuTrigger3)" style="z-index:1050">Books</button>
+  [routerLink]="['/protected/home/books']" (mouseenter)="buttonEnter(menuTrigger3)" (mouseleave)="buttonLeave(menuTrigger3)" style="z-index:1050">Books</button>
   <mat-menu #menu3="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger3)">
-      <button mat-menu-item [routerLink]="['../home/textbooks']">Textbooks</button>
-      <button mat-menu-item [routerLink]="['../home/novels']">Novels</button>
-      <button mat-menu-item [routerLink]="['../home/fiction']">Fiction</button>
-      <button mat-menu-item [routerLink]="['../home/nonfiction']">Nonfiction</button>
-      <button mat-menu-item [routerLink]="['../home/manga']">Manga & Light Novels</button>
+      <button mat-menu-item [routerLink]="['/protected/home/textbooks']">Textbooks</button>
+      <button mat-menu-item [routerLink]="['/protected/home/novels']">Novels</button>
+      <button mat-menu-item [routerLink]="['/protected/home/fiction']">Fiction</button>
+      <button mat-menu-item [routerLink]="['/protected/home/nonfiction']">Nonfiction</button>
+      <button mat-menu-item [routerLink]="['/protected/home/manga']">Manga & Light Novels</button>
     </span>
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu4"  #menuTrigger4="matMenuTrigger"
-  [routerLink]="['../home/school']" (mouseenter)="buttonEnter(menuTrigger4)" (mouseleave)="buttonLeave(menuTrigger4)" style="z-index:1050">School Appliances</button>
+  [routerLink]="['/protected/home/school']" (mouseenter)="buttonEnter(menuTrigger4)" (mouseleave)="buttonLeave(menuTrigger4)" style="z-index:1050">School Appliances</button>
   <mat-menu #menu4="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger4)">
-      <button mat-menu-item [routerLink]="['../home/notebooks']">Notebooks</button>
-      <button mat-menu-item [routerLink]="['../home/pencils']">Pencils & Pens</button>
-      <button mat-menu-item [routerLink]="['../home/backpacks']">Backpacks</button>
-      <button mat-menu-item [routerLink]="['../home/erasers']">Erasers</button>
+      <button mat-menu-item [routerLink]="['/protected/home/notebooks']">Notebooks</button>
+      <button mat-menu-item [routerLink]="['/protected/home/pencils']">Pencils & Pens</button>
+      <button mat-menu-item [routerLink]="['/protected/home/backpacks']">Backpacks</button>
+      <button mat-menu-item [routerLink]="['/protected/home/erasers']">Erasers</button>
     </span>
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu5"  #menuTrigger5="matMenuTrigger"
-  [routerLink]="['../home/furniture']" (mouseenter)="buttonEnter(menuTrigger5)" (mouseleave)="buttonLeave(menuTrigger5)" style="z-index:1050">Furniture</button>
+  [routerLink]="['/protected/home/furniture']" (mouseenter)="buttonEnter(menuTrigger5)" (mouseleave)="buttonLeave(menuTrigger5)" style="z-index:1050">Furniture</button>
   <mat-menu #menu5="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger5)">
-      <button mat-menu-item [routerLink]="['../home/tables']">Tables</button>
-      <button mat-menu-item [routerLink]="['../home/chairs']">Chairs</button>
-      <button mat-menu-item [routerLink]="['../home/lamps']">Lamps</button>
-      <button mat-menu-item [routerLink]="['../home/beds']">Beds</button>
-      <button mat-menu-item [routerLink]="['../home/drawers']">Drawers</button>
+      <button mat-menu-item [routerLink]="['/protected/home/tables']">Tables</button>
+      <button mat-menu-item [routerLink]="['/protected/home/chairs']">Chairs</button>
+      <button mat-menu-item [routerLink]="['/protected/home/lamps']">Lamps</button>
+      <button mat-menu-item [routerLink]="['/protected/home/beds']">Beds</button>
+      <button mat-menu-item [routerLink]="['/protected/home/drawers']">Drawers</button>
     </span>
   </mat-menu>
   <button mat-button [matMenuTriggerFor]="menu6"  #menuTrigger6="matMenuTrigger"
-  [routerLink]="['../home/sports']" (mouseenter)="buttonEnter(menuTrigger6)" (mouseleave)="buttonLeave(menuTrigger6)" style="z-index:1050">Sports & Outdoors</button>
+  [routerLink]="['/protected/home/sports']" (mouseenter)="buttonEnter(menuTrigger6)" (mouseleave)="buttonLeave(menuTrigger6)" style="z-index:1050">Sports & Outdoors</button>
   <mat-menu #menu6="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger6)">
-      <button mat-menu-item [routerLink]="['../home/exercise']">Exercise</button>
-      <button mat-menu-item [routerLink]="['../home/yoga']">Yoga</button>
-      <button mat-menu-item [routerLink]="['../home/cycling']">Cycling</button>
-      <button mat-menu-item [routerLink]="['../home/skateboarding']">Skateboarding</button>
-      <button mat-menu-item [routerLink]="['../home/camping']">Camping</button>
+      <button mat-menu-item [routerLink]="['/protected/home/exercise']">Exercise</button>
+      <button mat-menu-item [routerLink]="['/protected/home/yoga']">Yoga</button>
+      <button mat-menu-item [routerLink]="['/protected/home/cycling']">Cycling</button>
+      <button mat-menu-item [routerLink]="['/protected/home/skateboarding']">Skateboarding</button>
+      <button mat-menu-item [routerLink]="['/protected/home/camping']">Camping</button>
     </span>
   </mat-menu>
   

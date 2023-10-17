@@ -23,6 +23,10 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
+    path: 'profile/:username',
+    component: ProfileComponent
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
