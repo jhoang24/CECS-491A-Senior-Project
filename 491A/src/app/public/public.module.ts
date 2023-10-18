@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-drop.directive';
+import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 
 
 
@@ -25,7 +26,8 @@ import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EmailVerificationComponent
   ],
   imports: [
     CommonModule,
