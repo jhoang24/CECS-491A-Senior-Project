@@ -15,7 +15,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-drop.directive';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
-
+import {MatDividerModule} from '@angular/material/divider'; 
 
 
 
@@ -43,7 +43,8 @@ import { EmailVerificationComponent } from './components/email-verification/emai
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ]
 })
 export class PublicModule { }

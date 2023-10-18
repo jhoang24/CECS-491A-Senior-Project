@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-email-verification',
@@ -12,4 +13,7 @@ export class EmailVerificationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loginForm: FormGroup = new FormGroup({
+    code: new FormControl(null, [Validators.required]),
+  });
 }
