@@ -1,0 +1,38 @@
+<div class="flexbox">
+    <p style="text-decoration:none;" class="title">resell<span style="color:#FFD100">U </span>  </p>
+    <mat-card>
+      <mat-card-title id="createAccount">A code has been sent to you.</mat-card-title>
+  
+      <mat-card-content>
+
+        Check the email that's associated with your account.
+
+        <form [formGroup]="loginForm">
+            <mat-form-field appearance="outline">
+              <input type="" matInput placeholder="" formControlName="password">
+              <mat-error
+                *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
+                Password is required</mat-error>
+            </mat-form-field>
+    
+
+            <div id="submit">
+              <!-- Button is disabled(not clickable), if our LoginForm contains Validation Errors -->
+              <button type="submit" mat-button [disabled]="!loginForm.valid">Submit</button>
+            </div>
+
+            <a [routerLink]="['/public/login']">Request a new verification code</a>
+            or 
+            
+            <a [routerLink]="['/public/login']">Go back to login</a>
+    
+          </form>
+
+
+
+  
+              
+      </mat-card-content>
+  
+    </mat-card>
+  </div>
