@@ -85,6 +85,11 @@ export class AuthService {
     // )
   }
 
+  updatePassword(password: string): Observable<any>{
+    return this.http.post('',{password});
+
+  }
+
   /*
    Get the user fromt the token payload
    */

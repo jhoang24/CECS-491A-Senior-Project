@@ -16,6 +16,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-drop.directive';
 import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
 import {MatDividerModule} from '@angular/material/divider'; 
+import { ConfirmPasswordComponent } from './components/confirm-password/confirm-password.component';
+
 
 
 
@@ -27,7 +29,8 @@ import {MatDividerModule} from '@angular/material/divider';
     RegisterComponent,
     ForgotPasswordComponent,
     PageNotFoundComponent,
-    EmailVerificationComponent
+    EmailVerificationComponent,
+    ConfirmPasswordComponent
   ],
   imports: [
     CommonModule,
