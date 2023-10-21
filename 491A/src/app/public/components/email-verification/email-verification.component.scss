@@ -1,0 +1,57 @@
+// Mixin flex property for reusability
+@mixin flexbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
+mat-card {
+  @include flexbox();
+
+  max-width: 400px;
+
+  mat-card-content {
+    @include flexbox();
+
+    form {
+      @include flexbox();
+      .mat-form-field {
+        width: 100%;
+        min-width: 300px;
+      }
+
+      mat-error {
+        margin-top: 1px;
+        margin-bottom: 1px;
+        width: 300px;
+        color: red;
+      }
+    }
+  }
+}
+
+.flexbox {
+  @include flexbox()
+}
+
+.title{
+  line-height: 40px !important;
+  margin: 30px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 87px;
+  color: #2774AE;
+}
+
+
+/* Create an Account */
+#createAccount{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+}

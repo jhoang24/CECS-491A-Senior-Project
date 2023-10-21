@@ -14,6 +14,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-drop.directive';
+import { EmailVerificationComponent } from './components/email-verification/email-verification.component';
+import {MatDividerModule} from '@angular/material/divider'; 
+import { ConfirmPasswordComponent } from './components/confirm-password/confirm-password.component';
 
 
 
@@ -25,7 +28,9 @@ import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EmailVerificationComponent,
+    ConfirmPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +46,8 @@ import { FileDragNDropDirective } from '../protected/create-listing/file-drag-n-
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ]
 })
 export class PublicModule { }

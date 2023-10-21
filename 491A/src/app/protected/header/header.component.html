@@ -1,36 +1,42 @@
 <!-- Top navbar -->
 <mat-toolbar color="primary">
-  <button mat-button routerLink="/protected/home"> <span><mat-icon>eco</mat-icon> ResellU</span> </button>
+  <button mat-button routerLink="/protected/home"> <span><p style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </p>
+  </span> </button>
   
   <div class="wrapper">
       <div class="searchBar">
         <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
       </div>
   </div>
-  <span>Current Address</span>
-  
-  <div class="spacer"></div>
-  <a mat-button routerLink="home">Favorites</a>
-  <a mat-button routerLink="services">Messages</a>
-  <a mat-raised-button color="accent" class="postButton" [routerLink]="['/protected/create-listing']">Create Listing</a>
 
+  <div id="address"> <mat-icon> location_on</mat-icon> College Address</div>
+  <div class="spacer"></div>
+  
+  <!-- Buttons for favorite, messages, and create listing-->
+  <div class="navButton">
+    <a mat-button routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
+    <a mat-button routerLink="/protected/messages"> <mat-icon> message </mat-icon></a>
+    <a mat-button [routerLink]="['/protected/create-listing']"><mat-icon> attach_money </mat-icon> </a>
+  </div>
 
   <!-- Dropdown menu for profile-->
   <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
     <img [src]="picture"> 
   </button>
-  <mat-menu #dropdown="matMenu" >
-    <span>
-      <button class="profile-button" mat-menu-item [routerLink]="['/protected/profile']">
-        <div>
-          <img [src]=picture> 
-        </div>
-      </button>
-      <button mat-menu-item [routerLink]="['../selling']">Selling</button>
-      <button mat-menu-item  [routerLink]="['../setting']">Account Settings</button>
-      <button mat-menu-item (click)="logout()">Log out</button>
-    </span>
-  </mat-menu>
+  <div id="dropdown">
+    <mat-menu #dropdown="matMenu">
+      <span>
+        <button class="profile-button" mat-menu-item [routerLink]="['/protected/profile']">
+          <div>
+            <img [src]=picture> 
+          </div>
+        </button>
+        <button mat-menu-item [routerLink]="['/protected/selling']">Selling</button>
+        <button mat-menu-item  [routerLink]="['/protected/setting']">Account Settings</button>
+        <button mat-menu-item (click)="logout()">Log out</button>
+      </span>
+    </mat-menu>
+  </div>
 </mat-toolbar>
 
 
