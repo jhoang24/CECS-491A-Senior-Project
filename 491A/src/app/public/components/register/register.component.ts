@@ -35,7 +35,7 @@ export class RegisterComponent {
     }
     this.authService.register(this.registerForm.value).pipe(
       // If registration was successfull, then navigate to login route
-      tap(() => this.router.navigate(['../login']))
+      tap(() => this.router.navigate(['/public/login']))
     ).subscribe();
   }
 
