@@ -7,6 +7,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { SellingComponent } from './selling/selling.component';
 
 
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   },
   {
     path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'profile/:username',
     component: ProfileComponent
   },
   {
@@ -37,6 +42,11 @@ const routes: Routes = [
   {
     path: 'create-listing',
     component: CreateListingComponent
+
+  },
+  {
+    path: 'selling',
+    component: SellingComponent
 
   },
   {

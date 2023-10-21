@@ -85,12 +85,17 @@ export class AuthService {
     // )
   }
 
+  updatePassword(password: string): Observable<any>{
+    return this.http.post('',{password});
+
+  }
+
   /*
    Get the user fromt the token payload
    */
   getLoggedInUser() {
     const decodedToken = this.jwtService.decodeToken();
-    return decodedToken.user;
+    return decodedToken;
   }
 
   /*

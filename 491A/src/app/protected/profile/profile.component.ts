@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/public/services/auth-service/auth.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,17 +10,32 @@ import { ProfileService } from '../services/profile.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  username: string;
+  localUsername: any;
+  // profilePicture: string;
+  // profileInfo: any;
   
-  constructor(private profileService: ProfileService) {}
-
-  ngOnInit(): void {
-    this.profileService.getProfileInfo();
+  constructor(private profileService: ProfileService, private route: ActivatedRoute, private auth: AuthService) { 
+    this.localUsername = this.auth.getLoggedInUser();
+    this.username = '';
   }
 
-  get picture() {
-    return "data:image/png;base64," + this.profileService.profilePicture;
-  }
-  
+  picture: string = "data:image/png;base64,"
 
+  // If localstorage for picture is empty, then get profile image fromand store it
+   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.username = params.username; 
+      if(this.username == null){
+        this.picture += localStorage.getItem("picture")
+      } else {
+      this.profileService.getProfileInfo(this.username).subscribe(
+        (res) => 
+        {
+          this.picture += res.picture;
+        }
+    )}});
+   }  
+  
 
 }

@@ -21,6 +21,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { SellingComponent } from './selling/selling.component';
 
 
 
@@ -34,7 +35,8 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
     FileDragNDropDirective,
     HomeComponent,
     HeaderComponent,
-    ProfileSettingComponent,     
+    ProfileSettingComponent,
+    SellingComponent,     
   ],
   imports: [
     CommonModule,
