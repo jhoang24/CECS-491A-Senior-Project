@@ -22,6 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { SellingComponent } from './selling/selling.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -36,7 +37,8 @@ import { SellingComponent } from './selling/selling.component';
     HomeComponent,
     HeaderComponent,
     ProfileSettingComponent,
-    SellingComponent,     
+    ChangePasswordComponent
+     
   ],
   imports: [
     CommonModule,

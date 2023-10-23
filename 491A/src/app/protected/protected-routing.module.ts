@@ -8,6 +8,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { SellingComponent } from './selling/selling.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -53,6 +54,10 @@ const routes: Routes = [
     path: 'setting',
     component: ProfileSettingComponent
 
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent
   },
   {
     path: '/public/login',
