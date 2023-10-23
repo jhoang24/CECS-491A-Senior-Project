@@ -9,11 +9,15 @@ const bcrypt = require('bcryptjs');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const userTable = '491-users';
 
+const s3 = new AWS.S3();
+const BUCKET_NAME = 'resellu-profile-pics';
+
+
 async function login(user){
     const username = user.username;
     const password = user.password;
     if(!user || !username || !password){
-        return util.buildResposne(401, {
+        return util.buildResponse(401, {
             message: 'username and password are require'
         })
     }
@@ -31,10 +35,26 @@ async function login(user){
     const userInfo = {
         username: dynamoUser.username
     }
+    
+    const fromS3 = await getImage(`images/${username}.jpeg`);
+    
+    // const response = {
+    //   statusCode: 200,
+    //   headers: {
+    //     "Content-Type":  "*"
+    //   },
+    //   isBase64Encoded: true,
+    //   body:  JSON.stringify({
+    //     user: dynamoUser,
+    //     picture: fromS3.toString('base64')
+    //         }),
+    // };
+    
     const token = auth.generateToken(userInfo);
     const response = {
         user: userInfo,
-        token: token
+        token: token,
+        picture: fromS3.toString('base64')
     }
     return util.buildResponse(200, response);
 }
@@ -48,6 +68,15 @@ async function getUser(username){
     }
     return await dynamodb.get(params).promise().then(response => {
         return response.Item;
+    }, error =>{
+        console.error('There is an error getting user: ', error)
+    })
+}
+
+async function getImage(image){
+    var params = { Bucket: BUCKET_NAME, Key: image };
+    return await s3.getObject(params).promise().then(response => {
+        return response.Body;
     }, error =>{
         console.error('There is an error getting user: ', error)
     })

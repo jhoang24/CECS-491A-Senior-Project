@@ -16,6 +16,8 @@ export class LoginComponent {
     password: new FormControl(null, [Validators.required]),
   });
 
+  authError: string | null = null;
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -27,7 +29,19 @@ export class LoginComponent {
     }
     this.authService.login(this.loginForm.value).pipe(
       // route to protected/dashboard, if login was successfull
-      tap(() => this.router.navigate(['../../protected/home']))
+      tap(() => this.router.navigate(['../../protected/home'])),
+
+      tap({ 
+        error: (error) => {
+          if (error && error.status === 401 || error && error.status === 403){
+            this.authError = 'Username or password is incorrect';
+          }
+          else {
+            this.authError = 'Some error has occured.'
+          }
+        }
+
+      })
     ).subscribe();
   }
 

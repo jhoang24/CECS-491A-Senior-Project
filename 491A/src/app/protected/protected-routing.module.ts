@@ -8,6 +8,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { ListingComponent } from './listing/listing.component';
+import { SellingComponent } from './selling/selling.component';
 
 
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   },
   {
     path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'profile/:username',
     component: ProfileComponent
   },
   {
@@ -38,6 +43,11 @@ const routes: Routes = [
   {
     path: 'create-listing',
     component: CreateListingComponent
+
+  },
+  {
+    path: 'selling',
+    component: SellingComponent
 
   },
   {

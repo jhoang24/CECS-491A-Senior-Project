@@ -8,14 +8,15 @@
 
         <mat-form-field appearance="outline">
           <input type="email" matInput placeholder="Your School Email" formControlName="email">
-          <!-- Here we can display error messages/hints for the user, if one of the Validators adds an error to the email 
-           with the .touched check we only display the hints if the input was touched by the users -->
           <mat-error
             *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('required')">
             Email is required</mat-error>
           <mat-error
             *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('email')">
             Email must be a valid Email</mat-error>
+          <mat-error
+            *ngIf="this.registerForm.get('email')?.touched && this.registerForm.get('email')?.hasError('csulbEmail')">
+            Must use a CSU valid Email</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline">

@@ -57,3 +57,8 @@ export interface CreateListingResponse{
   status: number;
   message: string;
 }
+
+export interface GetProfileResponse{
+  user: Object;
+  picture: string;
+}

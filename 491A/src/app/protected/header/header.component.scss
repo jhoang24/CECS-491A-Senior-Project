@@ -2,10 +2,6 @@
   flex: 1 1 auto;
 }
 
-body {
-font-family: 'Roboto', Arial, sans-serif;
-}
-
 .wrapper {
 width: 100%;
 max-width: 31.25rem;
@@ -29,21 +25,6 @@ flex-direction: row;
 align-items: center;
 
 }
-
-.resellLogo{
-margin-right: 10px;
-}
-
-.address{
-margin-left: 10px;
-}
-
-
-//stylizes the post listing button
-.postButton{
-background-color: #FFD100
-}
-
 
 //create the bar design
 #searchQueryInput {
@@ -74,19 +55,22 @@ img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  border: 1px solid black;
 }
-
 
 // Category bar style
 mat-toolbar#categories{
   display: flex;
   justify-content: space-around;
   button{
-    width: 100px;
+    width: fit-content;
   }
-  ::ng-deep.mat-menu {
-    width: 200px !important;
-  }
+  z-index: auto;
+  
+}
+
+::ng-deep.mat-menu { 
+  width: 200px !important;
 }
 
 // Removes underline from all a tag links
@@ -94,3 +78,21 @@ a{
   text-decoration:none;
   color: inherit;
 }
+
+#address{
+  margin-left: 1%;
+  display: flex;
+  align-items: center;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+}
+
+.title{
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  margin-block: 0%;
+}
+

@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
-import { Router } from '@angular/router';
+import { ProfileService } from '../services/profile.service';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/public/services/auth-service/auth.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -9,41 +10,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  username: string;
+  localUsername: any;
+  // profilePicture: string;
+  // profileInfo: any;
   
-  name: string = '';
-  profilePicture: string | ArrayBuffer | null = null; 
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.profilePicture = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    }
+  constructor(private profileService: ProfileService, private route: ActivatedRoute, private auth: AuthService) { 
+    this.localUsername = this.auth.getLoggedInUser();
+    this.username = '';
   }
 
-  constructor(private router:Router) {}
+  picture: string = "data:image/png;base64,"
 
-  ngOnInit(): void {
-   //default data for testing
-   this.name = 'Tony Hawk';
-  }
-
-  saveProfile(){
-    console.log('Profile changes saved ',{ 
-      name: this.name, 
-      profilePicture: this.profilePicture,});
-  }
-
-  logout() {
-    // Removes the jwt token from the local storage, so the user gets logged out & then navigate back to the "public" routes
-    localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
-    this.router.navigate(['../../']);
-  }
+  // If localstorage for picture is empty, then get profile image fromand store it
+   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.username = params.username; 
+      if(this.username == null){
+        this.picture += localStorage.getItem("picture")
+      } else {
+      this.profileService.getProfileInfo(this.username).subscribe(
+        (res) => 
+        {
+          this.picture += res.picture;
+        }
+    )}});
+   }  
+  
 
 }
