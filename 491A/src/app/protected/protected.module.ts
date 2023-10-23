@@ -22,7 +22,6 @@ import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component'; 
 import { ListingComponent } from './listing/listing.component';
-import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { SellingComponent } from './selling/selling.component';
 
 
@@ -38,8 +37,7 @@ import { SellingComponent } from './selling/selling.component';
     HomeComponent,
     HeaderComponent,
     ProfileSettingComponent,
-    ListingComponent
-     
+    ListingComponent,
     SellingComponent,     
   ],
   imports: [
