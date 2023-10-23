@@ -58,13 +58,13 @@ export class CreateListingComponent{
   }
 
   createListingForm = new FormGroup({
-    //image: new FormControl(null, [Validators.required]),
     uuid: new FormControl(null, [Validators.required]),
     itemName: new FormControl(null, [Validators.required]),
     itemDescription: new FormControl(null, [Validators.required]),
     condition: new FormControl(null, [Validators.required]),
     catagory: new FormControl(null, [Validators.required]),
-    price: new FormControl(null, [Validators.required])
+    price: new FormControl(null, [Validators.required]),
+    image: new FormControl(null, [Validators.required])
   })
 
   createListing(){
@@ -73,6 +73,7 @@ export class CreateListingComponent{
     }
     this.authService.createListing(this.createListingForm.value).subscribe();
   }
+
 
   ngOnInit(): void {
   }

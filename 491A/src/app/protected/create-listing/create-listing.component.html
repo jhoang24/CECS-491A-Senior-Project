@@ -71,14 +71,16 @@
 
           <div style="padding: 15px;">
             <div>
-              <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
-                <div class="text-wrapper">
-                  <div class="centered">
-                    <input type="file" name="file" id="file" (change)="onFileChange($any($event.target))" multiple>
-                    <label for="file"><span class="textLink">Select your file</span> or Drop it here!</label>
-                  </div>
+                <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
+                  <!---->
+                  <input type="file" name="file" accept="image/*" formControlName = "image" required/>
+                    <div class="text-wrapper">
+                      <div class="centered">
+                        <input type="file" name="file" id="file" (change)="onFileChange($any($event.target))" multiple>
+                        <label for="file"><span class="textLink">Select your file</span> or Drop it here!</label>
+                      </div>
+                    </div>
                 </div>
-              </div>
             </div>
           </div>
 
