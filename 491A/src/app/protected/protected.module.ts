@@ -20,7 +20,8 @@ import { HomeComponent } from './home/home.component';
 import {MatDividerModule} from '@angular/material/divider'; 
 import {MatMenuModule} from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
-import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component'; 
+import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
@@ -37,6 +38,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     HomeComponent,
     HeaderComponent,
     ProfileSettingComponent,
+    ListingComponent,
+    SellingComponent,     
     ChangePasswordComponent
      
   ],

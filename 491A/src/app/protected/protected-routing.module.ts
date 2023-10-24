@@ -7,6 +7,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateListingComponent } from './create-listing/create-listing.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
@@ -63,6 +64,10 @@ const routes: Routes = [
     path: '/public/login',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'listing',
+    component: ListingComponent
   },
 ];
 
