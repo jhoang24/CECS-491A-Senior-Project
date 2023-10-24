@@ -5,7 +5,7 @@ function generateToken(userInfo){
         return null;
     }
 
-    return jwt.sign(userInfo, process.env.JWT_SECRET, {expiresIn: '1h'})
+    return jwt.sign(userInfo, process.env.JWT_SECRET, {expiresIn: '999d'})
 
 }
 

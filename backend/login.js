@@ -31,6 +31,10 @@ async function login(user){
     if(!bcrypt.compareSync(password, dynamoUser.password)){
         return util.buildResponse(403, {message: 'password is incorrect'});
     }
+    
+    if(dynamoUser.verified[0] == false){
+        return util.buildResponse(402, {message: 'The account is not verified'});
+    }
 
     const userInfo = {
         username: dynamoUser.username
