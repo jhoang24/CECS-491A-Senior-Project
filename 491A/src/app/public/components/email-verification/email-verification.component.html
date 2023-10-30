@@ -7,7 +7,7 @@
 
         Check the email that's associated with your account.
 
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm"  (ngSubmit)="confirmEmail()">
             <mat-form-field appearance="outline">
               <input type="" matInput placeholder="" formControlName="password">
               <mat-error
@@ -17,8 +17,7 @@
     
 
             <div id="submit">
-              <!-- Button is disabled(not clickable), if our LoginForm contains Validation Errors -->
-              <button type="submit" mat-button [disabled]="!loginForm.valid">Submit</button>
+              <button type="submit" mat-button>Submit</button>
             </div>
 
             <a [routerLink]="['/public/login']">Request a new verification code</a>
