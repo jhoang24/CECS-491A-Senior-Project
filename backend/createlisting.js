@@ -2,9 +2,6 @@ const AWS = require('aws-sdk');
 // AWS.config.update({
 //     region: 'us-east-1'
 // })
-
-'Access-Control-Allow-Origin', '*'
-'Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT'
 const util = require('./utils');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -34,7 +31,6 @@ async function createlisting(itemInfo){
         return util.buildResponse(403, {message: 'item price cannot be negative'})
         
     }
-
 
     const item = {
         uuid: uuid,
