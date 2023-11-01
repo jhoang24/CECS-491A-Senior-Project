@@ -1,37 +1,25 @@
 <div class="flexbox">
     <p style="text-decoration:none;" class="title">resell<span style="color:#FFD100">U </span>  </p>
     <mat-card>
-      <mat-card-title id="createAccount">A code has been sent to you.</mat-card-title>
+      <mat-card-title id="msg">A code has been sent to you.</mat-card-title>
   
       <mat-card-content>
 
         Check the email that's associated with your account.
 
-        <form [formGroup]="loginForm"  (ngSubmit)="confirmEmail()">
+        <form [formGroup]="emailConfirmation"  (ngSubmit)="confirmEmail()">
             <mat-form-field appearance="outline">
-              <input type="" matInput placeholder="" formControlName="password">
-              <mat-error
-                *ngIf="this.loginForm.get('password')?.touched && this.loginForm.get('password')?.hasError('required')">
-                Password is required</mat-error>
+              <input type="text" matInput placeholder="" formControlName="code">       
             </mat-form-field>
     
+            <button id = "submit" type="submit" mat-raised-button [disabled]="!emailConfirmation.valid">Submit</button>
 
-            <div id="submit">
-              <button type="submit" mat-button>Submit</button>
-            </div>
-
-            <a [routerLink]="['/public/login']">Request a new verification code</a>
-            or 
-            
             <a [routerLink]="['/public/login']">Go back to login</a>
     
-          </form>
+        </form>
 
-
-
-  
-              
       </mat-card-content>
   
     </mat-card>
-  </div>
+
+</div>
