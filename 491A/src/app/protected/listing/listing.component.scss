@@ -1,0 +1,23 @@
+/* listing.component.css */
+
+.listing-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  
+  .listing-details {
+    flex: 1; /* Takes up one-third of the available space */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .listing-image {
+    flex: 2; /* Takes up two-thirds of the available space */
+  }
+  
+  .listing-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  

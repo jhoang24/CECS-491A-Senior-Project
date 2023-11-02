@@ -1,22 +1,35 @@
 const AWS = require('aws-sdk');
 
-const registerService = require('./register');
 const loginService = require('./login');
-const createListingService = require('./createlisting')
-const profileService = require('./profile')
-// const getProfileService = require('./get-profile')
-// const editProfileService = require('./edit-profile')
+const registerService = require('./register');
 const verifyService = require('./verify');
+const profileService = require('./profile')
+const forgotPasswordService = require('./forgot-password')
+const updatePasswordService = require('./update-password')
+const confirmEmailService = require('./confirm-email')
+
+const listingService = require('./listing')
+const createListingService = require('./createlisting')
+
 const util = require('./utils');
 
-const registerPath = '/register';
+
+//api paths
 const healthPath = '/health';
+
 const loginPath = '/login';
+const registerPath = '/register';
+const verifyPath = '/verify';
 const profilePath = '/profile';
 const getProfilePath = '/get-profile';
 const editProfilePath = '/edit-profile';
-const verifyPath = '/verify';
+const forgotPasswordPath = '/forgot-password';
+const updatePasswordPath = '/update-password';
+const confirmEmailPath = '/confirm-email';
+
 const createListing = '/createlisting';
+const listingPath = '/listing';
+
 exports.handler = async(event) => {
     console.log(event);
     let response;
@@ -50,6 +63,25 @@ exports.handler = async(event) => {
             const createListingBody = JSON.parse(event.body);
             // response = util.buildResponse(200);
             response = await createListingService.createListing(createListingBody);
+            break;
+        case event.httpMethod === 'POST' && event.path === forgotPasswordPath:
+            const forgotPasswordBody = JSON.parse(event.body);
+            // response = util.buildResponse(200);
+            response = await forgotPasswordService.sendMail(forgotPasswordBody);
+            break;
+        case event.httpMethod === 'POST' && event.path === updatePasswordPath:
+            const updatePasswordBody = JSON.parse(event.body);
+            // response = util.buildResponse(200);
+            response = await updatePasswordService.update(updatePasswordBody);
+            break;
+        case event.httpMethod === 'POST' && event.path === listingPath:
+            const listingBody = JSON.parse(event.body);
+             response = await listingService.get_listing(listingBody);
+            //response = util.buildResponse(200);
+            break;
+        case event.httpMethod === 'POST' && event.path === confirmEmailPath:
+            const confirmEmail = JSON.parse(event.body);
+             response = await confirmEmailService.verifyAccount(confirmEmail);
             break;
         default:
             response = util.buildResponse(404, '404 not found');

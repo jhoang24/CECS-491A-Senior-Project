@@ -35,6 +35,7 @@ export class AuthService {
 
     private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
     isLoggedIn$ = this._isLoggedIn$.asObservable();
+    
 
   constructor(
     private http: HttpClient,
@@ -84,6 +85,15 @@ export class AuthService {
     // }))
     // )
   }
+  checkOldPassword(oldPassword: string): boolean {
+    // Compare the oldPassword with the current user's password
+  const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+  //FILLER FOR NOW
+
+  return oldPassword === storedToken;
+
+  }
+
 
   sendPasswordToken(email: any): Observable<any>{
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/forgot-password",{"email":email})
@@ -94,6 +104,8 @@ export class AuthService {
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/update-password",{"token":token, "email":email, "password":password})
 
   }
+
+  
 
   /*
    Get the user fromt the token payload
