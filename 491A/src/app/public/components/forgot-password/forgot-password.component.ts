@@ -15,7 +15,7 @@ export class ForgotPasswordComponent implements OnInit {
   emailForm: FormGroup;
   error: string | null = null;
   success: string | null = null;
-  constructor(private fb: FormBuilder, private http: HttpClient ) {
+  constructor(private fb: FormBuilder, private http: HttpClient,private router: Router, private authService: AuthService ) {
     this.emailForm=this.fb.group({
      email: new FormControl('', [Validators.required, Validators.email]),
       // emailSubject: ['', Validators.required],
@@ -30,6 +30,12 @@ export class ForgotPasswordComponent implements OnInit {
       this.success = 'Email sent!';
       
       this.emailForm.reset();
+
+      console.log(emailData);
+
+      this.authService.sendPasswordToken(emailData.email).pipe(
+        tap(() => this.router.navigate (['public/login']))
+      ).subscribe();
 
     }
     else{

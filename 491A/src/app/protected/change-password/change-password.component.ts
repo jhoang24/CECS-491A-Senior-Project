@@ -38,15 +38,15 @@ export class ChangePasswordComponent {
     const newPassword = this.changeForm.get('password')?.value;
 
     // Call your authentication service to check the old password
-    if (this.authService.checkOldPassword(oldPassword)) {
-      // Password matches, proceed with updating the password
-      this.authService.updatePassword(newPassword).pipe(
-        tap(() => this.router.navigate(['']))
-      ).subscribe();
-    } else {
-      // Password doesn't match, handle accordingly (e.g., show error message)
-      this.error = 'Invalid email address.'
-    }
+    // if (this.authService.checkOldPassword(oldPassword)) {
+    //   // Password matches, proceed with updating the password
+    //   this.authService.updatePassword(newPassword).pipe(
+    //     tap(() => this.router.navigate(['']))
+    //   ).subscribe();
+    // } else {
+    //   // Password doesn't match, handle accordingly (e.g., show error message)
+    //   this.error = 'Invalid email address.'
+    // }
     }
   }
 

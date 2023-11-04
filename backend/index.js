@@ -79,6 +79,59 @@ exports.handler = async(event) => {
              response = await listingService.get_listing(listingBody);
             //response = util.buildResponse(200);
             break;
+            
+            
+        case event.httpMethod === 'GET' && event.path === listingPath:
+            const paramValue = event.queryStringParameters.uuid;
+            const dynamodb = new AWS.DynamoDB.DocumentClient();
+            
+    const params = {
+        TableName: '491_listings',
+        Key: {
+            'uuid': paramValue
+        }
+    };
+
+    try {
+        const data = await dynamodb.get(params).promise();
+        
+        if (data.Item) {
+            // Success response with CORS headers
+            return {
+                statusCode: 200,
+                headers: {
+                    'Access-Control-Allow-Origin': '*', // You can specify your allowed origins here
+                    'Access-Control-Allow-Methods': 'GET,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                },
+                body: JSON.stringify(data.Item)
+            };
+        } else {
+            // Not Found response with CORS headers
+            return {
+                statusCode: 404,
+                headers: {
+                    'Access-Control-Allow-Origin': '*', // You can specify your allowed origins here
+                    'Access-Control-Allow-Methods': 'GET,OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                },
+                body: JSON.stringify({ error: 'Item not found' })
+            };
+        }
+    } catch (err) {
+        // Error response with CORS headers
+        return {
+            statusCode: 500,
+            headers: {
+                'Access-Control-Allow-Origin': '*', // You can specify your allowed origins here
+                'Access-Control-Allow-Methods': 'GET,OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+            },
+            body: JSON.stringify({ error: 'Error retrieving data' })
+        };
+    }
+            
+            
         case event.httpMethod === 'POST' && event.path === confirmEmailPath:
             const confirmEmail = JSON.parse(event.body);
              response = await confirmEmailService.verifyAccount(confirmEmail);

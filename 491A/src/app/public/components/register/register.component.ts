@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomValidators } from '../../custom-validator';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { tap } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -45,7 +46,11 @@ export class RegisterComponent {
     }
     
     this.authService.register(this.registerForm.value).pipe(
-      // If registration was successfull, then navigate to login route
+      switchMap(() => {
+        // The registration was successful, now send a valid email
+        return this.authService.sendValidEmail(this.registerForm.value.email);
+      }),
+      // After sending the valid email, navigate to the login route
       tap(() => this.router.navigate(['/public/email-verification']))
     ).subscribe();
 
