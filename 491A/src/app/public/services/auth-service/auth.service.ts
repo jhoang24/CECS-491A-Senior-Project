@@ -85,6 +85,10 @@ export class AuthService {
     // }))
     // )
   }
+  sendValidEmail(email: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-conf-email",{"email":email})
+
+  }
   checkOldPassword(oldPassword: string): boolean {
     // Compare the oldPassword with the current user's password
   const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
