@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/public/services/auth-service/auth.service';
-
 
 @Component({
   selector: 'app-listing',
@@ -10,12 +7,7 @@ import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 })
 export class ListingComponent implements OnInit {
 
-  userMessage: string = '';
-  username: any;
-
-  constructor(private http: HttpClient,private auth: AuthService) { 
-    this.username = this.auth.getLoggedInUser().username;
-  }
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -23,8 +15,8 @@ export class ListingComponent implements OnInit {
 
 if (invokeButton) {
   invokeButton.addEventListener('click', () => {
-    fetch('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing', {
-      method: 'POST',
+    fetch('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing?param1=uuid=2', {
+      method: 'POST', // or other HTTP methods like POST
       headers: {
         'Content-Type': 'application/json',
       },
@@ -43,30 +35,6 @@ if (invokeButton) {
   console.error("Element with ID 'invokeButton' not found.");
 }
 
-// Send request to api gateway
-}
+  }
 
-sendEmail() {
-  const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-email';
-
-  // You can pass any necessary data to your Lambda function as a request payload.
-  const requestData = {
-    recipientEmail: 'ale21100@gmail.com',
-    subject: 'Subject',
-    message: this.userMessage,
-    sourceEmail: this.username,
-  };
-
-  this.http.post(apiGatewayUrl, requestData).subscribe(
-    (response) => {
-      // Handle success, e.g., show a success message to the user
-      console.log('Email sent successfully', response);
-    },
-    (error) => {
-      // Handle error, e.g., show an error message to the user
-      console.error('Email send failed', error);
-    }
-  );
-
-}
 }
