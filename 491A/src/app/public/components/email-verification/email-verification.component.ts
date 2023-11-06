@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { error } from 'console';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -13,11 +13,17 @@ import { AuthService } from '../../services/auth-service/auth.service';
 })
 export class EmailVerificationComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router, private auth: AuthService) { 
+  constructor(private http: HttpClient, private router: Router, private auth: AuthService, private activatedRoute: ActivatedRoute) { 
 
   }
 
+  email = "";
+
+  // Initializes email with query parameters
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.email = params['email'];
+    });
   
   }
 
@@ -25,7 +31,6 @@ export class EmailVerificationComponent implements OnInit {
     code: new FormControl(''),
   });
 
-  email = "";
 
   // Sends post request to confirm-email backend with email and token and navigates back to login page.
   confirmEmail(): void {
