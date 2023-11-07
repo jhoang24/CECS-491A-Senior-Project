@@ -47,11 +47,14 @@ mat-card {
 }
 
 
-/* Create an Account */
-#createAccount{
+#msg{
   font-family: 'Open Sans';
   font-style: normal;
   font-size: 24px;
   line-height: 28px;
   color: #000000;
+}
+
+#submit{
+  margin-bottom: 2%;
 }
