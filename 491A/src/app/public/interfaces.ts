@@ -51,6 +51,8 @@ export interface CreateListingRequest{
   condition: string;
   catagory: string;
   price: string;
+  images: null;
+  userName: string;
 }
 
 export interface CreateListingResponse{

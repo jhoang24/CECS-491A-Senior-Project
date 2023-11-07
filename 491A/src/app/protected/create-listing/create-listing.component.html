@@ -71,9 +71,11 @@
 
           <div style="padding: 15px;">
             <div>
+                <input type="file" multiple formControlName = "images"/>
                 <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
                   <!---->
-                  <input type="file" name="file" accept="image/*" formControlName = "image" required/>
+                 <!--<input type="file" name="file" accept="image/*" formControlName = "image" required/>
+                 -->
                     <div class="text-wrapper">
                       <div class="centered">
                         <input type="file" name="file" id="file" (change)="onFileChange($any($event.target))" multiple>

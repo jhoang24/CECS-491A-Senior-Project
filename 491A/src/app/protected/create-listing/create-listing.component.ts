@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { createListingService } from '../services/create-listing.service';
 
 @Component({
   selector: 'app-create-listing',
@@ -64,7 +65,8 @@ export class CreateListingComponent{
     condition: new FormControl(null, [Validators.required]),
     catagory: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [Validators.required]),
-    image: new FormControl(null, [Validators.required])
+    images: new FormControl(null),
+    userName: new FormControl(null)
   })
 
   createListing(){
