@@ -4,6 +4,7 @@ import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
+import { HostListener } from '@angular/core';
 
 
 @Component({
@@ -12,10 +13,12 @@ import { AuthService } from 'src/app/public/services/auth-service/auth.service';
   styleUrls: ['./profile-setting.component.scss']
 })
 
+
 export class ProfileSettingComponent implements OnInit {
   
   username: any;
   profilePicture: string | ArrayBuffer | null = null; 
+  isSmallScreen = false;
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -35,11 +38,18 @@ export class ProfileSettingComponent implements OnInit {
     this.username = this.auth.getLoggedInUser().username;
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.checkScreenSize();
+  }
+
+
   picture: string = "data:image/png;base64,"
 
   // If localstorage for picture is empty, then get profile image fromand store it
    ngOnInit(): void {
       this.picture += localStorage.getItem("picture")
+      this.checkScreenSize();
    }  
 
   saveProfile(){
@@ -58,6 +68,10 @@ export class ProfileSettingComponent implements OnInit {
     localStorage.removeItem(LOCALSTORAGE_TOKEN_KEY);
     localStorage.removeItem("picture");
     this.router.navigate(['../../']);
+  }
+
+  checkScreenSize(){
+    this.isSmallScreen = window.innerWidth <767;
   }
 
 }

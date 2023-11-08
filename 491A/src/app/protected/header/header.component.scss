@@ -96,3 +96,54 @@ a{
   margin-block: 0%;
 }
 
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    margin: 3rem auto; /* Adjust the margin for smaller devices */
+  }
+
+  #address {
+    display: none; /* Hide the address in the navbar on smaller devices */
+  }
+
+  .spacer {
+    display: none; /* Hide the spacer on smaller devices */
+  }
+
+  .navButton {
+    flex-direction: column; /* Adjust the direction of the buttons for smaller devices */
+    align-items: center;
+    
+  }
+
+  .navButton a {
+    margin-bottom: 0rem; /* Add margin between the buttons for smaller devices */
+    
+  }
+  .mat-button{
+    font-size: 14px;
+  }
+ 
+  #categories {
+    flex-wrap: wrap; /* Allow category buttons to wrap on smaller devices */
+    justify-content: center;
+  }
+
+  #categories button {
+    margin: 0.5rem; /* Add some margin to the category buttons on smaller devices */
+  }
+
+  .title{
+    font-size: 20px;
+  }
+
+  #searchQueryInput{
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .wrapper {
+    margin: 4rem auto;
+  }
+}
+

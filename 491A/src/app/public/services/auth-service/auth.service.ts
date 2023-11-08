@@ -85,20 +85,33 @@ export class AuthService {
     // }))
     // )
   }
-  checkOldPassword(oldPassword: string): boolean {
-    // Compare the oldPassword with the current user's password
-  const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
-  //FILLER FOR NOW
 
-  return oldPassword === storedToken;
+  returnToken(): string | null{
+    const token = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+    console.log('Token', token);
+    return token;
 
   }
+  
+checkOldPassword(oldPassword: string): boolean {
+// Compare the oldPassword with the current user's password
+const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+if (storedToken) {
+  const decodedToken = this.jwtService.decodeToken(storedToken);
+  console.log('decoded token', decodedToken);
+  if (decodedToken && decodedToken.password) {
+    const storedPassword = decodedToken.password;
+    console.log('Stored Password', storedPassword);
+    return oldPassword === decodedToken.password; // Compare the passwords
+  }
+}
+return false;
+}
+
 
   updatePassword(password: string): Observable<any>{
     return this.http.post('',{password});
   }
-
-  
 
   /*
    Get the user fromt the token payload
