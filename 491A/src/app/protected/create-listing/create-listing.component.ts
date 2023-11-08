@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 import { createListingService } from '../services/create-listing.service';
+
 import { HttpClient } from '@angular/common/http';
 
 
@@ -25,7 +26,7 @@ export class CreateListingComponent{
   
 
 
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService, private http: HttpClient){}
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService, private http: HttpClient, private createListingService: createListingService){}
 
   onFilesSelected(event: any) {
     this.files = event.target.files;
@@ -76,6 +77,7 @@ export class CreateListingComponent{
     userName: new FormControl(null)
   })
 
+  /*
   onSubmit() {
     if (this.files.length > 0) {
       const formData = new FormData();
@@ -89,6 +91,25 @@ export class CreateListingComponent{
       });
     }
   }
+  */
+
+  upload() {
+    const formData = new FormData();
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('images', this.files[i]);
+      }
+
+    this.createListingService.uploadImages(formData).subscribe(
+      (response) => {
+        // Handle response from the server (if needed)
+        console.log('Images uploaded:', response);
+      },
+      (error) => {
+        // Handle error
+        console.error('Error uploading images:', error);
+      }
+    );
+  }
 
 
   createListing(){
@@ -96,6 +117,7 @@ export class CreateListingComponent{
       return;
     }
     this.authService.createListing(this.createListingForm.value).subscribe();
+    this.upload();
   }
 
   ngOnInit(): void {

@@ -14,8 +14,10 @@ export class createListingService {
 
   // this.username grabs decodedtoken from authservice
   constructor(private http: HttpClient, private auth: AuthService) { 
-    // this.username = this.auth.getLoggedInUser();
- 
+  }
+
+  uploadImages(formData: FormData) {
+    return this.http.post<any>('YOUR_API_ENDPOINT/upload-images', formData);
   }
   
 }
