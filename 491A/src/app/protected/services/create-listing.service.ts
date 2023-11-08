@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GetProfileResponse } from 'src/app/public/interfaces';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
-
+import { CreateListingRequest, CreateListingResponse} from 'src/app/public/interfaces';
 @Injectable({
   providedIn: 'root'
 })

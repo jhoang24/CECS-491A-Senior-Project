@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 import { createListingService } from '../services/create-listing.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-create-listing',
@@ -17,12 +19,17 @@ import { createListingService } from '../services/create-listing.service';
 export class CreateListingComponent{
 
 
-
+  // for a file it is uuid/ 
   //array to hold the files you input
   public files: any[] = [];
+  
 
 
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService){}
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService, private http: HttpClient){}
+
+  onFilesSelected(event: any) {
+    this.files = event.target.files;
+  }
 
   onFileChange(pFileList: File[]){
     this.files = Object.keys(pFileList).map(key => pFileList[<any>key]);
@@ -69,13 +76,27 @@ export class CreateListingComponent{
     userName: new FormControl(null)
   })
 
+  onSubmit() {
+    if (this.files.length > 0) {
+      const formData = new FormData();
+      for (let i = 0; i < this.files.length; i++) {
+        formData.append('images', this.files[i]);
+      }
+
+      this.http.post('YOUR_BACKEND_API_URL/uploadMultiple', formData).subscribe((response) => {
+        console.log('Images uploaded:', response);
+        // Handle response or any additional actions after successful upload
+      });
+    }
+  }
+
+
   createListing(){
     if(!this.createListingForm.valid){
       return;
     }
     this.authService.createListing(this.createListingForm.value).subscribe();
   }
-
 
   ngOnInit(): void {
   }
