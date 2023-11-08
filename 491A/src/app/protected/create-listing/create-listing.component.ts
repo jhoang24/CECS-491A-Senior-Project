@@ -17,16 +17,18 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './create-listing.component.html',
   styleUrls: ['./create-listing.component.scss']
 })
-export class CreateListingComponent{
+export class CreateListingComponent implements OnInit{
 
 
   // for a file it is uuid/ 
   //array to hold the files you input
-  public files: any[] = [];
-  
+  public files: any[] = [];  
 
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService, private http: HttpClient, private createListingService: createListingService){
+    //gets the userName and sets it in dynamoDb
+    this.createListingForm.get('userName')?.setValue(this.authService.getLoggedInUser());
 
-  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private authService: AuthService, private http: HttpClient, private createListingService: createListingService){}
+  }
 
   onFilesSelected(event: any) {
     this.files = event.target.files;
@@ -116,6 +118,7 @@ export class CreateListingComponent{
     if(!this.createListingForm.valid){
       return;
     }
+    
     this.authService.createListing(this.createListingForm.value).subscribe();
     this.upload();
   }
