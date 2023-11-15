@@ -85,6 +85,16 @@ export class AuthService {
     // }))
     // )
   }
+  sendValidEmail(email: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-conf-email",{"email":email})
+
+  }
+
+  // checkOldPassword1(oldPassword: string): boolean {
+  //   // Compare the oldPassword with the current user's password
+  // const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+  // //FILLER FOR NOW
+  // }
 
   returnToken(): string | null{
     const token = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
@@ -109,8 +119,15 @@ return false;
 }
 
 
-  updatePassword(password: string): Observable<any>{
-    return this.http.post('',{password});
+
+  sendPasswordToken(email: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/forgot-password",{"email":email})
+
+  }
+
+  updatePassword(token: any, email: any, password: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/update-password",{"token":token, "email":email, "password":password})
+
   }
 
   /*

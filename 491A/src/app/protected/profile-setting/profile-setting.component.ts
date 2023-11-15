@@ -15,7 +15,7 @@ import { HostListener } from '@angular/core';
 
 
 export class ProfileSettingComponent implements OnInit {
-  
+  oldUsername: any;
   username: any;
   profilePicture: string | ArrayBuffer | null = null; 
   isSmallScreen = false;
@@ -36,6 +36,7 @@ export class ProfileSettingComponent implements OnInit {
 
   constructor(private router:Router, private profileService: ProfileService, private auth: AuthService) {
     this.username = this.auth.getLoggedInUser().username;
+    this.oldUsername = this.username;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -55,12 +56,13 @@ export class ProfileSettingComponent implements OnInit {
   saveProfile(){
       // Remove the prefix by extracting the substring starting from the length of the prefix
     const localImage = this.picture.replace(/data:image\/png;base64,/g, "");
+
     localStorage.setItem("picture", localImage)    
     this.profileService.saveProfilePicture(this.username, this.picture).subscribe(
       (res) => 
       {
       }
-  )
+    )
   }
 
   logout() {
