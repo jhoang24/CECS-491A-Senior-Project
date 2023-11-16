@@ -24,7 +24,7 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-
+import {MatGridListModule} from '@angular/material/grid-list'; 
 
 
 @NgModule({
@@ -60,7 +60,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     MatToolbarModule,
     MatSelectModule,
     MatDividerModule,
-    MatMenuModule
+    MatMenuModule,
+    MatGridListModule
   ]
 })
 export class ProtectedModule { }

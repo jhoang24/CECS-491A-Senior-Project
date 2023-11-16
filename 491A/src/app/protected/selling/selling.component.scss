@@ -1,0 +1,15 @@
+@mixin flexbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  mat-card {
+    margin: 10%;
+    @include flexbox;
+  
+    mat-card-content {
+      @include flexbox();
+    }
+  }
