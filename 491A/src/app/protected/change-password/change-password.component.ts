@@ -51,16 +51,6 @@ export class ChangePasswordComponent {
     console.log('Token', token);
 
     // Call your authentication service to check the old password
-    if (this.authService.checkOldPassword(enteredOldPassword)) {
-      // Password matches, proceed with updating the password
-      this.success = 'Password matches';
-      this.authService.updatePassword(newPassword).pipe(
-        tap(() => this.router.navigate(['/protected/profile-setting']))
-      ).subscribe();
-    } else {
-      // Password doesn't match, handle accordingly (e.g., show error message)
-      this.error = 'Old password is incorrect.'
-    }
     // if (this.authService.checkOldPassword(oldPassword)) {
     //   // Password matches, proceed with updating the password
     //   this.authService.updatePassword(newPassword).pipe(

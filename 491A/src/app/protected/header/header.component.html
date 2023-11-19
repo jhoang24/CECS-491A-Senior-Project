@@ -1,5 +1,5 @@
 <!-- Top navbar -->
-<mat-toolbar color="primary" *ngIf ="!isSmallScreen">
+<mat-toolbar color="white" *ngIf ="!isSmallScreen">
   <button mat-button routerLink="/protected/home"> <span><p style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </p>
   </span> </button>
   
@@ -13,7 +13,7 @@
   <div class="spacer"></div>
   
   <!-- Buttons for favorite, messages, and create listing-->
-  <div class="navButton">
+  <div>
     <a mat-button routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
     <a mat-button routerLink="/protected/messages"> <mat-icon> message </mat-icon></a>
     <a mat-button [routerLink]="['/protected/create-listing']"><mat-icon> attach_money </mat-icon> </a>
@@ -42,12 +42,15 @@
 
 
 <!--Mobile Top Bar-->
-<mat-toolbar color="primary" *ngIf ="isSmallScreen">
-  <button mat-icon-button (click) ="opened = !opened"> <mat-icon> menu </mat-icon></button>
-  <button mat-button routerLink="/protected/home"> <span><p style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </p>
-  </span> </button>
+<mat-toolbar color="white" *ngIf ="isSmallScreen">
+  <div class ="top-bar-left">
+    <button mat-icon-button [matMenuTriggerFor]="dropdown" #menuTrigger="matMenuTrigger"> <mat-icon class ="menu"> menu </mat-icon></button>
+    <button mat-button routerLink="/protected/home"> <span><p style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </p>
+    </span> </button>
+  </div>
   
   
+  <div class= "toolbar-content">
   <!-- Buttons for favorite, messages, and create listing-->
   <div class="navButton">
     <a mat-button class routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
@@ -73,18 +76,25 @@
       </span>
     </mat-menu>
   </div>
+  </div>
 </mat-toolbar>
+
+<div *ngIf = "isSmallScreen">
+  <div class="searchBar">
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+  </div>
+</div>
 
 
 <!-- Sidebar for mobile devices-->
-<mat-sidenav-container *ngIf ="isSmallScreen">
+<!-- <mat-sidenav-container *ngIf ="isSmallScreen">
   <mat-sidenav [(opened)]="opened" mode = "side" >
     <a routerLink="/protected/profile"> Profile</a>
   </mat-sidenav>
   <mat-sidenav-content>
-    hi
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
 
 <!-- Category bar -->
 <mat-toolbar id=categories style="background-color: white; z-index: 1000;" *ngIf="!isSmallScreen">
