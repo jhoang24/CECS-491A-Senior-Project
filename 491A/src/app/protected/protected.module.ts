@@ -40,9 +40,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent,
-    
-     
+    ChangePasswordComponent, 
   ],
   imports: [
     CommonModule,

@@ -69,6 +69,7 @@ const routes: Routes = [
     path: 'listing',
     component: ListingComponent
   },
+ 
 ];
 
 @NgModule({
