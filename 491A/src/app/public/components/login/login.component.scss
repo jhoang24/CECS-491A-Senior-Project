@@ -1,4 +1,4 @@
-@mixin flexbox{
+@mixin flexbox {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -6,24 +6,23 @@
 }
 
 mat-card {
-  max-width: 600px;
-  margin-top:100px;
   @include flexbox;
+  max-width: 600px;
 
-  mat-card-title,
-  mat-card-content {
-    @include flexbox();
+  & mat-card-title,
+  & mat-card-content {
+    @include flexbox;
 
     form {
-      @include flexbox();
+      @include flexbox;
       .mat-form-field {
-        width: 600px;
-        min-width: 300px;
+        width: 100%;
+        min-width: 50%;
       }
-      
+
       .error {
-        padding: 16px;
-        width: 300px;
+        padding: 2.67%;
+        width: 50%;
         color: white;
         background-color: red;
       }
@@ -38,33 +37,22 @@ mat-card {
         justify-content: center;
         align-items: center;
         background-color: #2774AE;
-        height:40px;
-        width: 190px;
-
-      
-        /* Label */
-        width: 190px;
-        height: 40px;
+        height: 6.67%; /* 40px height in relation to the parent container */
+        width: 31.67%; /* 190px width in relation to the parent container */
         margin-top: 5px;
         margin-bottom: 10px;
         text-align: center;
-      
         font-family: 'Open Sans';
         font-style: normal;
         font-size: 20px;
         line-height: 24px;
-        /* identical to box height, or 120% */
-        
-        /* White  · Background Primary */
         color: #FFFFFF;
-        
       }
-
     }
   }
 }
 
-.title{
+.title {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: bold;
@@ -73,7 +61,7 @@ mat-card {
   color: #2774AE;
 }
 
-#login{
+#login {
   font-family: 'Open Sans';
   font-style: normal;
   font-size: 24px;
@@ -83,14 +71,34 @@ mat-card {
 }
 
 .flexbox {
-  @include flexbox();
+  @include flexbox;
 }
 
-.shift{
-  margin-right:448px;
+.shift {
+  margin-right: 448px;
 }
 
-.incorrectMessage{
+.incorrectMessage {
   position: relative;
-  right:31.5%;
+  right: 31.5%;
+}
+
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size: 6.67vw; /* Adjust font size for smaller screens */
+    line-height: 8vw; /* Adjust line height for smaller screens */
+  }
+
+  #login {
+    font-size: 4vw; /* Adjust font size for smaller screens */
+    line-height: 4.67vw; /* Adjust line height for smaller screens */
+  }
+
+  .shift {
+    margin-right: 30%; /* Adjust margin for smaller screens */
+  }
+
+  .incorrectMessage {
+    right: 5.25%; /* Adjust position for smaller screens */
+  }
 }
