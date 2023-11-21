@@ -25,8 +25,9 @@ import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatSidenavModule} from '@angular/material/sidenav';
 
-
+ 
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -40,8 +41,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent
-     
+    ChangePasswordComponent, 
   ],
   imports: [
     CommonModule,
@@ -61,7 +61,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatSelectModule,
     MatDividerModule,
     MatMenuModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSidenavModule,
   ]
 })
 export class ProtectedModule { }

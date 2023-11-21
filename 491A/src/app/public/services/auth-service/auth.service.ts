@@ -89,14 +89,35 @@ export class AuthService {
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-conf-email",{"email":email})
 
   }
-  checkOldPassword(oldPassword: string): boolean {
-    // Compare the oldPassword with the current user's password
-  const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
-  //FILLER FOR NOW
 
-  return oldPassword === storedToken;
+  // checkOldPassword1(oldPassword: string): boolean {
+  //   // Compare the oldPassword with the current user's password
+  // const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+  // //FILLER FOR NOW
+  // }
+
+  returnToken(): string | null{
+    const token = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+    console.log('Token', token);
+    return token;
 
   }
+  
+checkOldPassword(oldPassword: string): boolean {
+// Compare the oldPassword with the current user's password
+const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
+if (storedToken) {
+  const decodedToken = this.jwtService.decodeToken(storedToken);
+  console.log('decoded token', decodedToken);
+  if (decodedToken && decodedToken.password) {
+    const storedPassword = decodedToken.password;
+    console.log('Stored Password', storedPassword);
+    return oldPassword === decodedToken.password; // Compare the passwords
+  }
+}
+return false;
+}
+
 
 
   sendPasswordToken(email: any): Observable<any>{
@@ -108,8 +129,6 @@ export class AuthService {
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/update-password",{"token":token, "email":email, "password":password})
 
   }
-
-  
 
   /*
    Get the user fromt the token payload

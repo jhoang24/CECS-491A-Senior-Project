@@ -12,8 +12,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent {
-
+  success: string | null = null;
   error: string | null = null;
+
+  oldPassword: string = '';
   changeForm = new FormGroup({
     oldPassword: new FormControl(null, Validators.required),
     password: new FormControl(null,Validators.required),
@@ -30,12 +32,23 @@ export class ChangePasswordComponent {
 
   ngOnInit(): void {
   }
+  validateOldPassword(control: FormControl){
+    const inputOldPassword = control.value;
+    const isOldPasswordValid = this.authService.checkOldPassword(inputOldPassword);
+    return isOldPasswordValid ? null : {invalidOldPassword: true};
+  }
+
   confirm() {
     if (!this.changeForm.valid) {
       return;
     }
-     const oldPassword = this.changeForm.get('oldPassword')?.value;
+    const enteredOldPassword = this.changeForm.get('oldPassword')?.value;
     const newPassword = this.changeForm.get('password')?.value;
+    
+
+    //console.log('oldPassword:', oldPassword);
+    const token = this.authService.returnToken();
+    console.log('Token', token);
 
     // Call your authentication service to check the old password
     // if (this.authService.checkOldPassword(oldPassword)) {

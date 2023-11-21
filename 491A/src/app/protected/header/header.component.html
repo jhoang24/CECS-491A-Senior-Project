@@ -1,5 +1,5 @@
 <!-- Top navbar -->
-<mat-toolbar color="primary">
+<mat-toolbar color="white" *ngIf ="!isSmallScreen">
   <button mat-button routerLink="/protected/home"> <span><p style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </p>
   </span> </button>
   
@@ -13,11 +13,12 @@
   <div class="spacer"></div>
   
   <!-- Buttons for favorite, messages, and create listing-->
-  <div class="navButton">
+  <div>
     <a mat-button routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
     <a mat-button routerLink="/protected/messages"> <mat-icon> message </mat-icon></a>
     <a mat-button [routerLink]="['/protected/create-listing']"><mat-icon> attach_money </mat-icon> </a>
   </div>
+  
 
   <!-- Dropdown menu for profile-->
   <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
@@ -40,8 +41,63 @@
 </mat-toolbar>
 
 
+<!--Mobile Top Bar-->
+<mat-toolbar color="white" *ngIf ="isSmallScreen">
+  <div class ="top-bar-left">
+    <button mat-icon-button [matMenuTriggerFor]="dropdown" #menuTrigger="matMenuTrigger"> <mat-icon class ="menu"> menu </mat-icon></button>
+    <button mat-button routerLink="/protected/home"> <span><p style="text-decoration:none;" class="title">resell<span style="color: #FFD100">U </span>  </p>
+    </span> </button>
+  </div>
+  
+  
+  <div class= "toolbar-content">
+  <!-- Buttons for favorite, messages, and create listing-->
+  <div class="navButton">
+    <a mat-button class routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
+    <a mat-button routerLink="/protected/messages"> <mat-icon> message </mat-icon></a>
+    <a mat-button [routerLink]="['/protected/create-listing']"><mat-icon> attach_money </mat-icon> </a>
+  </div>
+
+  <!-- Dropdown menu for profile-->
+  <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
+    <img [src]="picture"> 
+  </button>
+  <div id="dropdown">
+    <mat-menu #dropdown="matMenu">
+      <span>
+        <button class="profile-button" mat-menu-item [routerLink]="['/protected/profile']">
+          <div>
+            <img [src]=picture> 
+          </div>
+        </button>
+        <button mat-menu-item [routerLink]="['/protected/selling']">Selling</button>
+        <button mat-menu-item  [routerLink]="['/protected/setting']">Account Settings</button>
+        <button mat-menu-item (click)="logout()">Log out</button>
+      </span>
+    </mat-menu>
+  </div>
+  </div>
+</mat-toolbar>
+
+<div *ngIf = "isSmallScreen">
+  <div class="searchBar">
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+  </div>
+</div>
+
+
+<!-- Sidebar for mobile devices-->
+<!-- <mat-sidenav-container *ngIf ="isSmallScreen">
+  <mat-sidenav [(opened)]="opened" mode = "side" >
+    <a routerLink="/protected/profile"> Profile</a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
 <!-- Category bar -->
-<mat-toolbar id=categories style="background-color: white; z-index: 1000;">
+<mat-toolbar id=categories style="background-color: white; z-index: 1000;" *ngIf="!isSmallScreen">
   <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" 
   [routerLink]="['/protected/home/electronics']" (mouseenter)="buttonEnter(menuTrigger1)" (mouseleave)="buttonLeave(menuTrigger1)" style="z-index:1050">Electronics</button>
   <mat-menu #menu1="matMenu">
@@ -110,4 +166,6 @@
   </mat-menu>
   
 </mat-toolbar>
+
+
 <mat-divider></mat-divider>
