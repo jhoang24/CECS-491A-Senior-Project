@@ -24,6 +24,7 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 
  
@@ -60,7 +61,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSelectModule,
     MatDividerModule,
     MatMenuModule,
-    MatSidenavModule
+    MatGridListModule,
+    MatSidenavModule,
   ]
 })
 export class ProtectedModule { }

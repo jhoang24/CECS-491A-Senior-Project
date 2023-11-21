@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
   picture: string = "data:image/png;base64,"
 
-  // If localstorage for picture is empty, then get profile image fromand store it
+  // If localstorage for picture is empty, then get profile image from backend and store it
    ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.username = params.username; 
