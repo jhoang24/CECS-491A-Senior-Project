@@ -1,0 +1,16 @@
+@mixin flexbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  mat-card {
+    width: 200px;
+    height: 200px;
+    @include flexbox;
+  
+    mat-card-content {
+      @include flexbox();
+    }
+  }

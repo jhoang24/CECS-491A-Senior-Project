@@ -1,1 +1,18 @@
-<p>selling works!</p>
+<app-header> </app-header>
+<mat-grid-list 
+    gutterSize = "1"
+    cols = "4"
+    rowHeight = "2:1">
+    <mat-grid-tile *ngFor="let product of products"> 
+        <mat-card>
+            <img mat-card-image [src]="picture + product.image" style="max-width: 200px; max-height: 200px;">
+            <mat-card-content>
+                <p> Name: {{product.dynamoDBItem.itemName}}</p>
+                <p> Price: ${{product.dynamoDBItem.price}}</p>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+
+
+</mat-grid-list>
