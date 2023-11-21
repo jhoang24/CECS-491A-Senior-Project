@@ -12,21 +12,21 @@ import { AuthService } from 'src/app/public/services/auth-service/auth.service';
   styleUrls: ['./selling.component.scss']
 })
 export class SellingComponent implements OnInit {
-  username: any;
+  user: any;
+  products: Array<any> = []
 
   constructor(private router:Router, private productService: ProductService, private auth: AuthService) { 
-    this.username = this.auth.getLoggedInUser();
+    this.user = this.auth.getLoggedInUser();
   }
 
   picture: string = "data:image/png;base64,"
 
   ngOnInit(): void {
-    this.productService.getProductInfo(this.username.username)
+    this.productService.getProductInfo(this.user.username)
     .subscribe(
       (res) => 
       {
-        localStorage.setItem("picture", res.picture)
-        this.picture += localStorage.getItem("picture")
+        this.products=res.userSelling;
       }
     );
   }

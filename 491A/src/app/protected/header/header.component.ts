@@ -16,20 +16,20 @@ import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 export class HeaderComponent implements OnInit{
   enteredButton = false;
   isMatMenuOpen = false;
-  username: any;
+  user: any;
 
 
   constructor(private router:Router, private profileService: ProfileService, private auth: AuthService) { 
-    this.username = this.auth.getLoggedInUser();
+    this.user = this.auth.getLoggedInUser();
   }
 
 
  picture: string = "data:image/png;base64,"
 
- // If localstorage for picture is empty, then get profile image fromand store it
+ // If localstorage for picture is empty, then get profile image from backend and store it
   ngOnInit(): void {
     if (localStorage.getItem("picture")  == null){
-      this.profileService.getProfileInfo(this.username.username)
+      this.profileService.getProfileInfo(this.user.username)
       .subscribe(
         (res) => 
         {

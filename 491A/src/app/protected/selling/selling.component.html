@@ -3,48 +3,12 @@
     gutterSize = "1"
     cols = "4"
     rowHeight = "2:1">
-    <mat-grid-tile> 
+    <mat-grid-tile *ngFor="let product of products"> 
         <mat-card>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img mat-card-image [src]="picture + product.image" style="max-width: 200px; max-height: 200px;">
             <mat-card-content>
-                <p> Dog </p>
-                <p> $150.00</p>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile> 
-        <mat-card>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p> Dog </p>
-                <p> $150.00</p>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile> 
-        <mat-card>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p> Dog </p>
-                <p> $150.00</p>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile> 
-        <mat-card>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p> Dog </p>
-                <p> $150.00</p>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile> 
-        <mat-card>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-                <p> Dog </p>
-                <p> $150.00</p>
+                <p> Name: {{product.dynamoDBItem.itemName}}</p>
+                <p> Price: ${{product.dynamoDBItem.price}}</p>
             </mat-card-content>
         </mat-card>
     </mat-grid-tile>
