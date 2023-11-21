@@ -1,7 +1,36 @@
+@mixin flexbox{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left:3rem;
+}
 .title{
-    position: absolute;
-    left: 47%;
-    top: 20%;
-    font-size: 200.25%;
-    font-weight: bold;
+    font-size: 32px;
+    font-weight:bold;
+    position: relative;
+    top:5%;
+    @include flexbox;
+}
+
+
+.fav-container{
+    height: 10%;
+    position: relative;
+    top: 4rem;
+    border: 1px solid #ddd; /* Add a border for each post */
+    margin-bottom: 10px; /* Add some spacing between posts */
+    padding: 10px; /* Add padding to the container */
+    max-width: 43rem;
+    @include flexbox;
+    
+}
+.details{
+    margin-left: 10px;
+    white-space: nowrap; // Prevent text from wrapping to the next line
+    overflow: hidden; // Hide overflow content
+    text-overflow: ellipsis; // Show an ellipsis (...) when text overflows
+}
+
+.img{
+    
 }
