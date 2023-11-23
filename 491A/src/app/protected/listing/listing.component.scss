@@ -1,23 +1,101 @@
-/* listing.component.css */
 
+@mixin flexbox{
+  
+
+
+}
 .listing-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #ddd; /* Add a border to the whole container */
+  padding: 10px; /* Add some padding for better appearance */
+  border-left: 1px solid #ddd;
+  margin-left: 3.125rem;
   
-  .listing-details {
-    flex: 1; /* Takes up one-third of the available space */
-    padding: 20px;
-    box-sizing: border-box;
-  }
+}
+
+.listing-info{
+
+}
+
+.listing-details {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  border-left: 1px solid #ddd;
+  max-width: 400px;
+  margin: 0 auto;
   
-  .listing-image {
-    flex: 2; /* Takes up two-thirds of the available space */
-  }
+}
+
+
+.listing-image {
+  flex: 2;
+  width:12.5rem;
+  height:18.75rem;
+  overflow:hidden;
   
-  .listing-image img {
-    max-width: 100%;
-    height: auto;
-  }
+  padding-right: 20px; /* Add some padding to create space between image and border */
   
+}
+
+.listing-image img {
+width:100%;
+height:100%;
+object-fit: contain;
+ // border: 1px solid #ddd; /* Add border to the image */
+}
+
+.description-container{
+  margin-left: 3.125rem;
+  margin-right: 12rem;
+
+}
+.description-title{
+  font-size: 30px;
+}
+
+.msg{
+  width:75%;
+}
+
+.buttons{
+  margin-top: 10px;
+}
+
+.favorite{
+  margin-right:23%;
+  
+  
+}
+.report{
+
+
+}
+
+.seller-profile {
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.seller-profile img {
+  width: 40px; /* Adjust the size of the profile picture as needed */
+  height: 40px;
+  border-radius: 50%; /* Make the image circular */
+  overflow: hidden; /* Ensure content (image) stays within the circular border */
+  margin-right: 10px;
+}
+
+.seller-name {
+  font-size: 16px;
+  margin: 0;
+}
+
+
+
+
+
+
+
