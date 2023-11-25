@@ -18,7 +18,7 @@ export class ProductService {
   }
 
   uploadImages(images: any): Observable<any>{
-    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/selling",{"images":images})
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/upload-images",{"images":images})
   }
 
   createListing(createListingRequest: CreateListingRequest): Observable<CreateListingResponse>{

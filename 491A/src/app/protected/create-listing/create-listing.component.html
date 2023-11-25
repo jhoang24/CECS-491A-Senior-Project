@@ -1,8 +1,6 @@
 <app-header></app-header>
 
 
-
-
 <div class="listingbox">
     <mat-card-title class="title">resell<span style="color: #FFD100">U </span>  </mat-card-title>
     <mat-card>
@@ -12,14 +10,14 @@
         
         <form [formGroup]="createListingForm" (ngSubmit)="createListing()">
 
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>UUID</mat-label>
 
             <input type="text" matInput placeholder="UUID" formControlName="uuid">
             <mat-error
               *ngIf="this.createListingForm.get('uuid')?.touched && this.createListingForm.get('uuid')?.hasError('uuid')">
               UUID is required</mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
   
           <mat-form-field appearance="outline">
             <mat-label>Item Name</mat-label>
@@ -42,10 +40,10 @@
             <mat-label>Condition</mat-label>
             <mat-select formControlName="condition">
               <mat-option>None</mat-option>
-              <mat-option value="New">New</mat-option>
-              <mat-option value="Lightly User">Lightly Used</mat-option>
-              <mat-option value="Used">Used</mat-option>
-              <mat-option value="Very Used">Very Used</mat-option>
+              <mat-option value="option1">New</mat-option>
+              <mat-option value="option2">Lightly Used</mat-option>
+              <mat-option value="option3">Used</mat-option>
+              <mat-option value="option3">Very Used</mat-option>
             </mat-select>
           </mat-form-field>
   
@@ -53,13 +51,13 @@
             <mat-label>Category</mat-label>
             <mat-select formControlName="catagory">
               <mat-option>None</mat-option>
-              <mat-option value="Electronics and Media">Electronics and Media</mat-option>
-              <mat-option value="Home and Garden">Home and Garden</mat-option>
-              <mat-option value="Fruniture">Fruniture</mat-option>
-              <mat-option value="Clothes">Clothes</mat-option>
-              <mat-option value="Vehciles">Vehicles</mat-option>
-              <mat-option value="Toys and Games">Toys and Games</mat-option>
-              <mat-option value="Sports and Outdoors">Sports and Outdoors</mat-option>
+              <mat-option value="option1">Electronics and Media</mat-option>
+              <mat-option value="option2">Home and Garden</mat-option>
+              <mat-option value="option3">Fruniture</mat-option>
+              <mat-option value="option4">Clothes</mat-option>
+              <mat-option value="option5">Vehicles</mat-option>
+              <mat-option value="option6">Toys and Games</mat-option>
+              <mat-option value="option7">Sports and Outdoors</mat-option>
             </mat-select>
           </mat-form-field>
   
@@ -73,19 +71,18 @@
 
           <div style="padding: 15px;">
             <div>
-                <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
-                  <!---->
-                 <!--<input type="file" name="file" accept="image/*" formControlName = "image" required/>
-                 -->
-                    <div class="text-wrapper">
-                      <div class="centered">
-                        <input type="file" name="file" id="file" (change)="onFileChange($any($event.target))" multiple formControlName = "images">
-                        <label for="file"><span class="textLink">Select your file</span> or Drop it here!</label>
-                      </div>
-                    </div>
+              <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
+                <div class="text-wrapper">
+                  <div class="centered">
+                    <input type="file" name="file" id="file" (change)="onFileChange($any($event))" multiple>
+                    <label for="file" class="textLink">Select your file</label>
+                    <span> or Drop it here!</span>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
+          
 
 
           <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!createListingForm.valid">Continue</button>

@@ -30,22 +30,29 @@ export class CreateListingComponent {
   ngOnInit(): void {
     this.email = localStorage.getItem("email");
     console.log(this.email);
+    
+
 
   }
 
   onFilesSelected(event: any) {
-    this.files = event.target.files;
+    const fileList: FileList | null = event.target.files;
+  
+    if (fileList) {
+      this.files.push(...Array.from(fileList));
+    }
   }
-
-  onFileChange(pFileList: File[]){
-    this.files = Object.keys(pFileList).map(key => pFileList[<any>key]);
-    this._snackBar.open("Successfully upload!", 'Close', {
-      duration: 2000,
-    });
+  
+  onFileChange(event: any) {
+    const fileList: FileList | null = event?.target?.files;
+  
+    if (fileList) {
+      this.files.push(...Array.from(fileList));
+    }
   }
 
   deleteFile(f: File){
-    this.files = this.files.filter(function(w){ return w.name != File.name });
+    this.files = this.files.filter(function(w){ return w.name != f.name });
     this._snackBar.open("Successfully delete!", 'Close', {
       duration: 2000,
     });
@@ -71,7 +78,7 @@ export class CreateListingComponent {
   }
 
   createListingForm = new FormGroup({
-    uuid: new FormControl('', [Validators.required]),
+    uuid: new FormControl(''),
     itemName: new FormControl(null, [Validators.required]),
     itemDescription: new FormControl(null, [Validators.required]),
     condition: new FormControl(null, [Validators.required]),
@@ -83,40 +90,48 @@ export class CreateListingComponent {
 
   });
 
-  // upload() {
-  //   const formData = new FormData();
-  //   for (let i = 0; i < this.files.length; i++) {
-  //     formData.append('images', this.files[i]);
-  //   }
-
-  //   this.productService.uploadImages(formData).subscribe(
-  //     (response) => {
-  //       // Handle response from the server (if needed)
-  //       console.log('Images uploaded:', response);
-  //     },
-  //     (error) => {
-  //       // Handle error
-  //       console.error('Error uploading images:', error);
-  //     }
-  //   );
-  // }
+  upload() {
+    const formData = new FormData();
+  
+    for (let i = 0; i < this.files.length; i++) {
+      const file = this.files[i];
+  
+      if (file instanceof File) {
+        formData.append(`images${i + 1}`, file);
+  
+        const reader = new FileReader();
+        reader.onload = (event: any) => {
+          const base64String = event.target.result;
+          console.log(`Base64 String for File ${i + 1}:`, base64String);
+        };
+  
+        reader.readAsDataURL(file);
+  
+        console.log(`File ${i + 1} instance:`, file);
+      }
+    }
+  }
+  
+  
 
   createListing() {
     if (!this.createListingForm.valid) {
       return;
     }
+    var TS = window.performance.timing.navigationStart + window.performance.now();
+    console.log(TS);
 
-    // const formData = new FormData();
-    // for (let i = 0; i < this.files.length; i++) {
-    //   formData.append('images', this.files[i]);
-    // }
     this.createListingForm.get('email')?.setValue(this.email);
+    this.createListingForm.get('uuid')?.setValue(String(TS));
+
+    console.log(this.files)
+    console.log(this.createListingForm.value);
 
     this.productService.createListing(this.createListingForm.value).subscribe(
       (res) => {
       }
     );
-    // this.upload();
+    this.upload();
   }
 
   
