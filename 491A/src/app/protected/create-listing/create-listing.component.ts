@@ -83,55 +83,67 @@ export class CreateListingComponent {
     itemDescription: new FormControl(null, [Validators.required]),
     condition: new FormControl(null, [Validators.required]),
     catagory: new FormControl(null, [Validators.required]),
-    price: new FormControl(null, [Validators.required]),
+    price: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(/^\d+(\.\d{1,2})?$/),
+    ]),
     images: new FormControl(null),
     userName: new FormControl(null),
     email: new FormControl(null),
 
   });
 
-  upload() {
+  upload(uuid: any) {
     const formData = new FormData();
+    var base64Images: string[] = [];
   
-    for (let i = 0; i < this.files.length; i++) {
-      const file = this.files[i];
-  
-      if (file instanceof File) {
-        formData.append(`images${i + 1}`, file);
-  
+    const readFile = (file: File, index: number) => {
+      return new Promise<void>((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = (event: any) => {
           const base64String = event.target.result;
-          console.log(`Base64 String for File ${i + 1}:`, base64String);
+          base64Images.push(base64String);
+          resolve();
         };
-  
         reader.readAsDataURL(file);
+      });
+    };
   
-        console.log(`File ${i + 1} instance:`, file);
+    const filePromises = this.files.map(async (file, index) => {
+      if (file instanceof File) {
+        formData.append(`images${index + 1}`, file);
+        await readFile(file, index);
       }
-    }
+    });
+  
+    Promise.all<void>(filePromises).then(() => {
+      console.log(base64Images);
+      this.productService.uploadImages(base64Images, uuid).subscribe(
+        (res) => {
+          console.log(res);
+        }
+      );
+    });
   }
   
-  
-
   createListing() {
     if (!this.createListingForm.valid) {
       return;
     }
-    var TS = window.performance.timing.navigationStart + window.performance.now();
-    console.log(TS);
+    var uuid = Math.round(window.performance.timing.navigationStart + window.performance.now());
+    console.log(uuid);
 
     this.createListingForm.get('email')?.setValue(this.email);
-    this.createListingForm.get('uuid')?.setValue(String(TS));
-
-    console.log(this.files)
-    console.log(this.createListingForm.value);
+    this.createListingForm.get('uuid')?.setValue(String(uuid));
+  
+    // console.log(this.files)
+    // console.log(this.createListingForm.value);
 
     this.productService.createListing(this.createListingForm.value).subscribe(
       (res) => {
       }
     );
-    this.upload();
+    this.upload(uuid);
   }
 
   
