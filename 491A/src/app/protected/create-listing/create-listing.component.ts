@@ -90,6 +90,8 @@ export class CreateListingComponent {
     images: new FormControl(null),
     userName: new FormControl(null),
     email: new FormControl(null),
+    imagesLength: new FormControl(0),
+
 
   });
 
@@ -135,6 +137,8 @@ export class CreateListingComponent {
 
     this.createListingForm.get('email')?.setValue(this.email);
     this.createListingForm.get('uuid')?.setValue(String(uuid));
+    this.createListingForm.get('imagesLength')?.setValue(this.files.length);
+
   
     // console.log(this.files)
     // console.log(this.createListingForm.value);

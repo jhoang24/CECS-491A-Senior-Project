@@ -53,6 +53,8 @@ export interface CreateListingRequest {
   price?: string | null;
   images?: null;
   userName?: string | null;
+  imagesLength?: number | null;
+
 }
 
 
