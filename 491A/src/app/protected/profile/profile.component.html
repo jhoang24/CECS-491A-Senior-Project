@@ -1,10 +1,10 @@
-<app-header> </app-header>
+<app-header></app-header>
 
 <mat-card>
   <mat-card-content>
-    <img [src]="picture"> 
-
-
-
+    <div class="profile-container">
+      <img [src]="picture" class="profile-image" />
+      <p class="username">{{ username || localUsername }}</p>
+    </div>
   </mat-card-content>
 </mat-card>

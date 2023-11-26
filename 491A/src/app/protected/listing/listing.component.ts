@@ -12,8 +12,9 @@ export class ListingComponent implements OnInit {
 
   userMessage: string = '';
   username: any;
+  messageSent: boolean = false;  // New variable to track whether the message is sent
 
-  constructor(private http: HttpClient,private auth: AuthService) { 
+  constructor(private http: HttpClient, private auth: AuthService) { 
     this.username = this.auth.getLoggedInUser().username;
   }
 
@@ -49,7 +50,6 @@ if (invokeButton) {
 sendEmail() {
   const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-email';
 
-  // You can pass any necessary data to your Lambda function as a request payload.
   const requestData = {
     recipientEmail: 'ale21100@gmail.com',
     subject: 'Subject',
@@ -59,14 +59,16 @@ sendEmail() {
 
   this.http.post(apiGatewayUrl, requestData).subscribe(
     (response) => {
-      // Handle success, e.g., show a success message to the user
       console.log('Email sent successfully', response);
+      this.userMessage = '';  // Clear the userMessage
+      this.messageSent = true;  // Set messageSent to true
+      setTimeout(() => {
+        this.messageSent = false;  // Clear the message after a delay (e.g., 3 seconds)
+      }, 3000);
     },
     (error) => {
-      // Handle error, e.g., show an error message to the user
       console.error('Email send failed', error);
     }
   );
-
 }
 }
