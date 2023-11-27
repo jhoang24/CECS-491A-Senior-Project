@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { GetProfileResponse } from 'src/app/public/interfaces';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
+import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-selling',
@@ -15,7 +17,7 @@ export class SellingComponent implements OnInit {
   user: any;
   products: Array<any> = []
 
-  constructor(private router:Router, private productService: ProductService, private auth: AuthService) { 
+  constructor(private router:Router, private productService: ProductService, private auth: AuthService, private matDialog: MatDialog) { 
     this.user = this.auth.getLoggedInUser();
   }
 
@@ -27,6 +29,15 @@ export class SellingComponent implements OnInit {
         this.products=res.userSelling;
       }
     );
+  }
+
+
+
+  openDeleteConfirm(){
+    this.matDialog.open(DeleteConfirmationDialogComponent,{
+      width:'220px',
+    })
+
   }
 
 }
