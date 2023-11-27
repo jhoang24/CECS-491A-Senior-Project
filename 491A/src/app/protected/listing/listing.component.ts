@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/public/services/auth-service/auth.service';
+
 
 @Component({
   selector: 'app-listing',
@@ -7,34 +10,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListingComponent implements OnInit {
 
-  constructor() { }
+  userMessage: string = '';
+  username: any;
+
+  imageUrls: string[] = ['https://picsum.photos/200/300',
+  'https://picsum.photos/200/301',
+  'https://picsum.photos/200/302',
+  // Add more image URLs as needed
+];
+  currentImage: string = this.imageUrls[0];
+
+  constructor(private http: HttpClient,private auth: AuthService) { 
+    this.username = this.auth.getLoggedInUser().username;
+  }
 
   ngOnInit(): void {
 
-    const invokeButton = document.getElementById('invokeButton');
+//    const invokeButton = document.getElementById('invokeButton');
 
-if (invokeButton) {
-  invokeButton.addEventListener('click', () => {
-    fetch('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing?param1=uuid=2', {
-      method: 'POST', // or other HTTP methods like POST
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response from your Lambda function here
-        console.log(data);
-      })
-      .catch(error => {
-        // Handle any errors here
-        console.error(error);
-      });
-  });
-} else {
-  console.error("Element with ID 'invokeButton' not found.");
+// if (invokeButton) {
+//   invokeButton.addEventListener('click', () => {
+//     fetch('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         // Handle the response from your Lambda function here
+//         console.log(data);
+//       })
+//       .catch(error => {
+//         // Handle any errors here
+//         console.error(error);
+//       });
+//   });
+// } else {
+//   console.error("Element with ID 'invokeButton' not found.");
+// }
+
+// Send request to api gateway
 }
 
-  }
+sendEmail() {
+  const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-email';
 
+  // You can pass any necessary data to your Lambda function as a request payload.
+  const requestData = {
+    recipientEmail: 'ale21100@gmail.com',
+    subject: 'Subject',
+    message: this.userMessage,
+    sourceEmail: this.username,
+  };
+
+  this.http.post(apiGatewayUrl, requestData).subscribe(
+    (response) => {
+      // Handle success, e.g., show a success message to the user
+      console.log('Email sent successfully', response);
+    },
+    (error) => {
+      // Handle error, e.g., show an error message to the user
+      console.error('Email send failed', error);
+    }
+  );
+ }
+ prevImage() {
+  const currentIndex = this.imageUrls.indexOf(this.currentImage);
+  const prevIndex = (currentIndex - 1 + this.imageUrls.length) % this.imageUrls.length;
+  this.currentImage = this.imageUrls[prevIndex];
+}
+
+nextImage() {
+  const currentIndex = this.imageUrls.indexOf(this.currentImage);
+  const nextIndex = (currentIndex + 1) % this.imageUrls.length;
+  this.currentImage = this.imageUrls[nextIndex];
+}
 }
