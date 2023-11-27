@@ -1,10 +1,12 @@
-<app-header></app-header>
-
 <mat-card>
   <mat-card-content>
     <div class="profile-container">
       <img [src]="picture" class="profile-image" />
       <p class="username">{{ username || localUsername }}</p>
+      <p class="user-info">{{ user?.firstname }} {{ user?.lastname }}</p>
+      <p class="user-info">
+        <strong>Email Address:</strong> {{ user?.email }}
+      </p>
     </div>
   </mat-card-content>
 </mat-card>
