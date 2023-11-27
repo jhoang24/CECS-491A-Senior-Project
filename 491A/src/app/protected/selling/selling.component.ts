@@ -19,8 +19,6 @@ export class SellingComponent implements OnInit {
     this.user = this.auth.getLoggedInUser();
   }
 
-  picture: string = "data:image/png;base64,"
-
   ngOnInit(): void {
     this.productService.getProductInfo(this.user.username)
     .subscribe(
