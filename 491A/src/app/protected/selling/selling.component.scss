@@ -24,6 +24,10 @@
   font-size: 1.2em;
   margin-bottom: 8px;
   font-weight: bold;
+  overflow: hidden;
+  max-height: 60px;
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
 
 }
 
