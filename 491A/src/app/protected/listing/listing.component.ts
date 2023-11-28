@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ListingService } from '../services/listing.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { GetProfileResponse } from 'src/app/public/interfaces';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
-
 
 @Component({
   selector: 'app-listing',
@@ -12,45 +15,45 @@ export class ListingComponent implements OnInit {
 
   userMessage: string = '';
   username: any;
-
+  UUID: any = 1700950333172;
   imageUrls: string[] = ['https://picsum.photos/200/300',
   'https://picsum.photos/200/301',
   'https://picsum.photos/200/302',
+  'https://picsum.photos/200/303',
   // Add more image URLs as needed
 ];
   currentImage: string = this.imageUrls[0];
+  currentImageIndex: number=0;
+  listingData: any;
 
-  constructor(private http: HttpClient,private auth: AuthService) { 
+  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService) { 
     this.username = this.auth.getLoggedInUser().username;
   }
 
   ngOnInit(): void {
+  this.listingService.getListingInfo(this.UUID).subscribe(
+    (res) => {
+      console.log("Listing Data", res)
+      this.listingData = res;
+    }
+  )
+}
 
-//    const invokeButton = document.getElementById('invokeButton');
+nextImage() {
+  console.log('Next Image Clicked');
+  this.currentImageIndex = (this.currentImageIndex + 1) % this.imageUrls.length;
+  this.currentImage = this.imageUrls[this.currentImageIndex];
+}
 
-// if (invokeButton) {
-//   invokeButton.addEventListener('click', () => {
-//     fetch('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//     })
-//       .then(response => response.json())
-//       .then(data => {
-//         // Handle the response from your Lambda function here
-//         console.log(data);
-//       })
-//       .catch(error => {
-//         // Handle any errors here
-//         console.error(error);
-//       });
-//   });
-// } else {
-//   console.error("Element with ID 'invokeButton' not found.");
-// }
+prevImage() {
+  console.log('Previous Image Clicked');
+  this.currentImageIndex = (this.currentImageIndex - 1 + this.imageUrls.length) % this.imageUrls.length;
+  this.currentImage = this.imageUrls[this.currentImageIndex];
+}
 
-// Send request to api gateway
+selectImage(index: number){
+  this.currentImageIndex = index;
+  this.currentImage = this.imageUrls[index];
 }
 
 sendEmail() {
@@ -75,15 +78,5 @@ sendEmail() {
     }
   );
  }
- prevImage() {
-  const currentIndex = this.imageUrls.indexOf(this.currentImage);
-  const prevIndex = (currentIndex - 1 + this.imageUrls.length) % this.imageUrls.length;
-  this.currentImage = this.imageUrls[prevIndex];
-}
 
-nextImage() {
-  const currentIndex = this.imageUrls.indexOf(this.currentImage);
-  const nextIndex = (currentIndex + 1) % this.imageUrls.length;
-  this.currentImage = this.imageUrls[nextIndex];
-}
 }

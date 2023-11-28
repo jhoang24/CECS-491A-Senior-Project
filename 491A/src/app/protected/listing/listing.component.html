@@ -5,7 +5,8 @@
 <div class="listing-container">
     <div class="listing-image">
       <!-- Replace 'image-url.jpg' with the actual image URL -->
-      <img src = "https://picsum.photos/200/300" alt="Listing Image" />
+      <img [src] = "currentImage" alt="Listing Image" />
+      
     </div>
     <div class="listing-details">
       <div class="listing-info">
@@ -27,10 +28,17 @@
           <img src="https://picsum.photos/200/300" alt="Seller Profile Picture" />
           <p class="seller-name">Seller's Name</p>
       </div>
-      
       </div>
     </div>
-</div>
+  </div>
+
+  <div class="image-thumbnails">
+    <div class = "thumbnail-container" *ngFor="let imageUrl of imageUrls; let i = index" (click)="selectImage(i)">
+      <img [src]="imageUrl" alt="Thumbnail Image" class = "thumbnail-img" />
+    </div>
+  </div>
+
+  
 
 <div class="description-container">
   <h2 class="description-title">Description</h2>
