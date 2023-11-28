@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from '../../custom-validator';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { tap } from 'rxjs';
@@ -15,9 +15,9 @@ export class ConfirmPasswordComponent{
   token!: string;
   email!: string;
 
-  confirmForm = new FormGroup({
-    password: new FormControl(null,Validators.required),
-    passwordConfirm: new FormControl(null, Validators.required)
+  confirmForm = new UntypedFormGroup({
+    password: new UntypedFormControl(null,Validators.required),
+    passwordConfirm: new UntypedFormControl(null, Validators.required)
   },
     {validators: CustomValidators.passwordsMatching}
   )
