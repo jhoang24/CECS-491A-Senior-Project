@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-delete-confirmation-dialog',
@@ -8,12 +10,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class DeleteConfirmationDialogComponent implements OnInit {
 
-  constructor(private modalRef: MatDialogRef<DeleteConfirmationDialogComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private productService: ProductService, private dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>) { }
 
   ngOnInit(): void {
   }
 
   confirm() {
+    this.productService.deleteProduct(this.data.username, this.data.uuid).subscribe(res=>{
+      console.log(res);
+      window.location.reload();
+
+    });
+    this.dialogRef.close();
   }
 
 

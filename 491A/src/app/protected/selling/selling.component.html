@@ -8,7 +8,7 @@
               <p class="product-name">{{ product.dynamoDBItem.itemName }}</p>
               <p class="product-price">${{ product.dynamoDBItem.price }}</p>
           </mat-card-content>
-          <button mat-icon-button class="delete-button" (click)="openDeleteConfirm()">
+          <button mat-icon-button class="delete-button" (click)="openDeleteConfirm(product.dynamoDBItem.uuid)">
             <mat-icon>delete</mat-icon>
           </button>
           </mat-card>

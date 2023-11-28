@@ -33,9 +33,13 @@ export class SellingComponent implements OnInit {
 
 
 
-  openDeleteConfirm(){
+  openDeleteConfirm(uuid: any){
     this.matDialog.open(DeleteConfirmationDialogComponent,{
       width:'220px',
+      data: {
+        username: this.user.username,
+        uuid: uuid
+      }
     })
 
   }

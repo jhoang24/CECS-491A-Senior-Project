@@ -17,4 +17,9 @@ export class ProductService {
   getHomeProducts(): Observable<any>{
     return this.http.get("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/home")
   }
+
+  deleteProduct(username: any, listingID: any){
+    const url = `https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/selling?username=${username}&listingID=${listingID}`;
+    return this.http.delete(url);
+  }
 }
