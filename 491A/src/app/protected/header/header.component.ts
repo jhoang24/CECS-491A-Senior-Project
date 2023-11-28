@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit{
         (res) => 
         {
           localStorage.setItem("picture", res.picture)
+          localStorage.setItem("email", res.email)
           this.picture += localStorage.getItem("picture")
         }
       );
