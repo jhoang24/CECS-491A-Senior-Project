@@ -32,10 +32,11 @@ width: 100%;
 height: 2.8rem;
 background: #f5f5f5;
 outline: none;
-border: none;
+border: 1px solid black;
 border-radius: 1.625rem;
 padding: 0 3.5rem 0 1.5rem;
 font-size: 1rem;
+
 }
 
 #searchQuerySubmit {
@@ -94,5 +95,106 @@ a{
   font-weight: bold;
   font-size: 25px;
   margin-block: 0%;
+  color: #2774AE;
 }
 
+@media only screen and (max-width: 750px) {
+  .wrapper {
+    margin: 6rem auto; /* Adjust the margin for smaller devices */
+    width:100%;
+    max-width: 31.25rem;
+    
+  }
+  .mat-toolbar{
+    overflow: hidden;
+  }
+  .spacer {
+    display: none; /* Hide the spacer on smaller devices */
+  }
+  
+  img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+    position: relative;
+    left: 50%;
+    bottom: 10%;
+  }
+
+  .navButton {
+    display:flex;
+    flex-direction: row; /* Adjust the direction of the buttons for smaller devices */
+    justify-content: center;
+    //relative or absolute TBD
+    position:relative;
+    left:20%;
+    
+  }
+
+  .navButton a {
+    display: flex;
+    margin-bottom: 0rem; /* Add margin between the buttons for smaller devices */
+    margin-right: -30px;
+  }
+  
+
+//icons and profile picture spacing
+ .toolbar-content {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+  .mat-button{
+  font-size: 14px; /* Adjust the font size as needed */
+  padding: 0px 0px; /* Adjust the padding as needed */
+
+  }
+  .mat-button mat-icon{
+    font-size: 100%;
+  }
+
+  .title{
+    font-size: 20px;
+    color: #2774AE;
+  }
+ 
+  
+  //menu icon and logo position
+  .top-bar-left {
+    position: relative;
+    right: 5%;
+
+  }
+  .searchBar{
+    width:85%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    left: 5%;
+
+  }
+
+  #searchQueryInput {
+    width: 100%;
+    height: 2.5rem;
+    background: #f5f5f5;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 1.625rem;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    }
+    
+    #searchQuerySubmit {
+    width: 2.5rem;
+    height: 1.8rem;
+    margin-left: -3.5rem;
+    background: none;
+    border: none;
+    outline: none;
+    }
+  
+}

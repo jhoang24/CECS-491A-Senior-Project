@@ -15,7 +15,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogConfirmComponent } from './protected/dialog-confirm/dialog-confirm.component';
 import { FileDragNDropDirective } from './protected/create-listing/file-drag-n-drop.directive';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -51,6 +51,7 @@ export function tokenGetter() {
     MatInputModule,
     MatDividerModule,
     MatMenuModule,
+    MatSidenavModule,
     
 
     MatDialogModule,

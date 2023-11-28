@@ -1,51 +1,76 @@
 <app-header></app-header>
-<div class>
-  <mat-card>
+<div>
   <form (submit)="saveProfile()">
     
-  <mat-card-content>
-  <div class="profile-picture">
-    <div class="profile-picture-frame">
-      <img [src]="picture" alt="Profile Picture" class="profile-picture" />
-    </div>
-    <input
-      type="file"
-      (change)="onFileSelected($event)"
-      accept="image/*"
-      style="display: none;"
-      id="fileInput"
-      #fileInput
-    />
-    <label for="fileInput" class="mat-icon-button">
-      <mat-icon>edit</mat-icon>
-    </label>
-  </div>
+    <div *ngIf="!isSmallScreen">
+      <div class="profile-picture">
+        <div class="profile-picture-frame">
+          <img [src]="picture" alt="Profile Picture" class="profile-picture" />
+        </div>
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          style="display: none;"
+          id="fileInput"
+          #fileInput
+        />
+        <label for="fileInput" class="mat-icon-button">
+          <mat-icon>edit</mat-icon>
+        </label>
+      </div>
 
-    <div class = "name">
-      <input type="text" matInput placeholder="Your Name" [(ngModel)]="username" name="username" required style ="border: none;"/>
-      <mat-icon class ="nameEdit">edit</mat-icon>
-    </div>
-      <hr class ="line">
-      <p class = "text" >Your Profile</p>
+      <div class="name">
+        <input type="text" matInput placeholder="Your Name" [(ngModel)]="username" name="username" required style="border: none;" />
+        <mat-icon class="nameEdit">edit</mat-icon>
+      </div>
+
+      <p class="text">Your Profile</p>
 
       <div class="button-container">
-        <button mat-button class="outline-button" >Public Profile</button>
-        <button mat-button class="outline-button" >Favorited Items</button>
+        <button mat-button class="outline-button">Public Profile</button>
+        <button mat-button class="outline-button">Favorited Items</button>
         <button mat-button class="outline-button">Selling</button>
       </div>
 
-      <hr class ="line2">
-      <p class ="text2"> Settings</p>
+      <p class="text2">Settings</p>
       <div class="button-container">
-        <button mat-button class="outline-button" >Change Email</button>
-        <button mat-button class="outline-button" >Change School</button>
+        <button mat-button class="outline-button">Change Email</button>
+        <button mat-button class="outline-button">Change School</button>
         <a mat-button routerLink="/protected/change-password" class="outline-button">Change Password</a>
-        <button mat-button class="outline-button">Delete </button>
-        <button mat-button class= "outline-button"(click)="logout()">Logout</button>
+        <button mat-button class="outline-button">Delete</button>
+        <button mat-button class="outline-button" (click)="logout()">Logout</button>
 
       </div>
-    <button mat-raised-button color="primary" type="submit">Save</button>
-  </mat-card-content>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+    </div>
+
+    <div *ngIf="isSmallScreen">
+      <div class="name">
+        <input type="text" matInput placeholder="Your Name" [(ngModel)]="username" name="username" required style="border: none;" />
+        <mat-icon class="nameEdit">edit</mat-icon>
+      </div>
+  
+      <p class="text">Your Profile</p>
+
+      <div class="button-container">
+        <button mat-button class="outline-button">Public Profile</button>
+        <button mat-button class="outline-button">Favorited Items</button>
+        <button mat-button class="outline-button">Selling</button>
+      </div>
+
+      <p class="text2">Settings</p>
+      <div class="button-container">
+        <button mat-button class="outline-button">Change Email</button>
+        <button mat-button class="outline-button">Change School</button>
+        <a mat-button routerLink="/protected/change-password" class="outline-button">Change Password</a>
+        <button mat-button class="outline-button">Delete</button>
+        <button mat-button class="outline-button" (click)="logout()">Logout</button>
+
+      </div>
+      <button mat-raised-button color="primary" type="submit">Save</button>
+
+    </div>
+
   </form>
-</mat-card>
 </div>

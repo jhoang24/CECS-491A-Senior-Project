@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, HostListener } from '@angular/core';
 import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
@@ -16,20 +16,29 @@ import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 export class HeaderComponent implements OnInit{
   enteredButton = false;
   isMatMenuOpen = false;
-  username: any;
+  user: any;
+  isSmallScreen = false;
+  opened = false;
 
 
   constructor(private router:Router, private profileService: ProfileService, private auth: AuthService) { 
-    this.username = this.auth.getLoggedInUser();
+    this.user = this.auth.getLoggedInUser();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any){
+    this.checkScreenSize();
   }
 
 
  picture: string = "data:image/png;base64,"
 
- // If localstorage for picture is empty, then get profile image fromand store it
+ // If localstorage for picture is empty, then get profile image from backend and store it
   ngOnInit(): void {
+    this.checkScreenSize();
+
     if (localStorage.getItem("picture")  == null){
-      this.profileService.getProfileInfo(this.username.username)
+      this.profileService.getProfileInfo(this.user.username)
       .subscribe(
         (res) => 
         {
@@ -41,7 +50,15 @@ export class HeaderComponent implements OnInit{
     else {
       this.picture += localStorage.getItem("picture")
     } 
+
   }  
+  checkScreenSize(){
+    this.isSmallScreen = window.innerWidth <767;
+  }
+  toggleSidenav() {
+    this.opened = !this.opened;
+  
+  }
   
   logout(): void{
     // Removes the jwt token from the local storage, so the user gets logged out & then navigate back to the "public" routes
@@ -84,5 +101,7 @@ export class HeaderComponent implements OnInit{
       }
     }, 100)
   }
+
+
     
 }

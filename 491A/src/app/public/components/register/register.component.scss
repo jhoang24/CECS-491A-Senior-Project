@@ -24,7 +24,7 @@ mat-card {
       mat-error {
         margin-top: 1px;
         margin-bottom: 1px;
-        width: 300px;
+        width: 100%;
         color: red;
       }
     }
@@ -77,4 +77,27 @@ mat-card {
   
   /* White  · Background Primary */
   color: #FFFFFF;
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size: 6vw; /* Adjust font size for smaller screens */
+    line-height: 10vw; /* Adjust line height for smaller screens */
+    margin: 5vw; /* Adjust margin for smaller screens */
+  }
+
+  #createAccount {
+    font-size: 4vw; /* Adjust font size for smaller screens */
+    line-height: 6vw; /* Adjust line height for smaller screens */
+  }
+
+  #continue {
+    width: 50%; /* Adjust width for smaller screens */
+    height: 8vw; /* Adjust height for smaller screens */
+    margin-top: 2.5vw; /* Adjust margin top for smaller screens */
+    margin-bottom: 5vw; /* Adjust margin bottom for smaller screens */
+    font-size: 3.33vw; /* Adjust font size for smaller screens */
+    line-height: 4vw; /* Adjust line height for smaller screens */
+  }
 }

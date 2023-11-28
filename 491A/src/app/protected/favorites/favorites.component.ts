@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritesComponent implements OnInit {
 
+  //testing something
+  opened = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+  toggleSidenav() {
+    this.opened = !this.opened;
   }
 
 }
