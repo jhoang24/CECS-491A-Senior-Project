@@ -1,7 +1,6 @@
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   padding: 16px;
 }
 
@@ -35,4 +34,11 @@
   position: absolute;
   bottom: 8px;
   right: 8px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+  font-size: 3em; 
 }
