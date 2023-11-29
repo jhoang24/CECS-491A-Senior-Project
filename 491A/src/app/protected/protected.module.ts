@@ -26,8 +26,9 @@ import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component'; 
 
- 
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -41,7 +42,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent, 
+    ChangePasswordComponent, DeleteConfirmationDialogComponent, 
   ],
   imports: [
     CommonModule,
@@ -63,6 +64,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatMenuModule,
     MatGridListModule,
     MatSidenavModule,
+    MatDialogModule
   ]
 })
 export class ProtectedModule { }
