@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   username: string;
   localUsername: any;
   picture: string = "data:image/png;base64,";
+  email: any;
   user: any // User object from Dynamodb
 
   constructor(
@@ -35,20 +36,11 @@ export class ProfileComponent implements OnInit {
       } else {
         this.profileService.getProfileInfo(this.username).subscribe(
           (res) => {
+            this.email = res.email;  // Store the email from the response
             this.picture += res.picture;
           }
         );
       }
     });
-
-    // Send POST request to API Gateway with username
-    this.http.post('https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/profile', { username: this.localUsername }).subscribe(
-      (res: any) => {
-        this.user = res;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
   }
 }
