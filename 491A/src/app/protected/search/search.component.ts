@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
   constructor(private router:Router, private productService: ProductService, private activatedRoute: ActivatedRoute) { }
 
   query: string = '';
+  loading: boolean = true;
 
   ngOnInit(): void {
     // Whenever the query params for activated route changes, then so will the display for the search page
@@ -25,11 +26,13 @@ export class SearchComponent implements OnInit {
   }
 
   fetchSearchedProducts() {
+    this.loading = true;
     this.productService.getSearchedProduct(this.query)
       .subscribe(
         (res) => {
           console.log(res.body);
           this.products = res.body.listings;
+          this.loading = false;
         }
       );
   }

@@ -16,17 +16,20 @@ import { MatDialog } from '@angular/material/dialog';
 export class SellingComponent implements OnInit {
   user: any;
   products: Array<any> = []
+  loading: boolean = true;
 
   constructor(private router:Router, private productService: ProductService, private auth: AuthService, private matDialog: MatDialog) { 
     this.user = this.auth.getLoggedInUser();
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.productService.getProductInfo(this.user.username)
     .subscribe(
       (res) => 
       {
         this.products=res.userSelling;
+        this.loading = false;
       }
     );
   }

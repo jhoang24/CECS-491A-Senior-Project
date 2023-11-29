@@ -1,21 +1,26 @@
 <app-header> </app-header>
 
-<div class="product-grid">
-    <div *ngFor="let product of products" class="product-tile">
-          <mat-card>
-          <img mat-card-image [src]="product.image" loading="lazy" class="product-image">
-          <mat-card-content>
-              <p class="product-name">{{ product.dynamoDBItem.itemName }}</p>
-              <p class="product-price">${{ product.dynamoDBItem.price }}</p>
-          </mat-card-content>
-          <button mat-icon-button class="delete-button" (click)="openDeleteConfirm(product.dynamoDBItem.uuid)">
-            <mat-icon>delete</mat-icon>
-          </button>
-          </mat-card>
-    </div>
+<div *ngIf="loading; else content">
 </div>
-  
 
-<div class="no-results" *ngIf="products.length === 0">
-  <p>No Items Found</p>
-</div>
+<ng-template #content>
+  <div class="product-grid">
+      <div *ngFor="let product of products" class="product-tile">
+            <mat-card>
+            <img mat-card-image [src]="product.image" loading="lazy" class="product-image">
+            <mat-card-content>
+                <p class="product-name">{{ product.dynamoDBItem.itemName }}</p>
+                <p class="product-price">${{ product.dynamoDBItem.price }}</p>
+            </mat-card-content>
+            <button mat-icon-button class="delete-button" (click)="openDeleteConfirm(product.dynamoDBItem.uuid)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            </mat-card>
+      </div>
+  </div>
+    
+
+  <div class="no-results" *ngIf="products.length === 0">
+    <p>No Items Found</p>
+  </div>
+</ng-template>

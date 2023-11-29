@@ -12,16 +12,20 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
   products: Array<any> = []
+  loading: boolean = true;
 
   constructor(private router:Router, private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.loading = true; 
+
     this.productService.getHomeProducts()
     .subscribe(
       (res) => 
       {
         this.products=res.body.listings;
         console.log(res.body)
+        this.loading = false;
       }
     );
   }
