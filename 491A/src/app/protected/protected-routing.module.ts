@@ -10,6 +10,7 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path: 'listing',
     component: ListingComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
   },
  
 ];
