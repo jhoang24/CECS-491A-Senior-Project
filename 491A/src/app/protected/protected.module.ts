@@ -28,6 +28,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component'; 
+import { ReportUserComponent } from '../report-user/report-user.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent, DeleteConfirmationDialogComponent, 
+    ChangePasswordComponent, DeleteConfirmationDialogComponent,
+    ReportUserComponent
   ],
   imports: [
     CommonModule,

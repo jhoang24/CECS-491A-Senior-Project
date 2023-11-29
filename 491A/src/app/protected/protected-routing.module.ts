@@ -10,6 +10,7 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ReportUserComponent } from '../report-user/report-user.component';
 
 
 
@@ -69,6 +70,11 @@ const routes: Routes = [
     path: 'listing',
     component: ListingComponent
   },
+  {
+    path: 'report-user',
+    component: ReportUserComponent
+  },
+  
  
 ];
 

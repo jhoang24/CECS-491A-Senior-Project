@@ -23,7 +23,7 @@ export class ListingComponent implements OnInit {
   }
 
 sendEmail() {
-  const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-email';
+  const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/report-user';
 
   const requestData = {
     recipientEmail: 'ale21100@gmail.com',

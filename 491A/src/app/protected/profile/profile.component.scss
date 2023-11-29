@@ -1,6 +1,7 @@
 /* Default styles for larger screens */
 .profile-container {
   text-align: center;
+  position: relative;
 }
 
 .profile-image {
@@ -8,6 +9,7 @@
   height: 150px;
   border-radius: 50%;
   margin-bottom: 10px;
+  position: relative; /* Add this line */
 }
 
 .username {
@@ -17,6 +19,18 @@
 
 .email {
   font-size: 20px;
+}
+
+.profile-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+/* Red color for the report button */
+.report-button.red {
+  color: red;
 }
 
 /* Media query for smaller screens (max-width: 600px) */
@@ -32,5 +46,9 @@
 
   .email {
     font-size: 16px;
+  }
+
+  .profile-header {
+    margin: 5px;
   }
 }
