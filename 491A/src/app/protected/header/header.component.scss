@@ -62,7 +62,7 @@ img {
 // Category bar style
 mat-toolbar#categories{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   button{
     width: fit-content;
   }
