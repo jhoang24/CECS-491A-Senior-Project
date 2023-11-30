@@ -3,6 +3,7 @@ import { ProfileService } from '../services/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { HostListener } from '@angular/core';
+import { UsernameService } from '../services/username.service';  // Import the shared service
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,8 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private route: ActivatedRoute,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private usernameService: UsernameService  // Inject the shared service
   ) {
     this.localUsername = this.auth.getLoggedInUser().username;
     this.username = '';
@@ -37,6 +39,9 @@ export class ProfileComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.username = params.username;
+
+      // Set the username in the shared service
+      this.usernameService.setUsername(this.username);
 
       if (this.username == null) {
         this.picture += localStorage.getItem("picture");
