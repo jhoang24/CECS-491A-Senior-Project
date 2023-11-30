@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of, switchMap, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, CreateListingRequest, CreateListingResponse} from '../../interfaces';
+import { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse} from '../../interfaces';
 
 // export const LogIn: LoginResponse = {
 //   // fakeAccessToken.....should all come from real backend
@@ -149,20 +149,6 @@ return false;
   }
 }
 */
-  createListing(createListingRequest: CreateListingRequest): Observable<CreateListingResponse>{
-    const url = "https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/createlisting";
-
-    // You should send the actual request data (createListingRequest) instead of the interface itself (CreateListingResponse).
-    return this.http.post<CreateListingResponse>(url, createListingRequest).pipe(
-      tap((res: CreateListingResponse) => {
-        // Assuming this.snackbar is defined in your service/component
-        this.snackbar.open(`User created listing successfully`, 'Close', {
-          duration: 2000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top'
-        });
-      }),
-    );
-  }
+  
 }
 

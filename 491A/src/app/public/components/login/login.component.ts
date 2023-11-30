@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -11,9 +11,9 @@ import { AuthService } from '../../services/auth-service/auth.service';
 })
 export class LoginComponent {
 
-  loginForm: FormGroup = new FormGroup({
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [Validators.required]),
+  loginForm: UntypedFormGroup = new UntypedFormGroup({
+    username: new UntypedFormControl(null, [Validators.required]),
+    password: new UntypedFormControl(null, [Validators.required]),
   });
 
   authError: string | null = null;
@@ -29,7 +29,7 @@ export class LoginComponent {
     }
     this.authService.login(this.loginForm.value).pipe(
       // route to protected/dashboard, if login was successfull
-      tap(() => this.router.navigate(['../../protected/home'])),
+      tap(() => this.router.navigate(['/protected/home'])),
 
       tap({ 
         error: (error) => {
