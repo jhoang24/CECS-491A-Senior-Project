@@ -110,5 +110,7 @@
       }
     }
   },
-  "defaultProject": "login-and-register-example"
+  "cli": {
+    "analytics": false
+  }
 }

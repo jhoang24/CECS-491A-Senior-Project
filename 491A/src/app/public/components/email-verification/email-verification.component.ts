@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { error } from 'console';
 import { Observable } from 'rxjs';
@@ -27,8 +27,8 @@ export class EmailVerificationComponent implements OnInit {
   
   }
 
-  emailConfirmation: FormGroup = new FormGroup({
-    code: new FormControl(''),
+  emailConfirmation: UntypedFormGroup = new UntypedFormGroup({
+    code: new UntypedFormControl(''),
   });
 
 

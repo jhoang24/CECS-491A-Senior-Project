@@ -61,7 +61,7 @@ const routes: Routes = [
     component: ChangePasswordComponent
   },
   {
-    path: '/public/login',
+    path: 'public/login',
     redirectTo: 'login',
     pathMatch: 'full'
   },

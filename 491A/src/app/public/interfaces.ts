@@ -44,14 +44,19 @@ export interface RegisterResponse {
 
 
 //interface for create-listing 
-export interface CreateListingRequest{
-  listing: string;
-  itemName: string;
-  itemDescription: string;
-  condition: string;
-  catagory: string;
-  price: string;
+export interface CreateListingRequest {
+  uuid?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  condition?: string | null;
+  catagory?: string | null;
+  price?: string | null;
+  images?: null;
+  userName?: string | null;
+  imagesLength?: number | null;
+
 }
+
 
 export interface CreateListingResponse{
   status: number;
