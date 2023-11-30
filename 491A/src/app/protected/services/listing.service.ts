@@ -11,6 +11,6 @@ export class ListingService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   getListingInfo( UUID: any): Observable<any> {
-    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing", {"UUID":UUID })
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing", {"uuid":UUID })
   }
 }

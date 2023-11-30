@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { GetProfileResponse } from 'src/app/public/interfaces';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listing',
@@ -15,7 +16,9 @@ export class ListingComponent implements OnInit {
 
   userMessage: string = '';
   username: any;
-  UUID: any = 1700950333172;
+  picture: string = "data:image/png;base64,"
+  UUID: any = '1700950333172';
+  uuid: string;
   imageUrls: string[] = ['https://picsum.photos/200/300',
   'https://picsum.photos/200/301',
   'https://picsum.photos/200/302',
@@ -26,18 +29,39 @@ export class ListingComponent implements OnInit {
   currentImageIndex: number=0;
   listingData: any;
 
-  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService) { 
+  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute) { 
     this.username = this.auth.getLoggedInUser().username;
+    this.uuid = '';
   }
 
+//connects to specific listing with uuid:1700950333172
   ngOnInit(): void {
   this.listingService.getListingInfo(this.UUID).subscribe(
     (res) => {
       console.log("Listing Data", res)
-      this.listingData = res;
+      this.listingData = res.listing;
+      this.imageUrls = res.image || []; // Use the image property for images, default to an empty array if null
+      this.currentImage = this.imageUrls[0]; // Set the i
     }
   )
 }
+
+// ngOnInit(): void {
+//   this.route.params.subscribe(params => {
+//     this.uuid = params.uuid; 
+//     if(this.uuid== null){
+//       this.picture += localStorage.getItem("picture")
+//     } else {
+//     this.listingService.getListingInfo(this.uuid).subscribe(
+//       (res) => 
+//       {
+//          console.log("Listing Data", res)
+//       this.listingData = res.listing;
+//       this.imageUrls = res.image || []; // Use the image property for images, default to an empty array if null
+//       this.currentImage = this.imageUrls[0]; // Set the i
+//       }
+//   )}});
+// }
 
 nextImage() {
   console.log('Next Image Clicked');
@@ -54,6 +78,12 @@ prevImage() {
 selectImage(index: number){
   this.currentImageIndex = index;
   this.currentImage = this.imageUrls[index];
+}
+
+getUserName(): string {
+ return (
+    this.listingData?.userName?.username // Access the nested properties with safe navigation (?.)
+  ) ?? ''; // Us
 }
 
 sendEmail() {

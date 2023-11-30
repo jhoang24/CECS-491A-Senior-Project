@@ -5,16 +5,16 @@
 <div class="listing-container">
     <div class="listing-image">
       <!-- Replace 'image-url.jpg' with the actual image URL -->
-      <img [src] = "currentImage" alt="Listing Image" />
+      <img [src] ="picture + currentImage" alt="Listing Image" />
       
     </div>
     <div class="listing-details">
       <div class="listing-info">
-        <h2 class="mat-title">Item Name</h2>
-        <p class="mat-body-1">Price: $100</p>
+        <h2 class="mat-title">{{listingData?.itemName}}</h2>
+        <p class="mat-body-1">Price: ${{listingData?.price}} </p>
         <p class="mat-body-1">Posted on: January 1, 2023</p>
-        <p class="mat-body-1">Condition: New</p>
-        <p class="mat-body-1">Category: Electronics</p>
+        <p class="mat-body-1">Condition: {{listingData.condition}}</p>
+        <p class="mat-body-1">Category: {{listingData.catagory}}</p>
         <button class = "msg"mat-raised-button color="primary">Message Seller</button>
         <div class="buttons">
           <button class="favorite" mat-stroked-button>
@@ -26,7 +26,7 @@
         </div>
         <div class="seller-profile">
           <img src="https://picsum.photos/200/300" alt="Seller Profile Picture" />
-          <p class="seller-name">Seller's Name</p>
+          <p class="seller-name">{{listingData.userName.username}}</p>
       </div>
       </div>
     </div>
@@ -34,14 +34,12 @@
 
   <div class="image-thumbnails">
     <div class = "thumbnail-container" *ngFor="let imageUrl of imageUrls; let i = index" (click)="selectImage(i)">
-      <img [src]="imageUrl" alt="Thumbnail Image" class = "thumbnail-img" />
+      <img [src]="picture+ imageUrl" alt="Thumbnail Image" class = "thumbnail-img" />
     </div>
   </div>
 
-  
-
 <div class="description-container">
   <h2 class="description-title">Description</h2>
-  <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil eius veniam tempora, accusamus atque libero dicta, nemo vel perferendis ex sint praesentium vitae quam quas repellat repellendus. Aliquid, dolorem iure! Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae reiciendis nostrum dicta tempora. Quis dolorum nihil itaque, placeat iure odio quos, quo non, ab praesentium officia labore saepe aspernatur voluptatum? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit error odit non laborum ab, dignissimos repellat libero, optio modi dolorum hic ullam debitis, neque tenetur eum a inventore itaque possimus.</div>
+  <div>{{listingData.itemDescription}}</div>
 </div>
 

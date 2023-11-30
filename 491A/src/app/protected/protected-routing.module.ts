@@ -69,6 +69,10 @@ const routes: Routes = [
     path: 'listing',
     component: ListingComponent
   },
+  {
+    path: 'listing/:uuid',
+    component: ListingComponent
+  }
  
 ];
 
