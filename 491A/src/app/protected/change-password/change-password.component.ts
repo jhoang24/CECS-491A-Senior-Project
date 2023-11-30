@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/public/custom-validator';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { tap } from 'rxjs';
@@ -16,10 +16,10 @@ export class ChangePasswordComponent {
   error: string | null = null;
 
   oldPassword: string = '';
-  changeForm = new UntypedFormGroup({
-    oldPassword: new UntypedFormControl(null, Validators.required),
-    password: new UntypedFormControl(null,Validators.required),
-    passwordConfirm: new UntypedFormControl(null, Validators.required)
+  changeForm = new FormGroup({
+    oldPassword: new FormControl(null, Validators.required),
+    password: new FormControl(null,Validators.required),
+    passwordConfirm: new FormControl(null, Validators.required)
   },
     {validators: CustomValidators.passwordsMatching}
   )
@@ -32,7 +32,7 @@ export class ChangePasswordComponent {
 
   ngOnInit(): void {
   }
-  validateOldPassword(control: UntypedFormControl){
+  validateOldPassword(control: FormControl){
     const inputOldPassword = control.value;
     const isOldPasswordValid = this.authService.checkOldPassword(inputOldPassword);
     return isOldPasswordValid ? null : {invalidOldPassword: true};
