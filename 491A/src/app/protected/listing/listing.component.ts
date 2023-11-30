@@ -6,7 +6,6 @@ import { GetProfileResponse } from 'src/app/public/interfaces';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-listing',
@@ -18,15 +17,19 @@ export class ListingComponent implements OnInit {
   userMessage: string = '';
   username: any;
   picture: string = "data:image/png;base64,"
-  picture1: string = "data:image/png;base64,"
   UUID: any = '1700950333172';
   uuid: string;
-  imageUrls: string[] = ['https://picsum.photos/200/300', 'https://picsum.photos/200/301',  'https://picsum.photos/200/302','https://picsum.photos/200/303',];
+  imageUrls: string[] = ['https://picsum.photos/200/300',
+  'https://picsum.photos/200/301',
+  'https://picsum.photos/200/302',
+  'https://picsum.photos/200/303',
+  // Add more image URLs as needed
+];
   currentImage: string = this.imageUrls[0];
   currentImageIndex: number=0;
   listingData: any;
 
-  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, private router: Router, private profileService: ProfileService) { 
+  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute) { 
     this.username = this.auth.getLoggedInUser().username;
     this.uuid = '';
   }
@@ -41,17 +44,6 @@ export class ListingComponent implements OnInit {
       this.currentImage = this.imageUrls[0]; // Set the i
     }
   )
-  this.route.params.subscribe(params => {
-    this.username = params.username; 
-    if(this.username == null){
-      this.picture1 += localStorage.getItem("picture")
-    } else {
-    this.profileService.getProfileInfo(this.username).subscribe(
-      (res) => 
-      {
-        this.picture1 += res.picture1;
-      }
-  )}});
 }
 
 // ngOnInit(): void {
@@ -115,13 +107,6 @@ sendEmail() {
       console.error('Email send failed', error);
     }
   );
- }
- navigateToUserAccount(){
-  const username = this.listingData.userName.username;
-  console.log(username);
-  if(username){
-    this.router.navigate(['/protected/profile',username])
-  }
  }
 
 }
