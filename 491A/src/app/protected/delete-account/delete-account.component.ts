@@ -4,6 +4,8 @@ import { CustomValidators } from 'src/app/public/custom-validator';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { DeleteAccountDialogComponent } from '../delete-account-dialog/delete-account-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-account',
@@ -11,53 +13,65 @@ import { Router } from '@angular/router';
   styleUrls: ['./delete-account.component.scss']
 })
 export class DeleteAccountComponent implements OnInit {
-  success: string | null = null;
-  error: string | null = null;
+    success: string | null = null;
+    error: string | null = null;
+    username: any;
 
-  oldPassword: string = '';
-  changeForm = new UntypedFormGroup({
-    oldPassword: new UntypedFormControl(null, Validators.required),
-    password: new UntypedFormControl(null,Validators.required),
-    passwordConfirm: new UntypedFormControl(null, Validators.required)
-  },
-    {validators: CustomValidators.passwordsMatching}
-  )
+    passwordMatch: boolean = false;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+    passwordForm = new UntypedFormGroup({
+      password: new UntypedFormControl(null,Validators.required),
+      passwordConfirm: new UntypedFormControl(null, Validators.required)
+    },
+      {validators: CustomValidators.passwordsMatching}
+    )
 
-  ngOnInit(): void {
-    console.log(this.authService.checkOldPassword("asd"))
-  }
+    constructor(
+      private router: Router,
+      private authService: AuthService,
+      private matDialog: MatDialog
+    ) {}
 
-  validateOldPassword(control: UntypedFormControl){
-    const inputOldPassword = control.value;
-    const isOldPasswordValid = this.authService.checkOldPassword(inputOldPassword);
-    return isOldPasswordValid ? null : {invalidOldPassword: true};
-  }
+    ngOnInit(): void {
+      this.username = this.authService.getLoggedInUser().username;
 
-  confirm() {
-    // if (!this.changeForm.valid) {
-    //   return;
-    // }
-    // const enteredOldPassword = this.changeForm.get('oldPassword')?.value;
-    // const newPassword = this.changeForm.get('password')?.value;
-    
-
-    // //console.log('oldPassword:', oldPassword);
-    // const token = this.authService.returnToken();
-    // console.log('Token', token);
-
-    // if (this.authService.checkOldPassword(oldPassword)) {
-    //   // Password matches, proceed with updating the password
-    //   this.authService.updatePassword(newPassword).pipe(
-    //     tap(() => this.router.navigate(['']))
-    //   ).subscribe();
-    // } else {
-    //   // Password doesn't match, handle accordingly (e.g., show error message)
-    //   this.error = 'Invalid email address.'
-    // }
     }
+
+    confirm() {
+      if (!this.passwordForm.valid) {
+        return;
+      }
+
+      this.authService.checkPasswordMatch(this.username, this.passwordForm.value.passwordConfirm).subscribe((res: any)=>{
+        if (res === true) {
+          this.passwordMatch = res;
+          console.log('Password matches');
+          this.matDialog.open(DeleteAccountDialogComponent,{
+            width:'300px',
+            data: {
+              passwordMatch: true
+            }
+          })
+        } else {
+            console.log('Password does not match');
+            this.matDialog.open(DeleteAccountDialogComponent,{
+              width:'300px',
+              data: {
+                passwordMatch: false
+              }
+            })
+            
+            throw new Error(res.error);
+        }
+      },
+      (error: any) => {
+        console.error('Error:', error.message);
+        if (error.status === 403 && error.error) {
+          console.error('Server Error:', error.error);
+        }
+      });
+
+    }
+
+
   }

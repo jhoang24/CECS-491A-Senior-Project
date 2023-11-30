@@ -29,7 +29,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { SearchComponent } from './search/search.component';
-import { DeleteAccountComponent } from './delete-account/delete-account.component'; 
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component'; 
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { DeleteAccountComponent } from './delete-account/delete-account.componen
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent, DeleteConfirmationDialogComponent, SearchComponent, DeleteAccountComponent, 
+    ChangePasswordComponent, DeleteConfirmationDialogComponent, SearchComponent, DeleteAccountComponent, DeleteAccountDialogComponent, 
   ],
   imports: [
     CommonModule,
