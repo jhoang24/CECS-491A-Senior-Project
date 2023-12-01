@@ -21,11 +21,11 @@ export class DeleteAccountDialogComponent implements OnInit {
   }
 
   confirm() {
-    // this.profileService.deleteProduct(this.data.username, this.data.uuid).subscribe(res=>{
-    //   console.log(res);
-    //   window.location.reload();
+    this.profileService.deleteAccount(this.data.username).subscribe(res=>{
+      console.log(res);
+      window.location.reload();
 
-    // });
+    });
     this.dialogRef.close();
   }
 

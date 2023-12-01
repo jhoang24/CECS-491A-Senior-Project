@@ -49,7 +49,8 @@ export class DeleteAccountComponent implements OnInit {
           this.matDialog.open(DeleteAccountDialogComponent,{
             width:'300px',
             data: {
-              passwordMatch: true
+              passwordMatch: true,
+              username: this.username
             }
           })
         } else {
