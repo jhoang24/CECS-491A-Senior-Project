@@ -83,7 +83,7 @@ const routes: Routes = [
   {
     path: 'delete-account',
     component: DeleteAccountComponent
-  }
+  },
   {
     path: 'report-user',
     component: ReportUserComponent
