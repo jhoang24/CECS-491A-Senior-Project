@@ -5,7 +5,7 @@
   
   <div class="wrapper">
       <div class="searchBar">
-        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value="" />
+        <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" [(ngModel)] = "searchValue"  (keyup.enter)="onSubmit()"/>
       </div>
   </div>
 
