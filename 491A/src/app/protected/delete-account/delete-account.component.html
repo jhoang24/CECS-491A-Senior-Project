@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="flexbox">
+    <p id="deleteAccount"> Delete account</p>
+  
+    <form [formGroup]="passwordForm" (ngSubmit)="confirm()">
+
+     <p id ="passwordText"> Current password</p>
+
+      <mat-form-field appearance="outline">
+        <input type="password" matInput placeholder="New Password" formControlName="password">
+        <mat-error
+          *ngIf="this.passwordForm.get('password')?.touched && this.passwordForm.get('password')?.hasError('required')">
+          Password is required</mat-error>
+      </mat-form-field>
+
+      <p id="passwordText">Confirm password</p>
+
+      <mat-form-field appearance="outline">
+        <input type="password" matInput placeholder="Confirm New Password" formControlName="passwordConfirm">
+        <mat-error
+          *ngIf="this.passwordForm.get('passwordConfirm')?.touched && this.passwordForm.get('passwordConfirm')?.hasError('required')">
+          Password Confirmation is required</mat-error>
+      </mat-form-field>
+
+      <mat-error
+        *ngIf="this.passwordForm.get('passwordConfirm')?.dirty && this.passwordForm.hasError('passwordsNotMatching')">
+        Passwords are not matching!</mat-error>
+
+      <div class = "button">
+        <button id="continue" type="submit" mat-button [disabled]="!passwordForm.valid">Delete Account</button>
+      </div>
+
+  <!-- Button is disabled(not clickable), if our changeForm contains Validation Errors -->
+
+ </form>
+</div>

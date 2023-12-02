@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<div *ngIf="loading; else content">
+</div>
+
+<ng-template #content>
+    <div class="product-grid">
+    <div *ngFor="let product of products">
+        <mat-button [routerLink]="['/protected/listing']">
+            <mat-card class="product-tile">
+            <img mat-card-image [src]="product.image" loading="lazy" class="product-image">
+            <mat-card-content>
+                <p class="product-name">{{ product.itemName }}</p>
+                <p class="product-price">${{ product.price }}</p>
+            </mat-card-content>
+            </mat-card>
+        </mat-button>
+    </div>
+    </div>
+
+
+    <div class="no-results" *ngIf="products.length === 0">
+        <p>No Results Found For: <span style="font-weight: bold;">{{query}}</span></p>
+    </div>
+<ng-template #content>
