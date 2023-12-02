@@ -72,6 +72,10 @@ const routes: Routes = [
     component: ListingComponent
   },
   {
+    path: 'listing/:uuid',
+    component: ListingComponent
+  },
+  {
     path: 'search',
     component: SearchComponent
   },

@@ -45,7 +45,11 @@ import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-acc
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent, DeleteConfirmationDialogComponent, SearchComponent, DeleteAccountComponent, DeleteAccountDialogComponent, 
+    ChangePasswordComponent, 
+    DeleteConfirmationDialogComponent, 
+    SearchComponent, 
+    DeleteAccountComponent, 
+    DeleteAccountDialogComponent, 
   ],
   imports: [
     CommonModule,
