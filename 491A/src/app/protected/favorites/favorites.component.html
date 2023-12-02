@@ -1,4 +1,16 @@
 <app-header></app-header>
 <div class="title">Favorites</div>
+<!-- favorites.component.html -->
+<div *ngFor="let post of favorites" class = "fav-container">
+ <div class = "details">
+    <img [src]="post.imageUrl" alt="Post Image" />
+      <span>{{ post.text }}</span>
+      <button mat-button (click)="removeFromFavorites(post)"><mat-icon>favorite_border</mat-icon></button>
+ </div>
+</div>
+
+
+  
+  
 
 

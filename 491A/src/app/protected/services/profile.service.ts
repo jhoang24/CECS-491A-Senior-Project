@@ -22,5 +22,10 @@ export class ProfileService {
   saveProfilePicture(username: any, picture: any): Observable<any>{
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/edit-profile",{"username":username, "image":picture})
   }
+
+  deleteAccount(username: any): Observable<any>{
+    const url = `https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/delete-account?username=${username}`;
+    return this.http.delete(url);
+  }
   
 }

@@ -27,7 +27,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component'; 
+import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { SearchComponent } from './search/search.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component'; 
 import { ReportUserComponent } from '../report-user/report-user.component';
 
 @NgModule({
@@ -43,7 +46,11 @@ import { ReportUserComponent } from '../report-user/report-user.component';
     ProfileSettingComponent,
     ListingComponent,
     SellingComponent,     
-    ChangePasswordComponent, DeleteConfirmationDialogComponent,
+    ChangePasswordComponent, 
+    DeleteConfirmationDialogComponent,
+    SearchComponent, 
+    DeleteAccountComponent, 
+    DeleteAccountDialogComponent, 
     ReportUserComponent
   ],
   imports: [
