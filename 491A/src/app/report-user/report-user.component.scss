@@ -1,12 +1,23 @@
 /* report-user.component.scss */
+
 .report-user-container {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    /* Adjust styles for screens up to 768px wide */
+    max-width: 100%;
+    padding: 10px;
   }
-  
+
   textarea {
     width: 100%;
     margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+      /* Adjust textarea styles for screens up to 768px wide */
+      margin-bottom: 5px;
+    }
   }
-  
+}

@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.username = params.username;
 
-      // Set the username in the shared service
+      // Set the username using username.service.ts
       this.usernameService.setUsername(this.username);
 
       if (this.username == null) {
