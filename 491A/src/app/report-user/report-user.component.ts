@@ -17,10 +17,26 @@ export class ReportUserComponent {
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private usernameService: UsernameService) {}
 
   ngOnInit(): void {
-    this.usernameService.getUsername().subscribe(username => {
-      console.log('Username received:', username);
-      this.username = username;
-    });
+    // Retrieve username from sessionStorage if available
+    this.username = sessionStorage.getItem('username');
+  
+    if (!this.username) {
+      // If not in sessionStorage, get it from the service
+      this.usernameService.getUsername().subscribe(username => {
+        console.log('Username received:', username);
+        if (username !== null) {
+          this.username = username;
+  
+          // Save username to sessionStorage for isolation
+          sessionStorage.setItem('username', this.username);
+        }
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    // Clear the stored username when the component is destroyed
+    sessionStorage.removeItem('username');
   }
 
   selectOption(option: string) {
