@@ -88,19 +88,12 @@
           
         </form>
       
-      
-        
-      <!-- Button is disabled(not clickable), if our createListingForm contains Validation Errors -->
-      <div>
-        Already have an account?
-        <a [routerLink]="['../login']">Sign in.</a>
-      </div>
+    
   
       </mat-card-content>
   
     </mat-card>
 
-    <hr>
     <h3 mat-subheader>Files</h3>
     <div class="row fileItem" *ngFor="let f of files; let ind = index">
       <div class="col-sm-12 fileItemIconDiv" (click)="openConfirmDialog(ind);">

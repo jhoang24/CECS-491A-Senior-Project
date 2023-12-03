@@ -1,18 +1,22 @@
+// Mixin flex property for reusability
+@mixin flexbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+}
 mat-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  
+    @include flexbox();
     max-width: 400px;
+    margin-bottom: 5px;
   
     mat-card-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
+      @include flexbox();
   
       form {
+        @include flexbox();
+
         .mat-form-field {
           width: 100%;
           min-width: 300px;
