@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="report-listing-container">
+  <h2>Report a Listing</h2>
+
+  <div class="report-options">
+    <ul>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('Item looks like a scam')"> Item looks like a scam
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('Offensive or inappropriate')"> Offensive or inappropriate
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('Wrong catagory')"> Wrong catagory
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('I think its stolen')"> I think its stolen
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('None of the above')"> None of the above
+      </li>
+    </ul>
+  </div>
+
+  <textarea [(ngModel)]="reportReason" placeholder="(Required)Explain why you are reporting this listing"></textarea>
+  <button (click)="submitReport()" mat-raised-button color="primary">Submit Report</button>
+</div>

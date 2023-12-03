@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="report-user-container">
+  <h2>Report a User</h2>
+
+  <div class="report-options">
+    <ul>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('Looks like a scammer')"> Looks like a scammer
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('They missed our meeting')"> They missed our meeting
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('Rude or inappropriate')"> Rude or inappropriate
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('Trouble at meetup')"> Trouble at meetup
+      </li>
+      <li>
+        <input type="radio" name="reportOption" (click)="selectOption('None of the above')"> None of the above
+      </li>
+    </ul>
+  </div>
+
+  <textarea [(ngModel)]="reportReason" placeholder="(Required)Explain why you are reporting this user"></textarea>
+  <button (click)="submitReport()" mat-raised-button color="primary">Submit Report</button>
+</div>
