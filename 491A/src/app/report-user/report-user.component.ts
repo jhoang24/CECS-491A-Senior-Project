@@ -1,9 +1,7 @@
-// report-user.component.ts
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsernameService } from '../protected/services/username.service';
-
 
 @Component({
   selector: 'app-report-user',
@@ -12,6 +10,8 @@ import { UsernameService } from '../protected/services/username.service';
 })
 export class ReportUserComponent {
   reportReason: string = '';
+  userMessage: string = '';
+  selectedOption: string = '';
   username: string | null = null;
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar, private usernameService: UsernameService) {}
@@ -23,7 +23,20 @@ export class ReportUserComponent {
     });
   }
 
+  selectOption(option: string) {
+    this.selectedOption = option;
+  }
+
+
   submitReport() {
+    // Check if an option is selected
+    if (!this.selectedOption) {
+      this.snackBar.open('Please select a reporting option.', 'Close', {
+        duration: 3000,
+      });
+      return;
+    }
+
     // Check if a reason is provided
     if (!this.reportReason.trim()) {
       this.snackBar.open('Please provide a reason for reporting the user.', 'Close', {
@@ -38,8 +51,9 @@ export class ReportUserComponent {
     const lambdaEndpoint = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/report-user'; 
 
     const reportData = {
-      reason: this.reportReason,
+      reason: "Report Option Selected: " + this.selectedOption + '\n\nMore Details: ' + this.reportReason,
       subject: reportSubject,
+      // option: this.selectedOption,
     };
 
     this.http.post(lambdaEndpoint, reportData).subscribe(

@@ -20,4 +20,15 @@
       margin-bottom: 5px;
     }
   }
+  .report-options {
+    ul {
+      list-style-type: none; /* Remove bullet points */
+      padding: 0; /* Remove default padding */
+    }
+  
+    li {
+      margin-bottom: 10px; /* Add some spacing between options */
+    }
+  }
+  
 }
