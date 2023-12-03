@@ -25,12 +25,13 @@
           </button>
         </div>
         <div class="seller-profile">
-          <img src="picture1" alt="Seller Profile Picture" />
-          <p class="seller-name">{{listingData.userName.username}}</p>
+          <img [src]="picture1" alt="Seller Profile Picture" />
+          <a (click)="navigateToUserAccount()"><p class="seller-name">{{listingData.userName.username}}</p></a>
       </div>
       </div>
     </div>
   </div>
+  
 
   <div class="image-thumbnails">
     <div class = "thumbnail-container" *ngFor="let imageUrl of imageUrls; let i = index" (click)="selectImage(i)">
@@ -43,5 +44,5 @@
   <div>{{listingData.itemDescription}}</div>
 </div>
 
-<button (click)="navigateToUserAccount()">View User Account</button>
+
 

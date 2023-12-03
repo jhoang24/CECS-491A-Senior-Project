@@ -4,7 +4,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { ProductService } from '../services/product.service';
-
+import { ListingService } from '../services/listing.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,8 +13,9 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
   products: Array<any> = []
+  UUID: string='';
 
-  constructor(private router:Router, private productService: ProductService) { }
+  constructor(private router:Router, private productService: ProductService, private listingService: ListingService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.productService.getHomeProducts()
@@ -24,8 +26,22 @@ export class HomeComponent implements OnInit {
         console.log(res.body)
       }
     );
+
+    this.route.params.subscribe(params => {
+      this.UUID = params.uuid;
+
+      if(this.UUID){
+        this.listingService.getListingInfo(this.UUID).subscribe(
+          (res) => {
+
+          }
+        )
+      }
+    })
+    
   }
 
-
-  
+ navigateToListing(uuid: string): void{
+  this.listingService.navigateToListing(uuid);
+ }
 }
