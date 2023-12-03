@@ -99,8 +99,9 @@
 
 <!-- Category bar -->
 <mat-toolbar id=categories style="background-color: white; z-index: 1000;" *ngIf="!isSmallScreen">
-  <button mat-button [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" 
-  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }" (mouseenter)="buttonEnter(menuTrigger1)" (mouseleave)="buttonLeave(menuTrigger1)" style="z-index:1050">Electronics</button>
+  <span [matMenuTriggerFor]="menu1"  #menuTrigger1="matMenuTrigger" (mouseenter)="buttonEnter(menuTrigger1)" (mouseleave)="buttonLeave(menuTrigger1)" 
+  style="z-index:1050; font-size: 14px;font-weight: 500;">Electronics</span>
+
   <mat-menu #menu1="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger1)">
         <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Computers' }">Computers</button>
@@ -111,8 +112,8 @@
     </span>
   </mat-menu>
   
-  <button mat-button [matMenuTriggerFor]="menu2" #menuTrigger2="matMenuTrigger"
-  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Clothing & Accessories' }" (mouseenter)="buttonEnter(menuTrigger2)" (mouseleave)="buttonLeave(menuTrigger2)" style="z-index:1050">Clothing & Accessories</button>
+  <span [matMenuTriggerFor]="menu2" #menuTrigger2="matMenuTrigger" (mouseenter)="buttonEnter(menuTrigger2)" (mouseleave)="buttonLeave(menuTrigger2)" 
+  style="z-index:1050; font-size: 14px;font-weight: 500;">Clothing & Accessories</span>
   <mat-menu #menu2="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger2)">
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Jackets' }">Jackets</button>
@@ -122,8 +123,9 @@
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Socks' }">Socks</button>
     </span>
   </mat-menu> 
-  <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
-  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }" (mouseenter)="buttonEnter(menuTrigger3)" (mouseleave)="buttonLeave(menuTrigger3)" style="z-index:1050">Books</button>
+
+  <span [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger" (mouseenter)="buttonEnter(menuTrigger3)" (mouseleave)="buttonLeave(menuTrigger3)" 
+  style="z-index:1050; font-size: 14px;font-weight: 500;">Books</span>
   <mat-menu #menu3="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger3)">
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Textbooks' }">Textbooks</button>
@@ -133,8 +135,9 @@
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Manga' }">Manga</button>
     </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu4"  #menuTrigger4="matMenuTrigger"
-  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }" (mouseenter)="buttonEnter(menuTrigger4)" (mouseleave)="buttonLeave(menuTrigger4)" style="z-index:1050">School Appliances</button>
+
+  <span [matMenuTriggerFor]="menu4"  #menuTrigger4="matMenuTrigger" (mouseenter)="buttonEnter(menuTrigger4)" (mouseleave)="buttonLeave(menuTrigger4)"
+  style="z-index:1050; font-size: 14px;font-weight: 500;">School Appliances</span>
   <mat-menu #menu4="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger4)">
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Notebooks' }">Notebooks</button>
@@ -143,8 +146,9 @@
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Erasers' }">Erasers</button>
     </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu5"  #menuTrigger5="matMenuTrigger"
-  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }"(mouseenter)="buttonEnter(menuTrigger5)" (mouseleave)="buttonLeave(menuTrigger5)" style="z-index:1050">Furniture</button>
+
+  <span [matMenuTriggerFor]="menu5"  #menuTrigger5="matMenuTrigger" (mouseenter)="buttonEnter(menuTrigger5)" (mouseleave)="buttonLeave(menuTrigger5)" 
+  style="z-index:1050; font-size: 14px;font-weight: 500;">Furniture</span>
   <mat-menu #menu5="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger5)">
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Tables' }">Tables</button>
@@ -154,8 +158,9 @@
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Drawers' }">Drawers</button>
     </span>
   </mat-menu>
-  <button mat-button [matMenuTriggerFor]="menu6"  #menuTrigger6="matMenuTrigger"
-  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }" (mouseenter)="buttonEnter(menuTrigger6)" (mouseleave)="buttonLeave(menuTrigger6)" style="z-index:1050">Sports & Outdoors</button>
+
+  <span [matMenuTriggerFor]="menu6"  #menuTrigger6="matMenuTrigger" (mouseenter)="buttonEnter(menuTrigger6)" (mouseleave)="buttonLeave(menuTrigger6)" 
+  style="z-index:1050; font-size: 14px;font-weight: 500;">Sports & Outdoors</span>
   <mat-menu #menu6="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger6)">
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Exercise' }">Exercise</button>
