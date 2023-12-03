@@ -105,9 +105,9 @@
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger1)">
         <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Computers' }">Computers</button>
         <button mat-menu-item  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Phones' }">Phones</button>
-        <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Game Consoles' }">Game Consoles</button>
+        <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Consoles' }">Consoles</button>
         <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Chargers' }">Chargers</button>
-        <button mat-menu-item  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronic Accessories' }">Electronic Accessories</button>
+        <button mat-menu-item  [routerLink]="['/protected/category']"[queryParams]="{ q: 'Accessories' }">Accessories</button>
     </span>
   </mat-menu>
   
@@ -115,11 +115,11 @@
   [routerLink]="['/protected/category']"[queryParams]="{ q: 'Clothing & Accessories' }" (mouseenter)="buttonEnter(menuTrigger2)" (mouseleave)="buttonLeave(menuTrigger2)" style="z-index:1050">Clothing & Accessories</button>
   <mat-menu #menu2="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger2)">
-      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }">Men's clothing</button>
-      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }">Women's clothing</button>
-      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }">Men's shoes</button>
-      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Electronics' }">Women's shoes</button>
-      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Jewelry' }">Jewelry</button>
+      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Jackets' }">Jackets</button>
+      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Shirts' }">Shirts</button>
+      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Pants' }">Pants</button>
+      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Shoes' }">Shoes</button>
+      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Socks' }">Socks</button>
     </span>
   </mat-menu> 
   <button mat-button [matMenuTriggerFor]="menu3"  #menuTrigger3="matMenuTrigger"
@@ -138,7 +138,7 @@
   <mat-menu #menu4="matMenu">
     <span (mouseenter)="menuenter()" (mouseleave)="menuLeave(menuTrigger4)">
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Notebooks' }">Notebooks</button>
-      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Pencils/Pens' }">Pencils/Pens</button>
+      <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Pencils' }">Pencils</button>
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Backpacks' }">Backpacks</button>
       <button mat-menu-item [routerLink]="['/protected/category']"[queryParams]="{ q: 'Erasers' }">Erasers</button>
     </span>

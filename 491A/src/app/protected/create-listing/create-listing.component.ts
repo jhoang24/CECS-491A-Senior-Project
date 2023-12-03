@@ -36,7 +36,6 @@ export class CreateListingComponent {
         { name: 'Pants', value: 'pants' },
         { name: 'Shoes', value: 'shoes' },
         { name: 'Socks', value: 'socks' },
-        { name: 'Accessories', value: 'accessories' },
       ]
     },
     {
@@ -46,7 +45,7 @@ export class CreateListingComponent {
         { name: 'Novels', value: 'novels' },
         { name: 'Fiction', value: 'fiction' },
         { name: 'Nonfiction', value: 'nonfiction' },
-        { name: 'Manga & Light Novels', value: 'manga and light novels' },
+        { name: 'Manga', value: 'manga' },
       ]
     },
     {
