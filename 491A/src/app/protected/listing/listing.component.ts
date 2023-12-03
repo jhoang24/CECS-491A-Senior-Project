@@ -90,4 +90,9 @@ redirectToMessages() {
   this.router.navigate(['/protected/messages']);
 }
 
+redirectToReport() {
+  // Use the navigate method to redirect to the report-listing page
+  this.router.navigate(['/protected/report-listing']);
+}
+
 }
