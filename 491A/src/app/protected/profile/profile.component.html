@@ -1,9 +1,16 @@
-<app-header> </app-header>
-
+<app-header></app-header>
 <mat-card>
   <mat-card-content>
-    <img [src]="picture"> 
-    <p>{{ username }}</p>
-
+    <div class="profile-container">
+      <div class="profile-header">
+        <!-- Display the red report button at the upper right corner -->
+        <button mat-icon-button class="report-button red" (click)="navigateToReportUser()">
+          <mat-icon>report</mat-icon>
+        </button>
+      </div>
+      <img [src]="picture" class="profile-image" />
+      <p class="username">{{ username || localUsername }}</p>
+      <p class="email">{{ email }}</p>
+    </div>
   </mat-card-content>
 </mat-card>

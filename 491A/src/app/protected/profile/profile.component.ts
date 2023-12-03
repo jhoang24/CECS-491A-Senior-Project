@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../services/profile.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { HostListener } from '@angular/core';
-
-
+import { UsernameService } from '../services/username.service';  // Import the shared service
 
 @Component({
   selector: 'app-profile',
@@ -16,40 +15,54 @@ export class ProfileComponent implements OnInit {
   localUsername: any;
   isSmallScreen = false;
 
-  // profilePicture: string;
-  // profileInfo: any;
-  
-  constructor(private profileService: ProfileService, private route: ActivatedRoute, private auth: AuthService) { 
-    this.localUsername = this.auth.getLoggedInUser();
+  picture: string = "data:image/png;base64,";
+  email: any;
+
+  constructor(
+    private profileService: ProfileService,
+    private route: ActivatedRoute,
+    private auth: AuthService,
+    private router: Router,
+    private usernameService: UsernameService  // Inject the shared service
+  ) {
+    this.localUsername = this.auth.getLoggedInUser().username;
     this.username = '';
   }
+
   @HostListener('window:resize', ['$event'])
-  onResize(event: any){
+  onResize(event: any) {
     this.checkScreenSize();
   }
 
-  picture: string = "data:image/png;base64,"
-
-  // If localstorage for picture is empty, then get profile image from backend and store it
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.checkScreenSize();
 
     this.route.params.subscribe(params => {
-      this.username = params.username; 
-      if(this.username == null){
-        this.picture += localStorage.getItem("picture")
-      } else {
-      this.profileService.getProfileInfo(this.username).subscribe(
-        (res) => 
-        {
-          this.picture += res.picture;
-        }
-    )}});
-   }  
+      this.username = params.username;
 
-  checkScreenSize(){
-    this.isSmallScreen = window.innerWidth <767;
+      // Set the username using username.service.ts
+      this.usernameService.setUsername(this.username);
+
+      if (this.username == null) {
+        this.picture += localStorage.getItem("picture");
+      } else {
+        this.profileService.getProfileInfo(this.username).subscribe(
+          (res) => {
+            this.email = res.email;  // Store the email from the response
+            this.picture += res.picture;
+          }
+        );
+      }
+    });
   }
-  
+
+  checkScreenSize() {
+    this.isSmallScreen = window.innerWidth < 767;
+  }
+
+  navigateToReportUser() {
+    // Assuming the 'report-user' route is under '/protected', adjust the path as needed
+    this.router.navigate(['/protected/report-user']);
+  }
 
 }

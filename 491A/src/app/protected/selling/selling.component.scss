@@ -43,6 +43,7 @@ z-index: 3;
 
 .no-results {
 text-align: center;
+font-weight: bold;
 padding: 20px;
 margin: 20px;
 font-size: 3em; 
@@ -80,3 +81,11 @@ font-size: 3em;
   z-index: 3; /* Ensure the "Sold" text is above other elements */
 }
 
+mat-icon.icon{
+  background-color: white;
+  padding: 4px; 
+  border: 1px solid black;
+  border-radius: 5%;
+  margin-top: -9px; 
+  margin-right: -8px; 
+}
