@@ -30,7 +30,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from './delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { SearchComponent } from './search/search.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
-import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component'; 
+import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-account-dialog.component';
+import { CategoryComponent } from './category/category.component'; 
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { DeleteAccountDialogComponent } from './delete-account-dialog/delete-acc
     DeleteConfirmationDialogComponent, 
     SearchComponent, 
     DeleteAccountComponent, 
-    DeleteAccountDialogComponent, 
+    DeleteAccountDialogComponent, CategoryComponent, 
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SearchComponent } from './search/search.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { CategoryComponent } from './category/category.component';
 
 
 
@@ -82,7 +83,11 @@ const routes: Routes = [
   {
     path: 'delete-account',
     component: DeleteAccountComponent
-  }
+  }, 
+  {
+    path: 'category',
+    component: CategoryComponent
+  },
  
 ];
 
