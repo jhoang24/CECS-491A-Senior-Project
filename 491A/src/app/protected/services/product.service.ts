@@ -17,6 +17,15 @@ export class ProductService {
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/selling",{"username":username})
   }
 
+  getHomeProducts(): Observable<any>{
+    return this.http.get("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/home")
+  }
+
+  deleteProduct(username: any, listingID: any){
+    const url = `https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/selling?username=${username}&listingID=${listingID}`;
+    return this.http.delete(url);
+  }
+  
   uploadImages(images: any[], uuid: any): Observable<any>{
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/upload-images",{"images":images, "uuid": uuid})
   }
@@ -35,5 +44,13 @@ export class ProductService {
         });
       }),
     );
+  }
+
+  getSearchedProduct(listing: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing-search",{"listing":listing})
+  }
+
+  changeSoldState(listingID: any, soldState: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/selling",{"listingID":listingID, "soldState": soldState})
   }
 }

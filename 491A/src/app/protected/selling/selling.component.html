@@ -1,18 +1,39 @@
 <app-header> </app-header>
-<mat-grid-list 
-    gutterSize = "1"
-    cols = "4"
-    rowHeight = "2:1">
-    <mat-grid-tile *ngFor="let product of products"> 
-        <mat-card>
-            <img mat-card-image [src]="picture + product.image" style="max-width: 200px; max-height: 200px;">
-            <mat-card-content>
-                <p> Name: {{product.dynamoDBItem.itemName}}</p>
-                <p> Price: ${{product.dynamoDBItem.price}}</p>
-            </mat-card-content>
-        </mat-card>
-    </mat-grid-tile>
 
+<div *ngIf="loading; else content">
+</div>
 
+<ng-template #content>
+  <div class="product-grid">
+      <div *ngFor="let product of products">
+        <div  [ngClass]="{'isSoldOverlay': product.dynamoDBItem.soldState }">
+            <mat-card class="product-tile">
+              <img mat-card-image [src]="product.image" loading="lazy" class="product-image">
+                <mat-card-content>
+                  <button mat-icon-button class="selectSoldState" [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #dropdown="matMenu" xPosition="before">
+                    <span>
+                      <button mat-menu-item (click)="sell(product.dynamoDBItem.uuid)">Mark as sold</button>
+                      <button mat-menu-item (click)="unsell(product.dynamoDBItem.uuid)">Mark as unsold</button>
+                    </span>
+                  </mat-menu>
+                  <p class="product-name">{{ product.dynamoDBItem.itemName }}</p>
+                  <p class="product-price">${{ product.dynamoDBItem.price }}</p>
+                  <div *ngIf="product.dynamoDBItem.soldState" class="soldText">SOLD</div>
+              </mat-card-content>
+              <button mat-icon-button class="delete-button" (click)="openDeleteConfirm(product.dynamoDBItem.uuid)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card>
+          </div>
+          
+      </div>
+  </div>
+    
 
-</mat-grid-list>
+  <div class="no-results" *ngIf="products.length === 0">
+    <p>No Items Found</p>
+  </div>
+</ng-template>

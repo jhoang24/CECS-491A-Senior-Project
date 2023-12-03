@@ -28,9 +28,9 @@
       <p class="text">Your Profile</p>
 
       <div class="button-container">
-        <button mat-button class="outline-button">Public Profile</button>
-        <button mat-button class="outline-button">Favorited Items</button>
-        <button mat-button class="outline-button">Selling</button>
+        <a mat-button routerLink="/protected/profile"  class="outline-button">Public Profile</a>
+        <a mat-button routerLink="/protected/favorites" class="outline-button">Favorited Items</a>
+        <a mat-button routerLink="/protected/selling"class="outline-button">Selling</a>
       </div>
 
       <p class="text2">Settings</p>
@@ -38,7 +38,7 @@
         <button mat-button class="outline-button">Change Email</button>
         <button mat-button class="outline-button">Change School</button>
         <a mat-button routerLink="/protected/change-password" class="outline-button">Change Password</a>
-        <button mat-button class="outline-button">Delete</button>
+        <a mat-button routerLink="/protected/delete-account"  class="outline-button">Delete</a>
         <button mat-button class="outline-button" (click)="logout()">Logout</button>
 
       </div>
@@ -54,9 +54,9 @@
       <p class="text">Your Profile</p>
 
       <div class="button-container">
-        <button mat-button class="outline-button">Public Profile</button>
-        <button mat-button class="outline-button">Favorited Items</button>
-        <button mat-button class="outline-button">Selling</button>
+        <a mat-button routerLink="/protected/profile"  class="outline-button">Public Profile</a>
+        <a mat-button routerLink="/protected/favorites" class="outline-button">Favorited Items</a>
+        <a mat-button routerLink="/protected/selling"class="outline-button">Selling</a>
       </div>
 
       <p class="text2">Settings</p>
@@ -64,7 +64,7 @@
         <button mat-button class="outline-button">Change Email</button>
         <button mat-button class="outline-button">Change School</button>
         <a mat-button routerLink="/protected/change-password" class="outline-button">Change Password</a>
-        <button mat-button class="outline-button">Delete</button>
+        <a mat-button routerLink="/protected/delete-account" class="outline-button">Delete</a>
         <button mat-button class="outline-button" (click)="logout()">Logout</button>
 
       </div>
