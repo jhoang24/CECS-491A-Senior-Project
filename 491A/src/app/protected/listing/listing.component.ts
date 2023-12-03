@@ -33,25 +33,6 @@ export class ListingComponent implements OnInit {
     this.uuid = '';
   }
 
-//connects to specific listing with uuid's, testing only.
-//   ngOnInit(): void {
-//   this.listingService.getListingInfo(this.UUID).subscribe(
-//     (res) => {
-//       console.log("Listing Data", res)
-//       this.listingData = res.listing;
-//       this.imageUrls = res.image || []; // Use the image property for images, default to an empty array if null
-//       this.currentImage = this.imageUrls[0]; // Set the i
-
-//       if(this.listingData?.userName?.username){
-//         this.profileService.getProfileInfo(this.listingData.userName.username)
-//         .subscribe((res) =>{
-//           console.log(res)
-//           this.picture1 = "data:image/png;base64," + res.picture;
-//         })
-//       }
-//     }
-//   )
-// }
 ngOnInit(): void {
   this.route.params.subscribe(params => {
     this.UUID = params.uuid;
