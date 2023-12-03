@@ -50,7 +50,7 @@ export class ReportListingComponent {
     const lambdaEndpoint = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/report-user'; 
 
     const reportData = {
-      reason: this.selectedOption + '\n\n' + this.reportReason,
+      reason: "Option Selected: " + this.selectedOption + '\n\nMore Details:' + this.reportReason,
       subject: reportSubject,
     };
 
