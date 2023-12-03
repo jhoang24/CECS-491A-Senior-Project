@@ -49,15 +49,15 @@
   
           <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
-            <mat-select formControlName="catagory">
+            <mat-select formControlName="category">
               <mat-option>None</mat-option>
-              <mat-option value="Electronics and Media">Electronics and Media</mat-option>
-              <mat-option value="Home and Garden">Home and Garden</mat-option>
-              <mat-option value="Fruniture">Fruniture</mat-option>
-              <mat-option value="Clothes">Clothes</mat-option>
-              <mat-option value="Vehicles">Vehicles</mat-option>
-              <mat-option value="Toys and Games">Toys and Games</mat-option>
-              <mat-option value="Sports and Outdoors">Sports and Outdoors</mat-option>
+              
+              <mat-optgroup *ngFor="let mainCategory of mainCategories" [label]="mainCategory.name">
+                <mat-option *ngFor="let subCategory of mainCategory.subCategories" [value]="subCategory.value">
+                  {{ subCategory.name }}
+                </mat-option>
+              </mat-optgroup>
+              
             </mat-select>
           </mat-form-field>
   
@@ -71,10 +71,10 @@
 
           <div style="padding: 15px;">
             <div>
-              <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($any($event))">
+              <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($event)">
                 <div class="text-wrapper">
                   <div class="centered">
-                    <input type="file" name="file" id="file" (change)="onFileChange($any($event))" multiple>
+                    <input type="file" name="file" id="file" (change)="onFileChange($event)" multiple>
                     <label for="file" class="textLink">Select your file</label>
                     <span> or Drop it here!</span>
                   </div>
@@ -82,12 +82,9 @@
               </div>
             </div>
           </div>
-          
-
-
+  
           <button id="continue" type="submit" mat-raised-button color="primary" [disabled]="!createListingForm.valid">Continue</button>
-
-
+  
           
         </form>
       

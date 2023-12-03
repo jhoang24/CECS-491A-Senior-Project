@@ -3,9 +3,8 @@ import { ListingService } from '../services/listing.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GetProfileResponse } from 'src/app/public/interfaces';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-listing',
@@ -29,7 +28,7 @@ export class ListingComponent implements OnInit {
   currentImageIndex: number=0;
   listingData: any;
 
-  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute) { 
+  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, private router: Router) { 
     this.username = this.auth.getLoggedInUser().username;
     this.uuid = '';
   }
@@ -86,27 +85,14 @@ getUserName(): string {
   ) ?? ''; // Us
 }
 
-sendEmail() {
-  const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-email';
+redirectToMessages() {
+  // Use the navigate method to redirect to the messages page
+  this.router.navigate(['/protected/messages']);
+}
 
-  // You can pass any necessary data to your Lambda function as a request payload.
-  const requestData = {
-    recipientEmail: 'ale21100@gmail.com',
-    subject: 'Subject',
-    message: this.userMessage,
-    sourceEmail: this.username,
-  };
-
-  this.http.post(apiGatewayUrl, requestData).subscribe(
-    (response) => {
-      // Handle success, e.g., show a success message to the user
-      console.log('Email sent successfully', response);
-    },
-    (error) => {
-      // Handle error, e.g., show an error message to the user
-      console.error('Email send failed', error);
-    }
-  );
- }
+redirectToReport() {
+  // Use the navigate method to redirect to the report-listing page
+  this.router.navigate(['/protected/report-listing']);
+}
 
 }

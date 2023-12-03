@@ -1,11 +1,54 @@
-img {
-    height: 150px;
-    width: 150px;
-    border-radius: 50%;
+/* Default styles for larger screens */
+.profile-container {
+  text-align: center;
+  position: relative;
 }
 
-.mat-card{
-    width: 450px;
-    height: 300px;
-   
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  position: relative; /* Add this line */
+}
+
+.username {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.email {
+  font-size: 20px;
+}
+
+.profile-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+/* Red color for the report button */
+.report-button.red {
+  color: red;
+}
+
+/* Media query for smaller screens (max-width: 600px) */
+@media only screen and (max-width: 600px) {
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .username {
+    font-size: 18px;
+  }
+
+  .email {
+    font-size: 16px;
+  }
+
+  .profile-header {
+    margin: 5px;
+  }
 }

@@ -13,6 +13,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { SearchComponent } from './search/search.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { CategoryComponent } from './category/category.component';
+import { ReportUserComponent } from '../report-user/report-user.component';
+import { ReportListingComponent } from '../report-listing/report-listing.component';
 
 
 
@@ -88,6 +90,15 @@ const routes: Routes = [
     path: 'category',
     component: CategoryComponent
   },
+  {
+    path: 'report-user',
+    component: ReportUserComponent
+  },
+  {
+    path: 'report-listing',
+    component: ReportListingComponent
+  },
+  
  
 ];
 
