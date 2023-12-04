@@ -4,7 +4,22 @@
 </div>
 
 <ng-template #content>
+  <div class="sort-button">
+    <button mat-button [matMenuTriggerFor]="sortByMenu">
+      Sort by {{ sort }}
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #sortByMenu="matMenu">
+      <button (click)="onSortUpdated('newest')" mat-menu-item>newest</button>
+      <button (click)="onSortUpdated('oldest')" mat-menu-item>oldest</button>
+      <button (click)="onSortUpdated('price lowest')" mat-menu-item>price lowest</button>
+      <button (click)="onSortUpdated('price highest')" mat-menu-item>price highest</button>
+
+    </mat-menu>
+  </div>
+  
   <div class="product-grid">
+    
     <div *ngFor="let product of products">
       <mat-button [routerLink]="['/protected/listing', product.uuid]">
           <mat-card class="product-tile">

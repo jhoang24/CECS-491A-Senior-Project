@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   products: Array<any> = []
   loading: boolean = true;
   UUID: string='';
+  sort = 'newest';
 
   constructor(private router:Router, private productService: ProductService, private listingService: ListingService, private route: ActivatedRoute) { }
 
@@ -44,6 +45,25 @@ export class HomeComponent implements OnInit {
     })
     
   }
+  onSortUpdated(sortValue: string): void {
+    switch (sortValue) {
+      case 'price lowest':
+        this.products.sort((a, b) => a.price - b.price);
+        break;
+      case 'price highest':
+        this.products.sort((a, b) => b.price - a.price);
+        break;
+      case 'newest':
+        this.products.sort((a, b) => a.uuid - b.uuid);
+        break;
+      case 'oldest':
+        this.products.sort((a, b) => b.uuid - a.uuid);
+        break;
+    }
+    this.sort = sortValue
+
+  }
+
 
  navigateToListing(uuid: string): void{
   this.listingService.navigateToListing(uuid);
