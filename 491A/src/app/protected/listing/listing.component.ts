@@ -30,6 +30,9 @@ export class ListingComponent implements OnInit {
   currentImageIndex: number=0;
   listingData: any;
 
+  //favorites code
+  isFavorite: boolean = false;
+
   
 
   constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, private router: Router, private profileService: ProfileService) { 
@@ -103,6 +106,17 @@ redirectToReport() {
  }
  navigateToListing(uuid: string): void {
   this.listingService.navigateToListing( uuid);
+}
+
+//favorites code
+toggleFavorite() {
+  if (this.isFavorite) {
+    this.isFavorite = false;
+    console.log(this.isFavorite);
+  } else {
+    this.isFavorite = true;
+    console.log(this.isFavorite);
+  }
 }
 
 }

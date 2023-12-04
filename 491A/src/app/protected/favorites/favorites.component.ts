@@ -1,6 +1,6 @@
 // favorites.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FavoritesServiceService } from './favorites-service.service';
+import { FavoritesServiceService } from '../services/favorites-service.service';
 
 @Component({
   selector: 'app-favorites',
