@@ -3,6 +3,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { ProductService } from '../services/product.service';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
+
 import { FormGroup, FormControl, Validators, UntypedFormControl } from '@angular/forms';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
 
@@ -84,6 +88,7 @@ export class CreateListingComponent {
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     private authService: AuthService,
+    private router: Router,
     private productService: ProductService
   ) {
     // Gets the userName and sets it in dynamoDb
@@ -237,7 +242,9 @@ export class CreateListingComponent {
   
     Promise.all<void>(filePromises).then(() => {
       console.log(base64Images);
-      this.productService.uploadImages(base64Images, uuid).subscribe(
+      this.productService.uploadImages(base64Images, uuid).pipe(
+        tap(() => this.router.navigate(['/protected/listing/' + uuid]))
+      ).subscribe(
         (res) => {
           console.log(res);
         }
@@ -266,6 +273,7 @@ export class CreateListingComponent {
       }
     );
     this.upload(uuid);
+    
   }
 
   
