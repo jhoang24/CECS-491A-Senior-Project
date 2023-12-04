@@ -16,6 +16,8 @@ export class SearchComponent implements OnInit {
 
   query: string = '';
   loading: boolean = true;
+  sort = 'newest';
+
 
   ngOnInit(): void {
     // Whenever the query params for activated route changes, then so will the display for the search page
@@ -35,6 +37,25 @@ export class SearchComponent implements OnInit {
           this.loading = false;
         }
       );
+  }
+
+  onSortUpdated(sortValue: string): void {
+    switch (sortValue) {
+      case 'price lowest':
+        this.products.sort((a, b) => a.price - b.price);
+        break;
+      case 'price highest':
+        this.products.sort((a, b) => b.price - a.price);
+        break;
+      case 'oldest':
+        this.products.sort((a, b) => a.uuid - b.uuid);
+        break;
+      case 'newest':
+        this.products.sort((a, b) => b.uuid - a.uuid);
+        break;
+    }
+    this.sort = sortValue
+
   }
 
 
