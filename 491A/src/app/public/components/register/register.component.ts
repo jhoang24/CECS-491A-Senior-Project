@@ -18,7 +18,7 @@ export class RegisterComponent {
     const email = control.value as string;
   
     // Check if the email ends with csu.edu or any subdomain under csu.edu
-    const csuEmailRegex = /@csu[a-z0-9.-]*\.edu$/i;
+    const csuEmailRegex = /csu[a-z0-9.-]*\.edu$/i;
     if (email && !csuEmailRegex.test(email)) {
       return { csuEmail: true }; // Return a validation error
     }
