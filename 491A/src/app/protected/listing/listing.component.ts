@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { GetProfileResponse } from 'src/app/public/interfaces';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-listing',
@@ -16,7 +17,8 @@ export class ListingComponent implements OnInit {
   userMessage: string = '';
   username: any;
   picture: string = "data:image/png;base64,"
-  UUID: any = '1700950333172';
+  picture1: string = "data:image/png;base64,"
+  UUID: any = '1701560450138';
   uuid: string;
   imageUrls: string[] = ['https://picsum.photos/200/300',
   'https://picsum.photos/200/301',
@@ -28,39 +30,37 @@ export class ListingComponent implements OnInit {
   currentImageIndex: number=0;
   listingData: any;
 
-  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, private router: Router) { 
+  
+
+  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, private router: Router, private profileService: ProfileService) { 
     this.username = this.auth.getLoggedInUser().username;
     this.uuid = '';
   }
 
-//connects to specific listing with uuid:1700950333172
-  ngOnInit(): void {
-  this.listingService.getListingInfo(this.UUID).subscribe(
-    (res) => {
-      console.log("Listing Data", res)
-      this.listingData = res.listing;
-      this.imageUrls = res.image || []; // Use the image property for images, default to an empty array if null
-      this.currentImage = this.imageUrls[0]; // Set the i
-    }
-  )
-}
+ngOnInit(): void {
+  this.route.params.subscribe(params => {
+    this.UUID = params.uuid;
 
-// ngOnInit(): void {
-//   this.route.params.subscribe(params => {
-//     this.uuid = params.uuid; 
-//     if(this.uuid== null){
-//       this.picture += localStorage.getItem("picture")
-//     } else {
-//     this.listingService.getListingInfo(this.uuid).subscribe(
-//       (res) => 
-//       {
-//          console.log("Listing Data", res)
-//       this.listingData = res.listing;
-//       this.imageUrls = res.image || []; // Use the image property for images, default to an empty array if null
-//       this.currentImage = this.imageUrls[0]; // Set the i
-//       }
-//   )}});
-// }
+    if (this.UUID) {
+      this.listingService.getListingInfo(this.UUID).subscribe(
+        (res) => {
+          console.log("Listing Data", res);
+          this.listingData = res.listing;
+          this.imageUrls = res.image || [];
+          this.currentImage = this.imageUrls[0];
+
+          if (this.listingData?.userName?.username) {
+            this.profileService.getProfileInfo(this.listingData.userName.username)
+              .subscribe((profileRes) => {
+                console.log(profileRes);
+                this.picture1 = "data:image/png;base64," + profileRes.picture;
+              });
+          }
+        }
+      );
+    }
+  });
+}
 
 nextImage() {
   console.log('Next Image Clicked');
@@ -93,6 +93,16 @@ redirectToMessages() {
 redirectToReport() {
   // Use the navigate method to redirect to the report-listing page
   this.router.navigate(['/protected/report-listing']);
+}
+ navigateToUserAccount(){
+  const username = this.listingData.userName.username;
+  console.log(username);
+  if(username){
+    this.router.navigate(['/protected/profile',username])
+  }
+ }
+ navigateToListing(uuid: string): void {
+  this.listingService.navigateToListing( uuid);
 }
 
 }

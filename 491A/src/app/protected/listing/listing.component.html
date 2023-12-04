@@ -25,12 +25,13 @@
           </button>
         </div>
         <div class="seller-profile">
-          <img src="https://picsum.photos/200/300" alt="Seller Profile Picture" />
-          <p class="seller-name">{{listingData.userName.username}}</p>
+          <img [src]="picture1" alt="Seller Profile Picture" />
+          <a (click)="navigateToUserAccount()"><p class="seller-name">{{listingData.userName.username}}</p></a>
       </div>
       </div>
     </div>
   </div>
+  
 
   <div class="image-thumbnails">
     <div class = "thumbnail-container" *ngFor="let imageUrl of imageUrls; let i = index" (click)="selectImage(i)">
@@ -41,4 +42,6 @@
   <h2 class="description-title">Description</h2>
   <div>{{listingData.itemDescription}}</div>
 </div>
+
+
 

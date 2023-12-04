@@ -6,7 +6,7 @@
 <ng-template #content>
   <div class="product-grid">
     <div *ngFor="let product of products">
-      <mat-button [routerLink]="['/protected/listing']">
+      <mat-button [routerLink]="['/protected/listing', product.uuid]">
           <mat-card class="product-tile">
             <img mat-card-image [src]="product.image" loading="lazy" class="product-image">
             <mat-card-content>
