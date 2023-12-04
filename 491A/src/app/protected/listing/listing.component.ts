@@ -120,7 +120,9 @@ toggleFavorite() {
     this.isFavorite = true;
     //add to favorites
     console.log(this.isFavorite);
-    this.favoriteService.addToFavorites('jhoang', 1234).subscribe();
+    this.favoriteService.addToFavorites('jhoang', 12345).subscribe(() => {
+      console.log('Added to favorites');
+    });
     //console.log(this.favoriteService.addToFavorites('jhoang', '1234'));
   }
 }
