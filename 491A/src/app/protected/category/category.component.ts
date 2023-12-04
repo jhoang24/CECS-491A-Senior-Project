@@ -47,10 +47,10 @@ export class CategoryComponent implements OnInit {
       case 'price highest':
         this.products.sort((a, b) => b.price - a.price);
         break;
-      case 'newest':
+      case 'oldest':
         this.products.sort((a, b) => a.uuid - b.uuid);
         break;
-      case 'oldest':
+      case 'newest':
         this.products.sort((a, b) => b.uuid - a.uuid);
         break;
     }
