@@ -6,6 +6,7 @@ import { GetProfileResponse } from 'src/app/public/interfaces';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
+import { FavoritesServiceService } from '../services/favorites-service.service';
 
 @Component({
   selector: 'app-listing',
@@ -35,7 +36,8 @@ export class ListingComponent implements OnInit {
 
   
 
-  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, private router: Router, private profileService: ProfileService) { 
+  constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, 
+    private router: Router, private profileService: ProfileService, private favoriteService: FavoritesServiceService) { 
     this.username = this.auth.getLoggedInUser().username;
     this.uuid = '';
   }
@@ -112,10 +114,14 @@ redirectToReport() {
 toggleFavorite() {
   if (this.isFavorite) {
     this.isFavorite = false;
+    //remove from favorites
     console.log(this.isFavorite);
   } else {
     this.isFavorite = true;
+    //add to favorites
     console.log(this.isFavorite);
+    this.favoriteService.addToFavorites('jhoang', 1234).subscribe();
+    //console.log(this.favoriteService.addToFavorites('jhoang', '1234'));
   }
 }
 
