@@ -16,13 +16,22 @@ export class MessagesComponent implements OnInit {
   picture: string = "data:image/png;base64,";
   messageSent: boolean = false;  // New variable to track whether the message is sent
   listingUsername: any;
+  listingUuid: any;
 
   constructor(private http: HttpClient, private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute) {
     this.username = this.auth.getLoggedInUser().username;
 
+    // Gets the current listing's username
     this.listingService.getCurrentListingUsername().subscribe(
       (listingUsername) => {
         this.listingUsername = listingUsername;
+      }
+    );
+
+     // Gets the current listing's username
+    this.listingService.getCurrentListingUuid().subscribe(
+      (listingUuid) => {
+        this.listingUuid = listingUuid;
       }
     );
   }
@@ -39,6 +48,7 @@ export class MessagesComponent implements OnInit {
       subject: "ResellU User: " + this.username + " Wants to Buy Your Item",
       message: this.userMessage,
       sourceEmail: this.username, // Uses the logged in username and sends it to lambda to get email of specific user
+      listingUuid: this.listingUuid
     };
   
     this.http.post(apiGatewayUrl, requestData).subscribe(
