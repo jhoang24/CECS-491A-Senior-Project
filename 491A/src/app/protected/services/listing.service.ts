@@ -3,13 +3,24 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListingService {
 
+  private currentListingUsernameSubject = new BehaviorSubject<string>('');
+
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+
+  setCurrentListingUsername(username: string): void {
+    this.currentListingUsernameSubject.next(username);
+  }
+
+  getCurrentListingUsername(): Observable<string> {
+    return this.currentListingUsernameSubject.asObservable();
+  }
 
   getListingInfo( UUID: any): Observable<any> {
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing", {"uuid":UUID })
