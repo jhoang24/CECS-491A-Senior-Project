@@ -77,6 +77,8 @@ export class ReportUserComponent {
         this.snackBar.open('Report submitted successfully.', 'Close', {
           duration: 3000,
         });
+
+        this.reportReason = '';
       },
       (error) => {
         console.error('Error submitting report:', error);

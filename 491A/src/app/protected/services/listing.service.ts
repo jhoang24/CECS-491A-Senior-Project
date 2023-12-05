@@ -13,9 +13,21 @@ export class ListingService {
   private currentListingUsernameSubject = new BehaviorSubject<string>('');
   private currentListingUuidSubject = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
+  constructor(private http: HttpClient, private auth: AuthService, private router: Router) { 
+    const storedListingUsername = sessionStorage.getItem('currentListingUsername');
+    const storedListingUuid = sessionStorage.getItem('currentListingUuid');
+
+    if (storedListingUsername) {
+      this.currentListingUsernameSubject.next(storedListingUsername);
+    }
+
+    if (storedListingUuid) {
+      this.currentListingUuidSubject.next(storedListingUuid);
+    }
+  }
 
   setCurrentListingUsername(username: string): void {
+    sessionStorage.setItem('currentListingUsername', username);
     this.currentListingUsernameSubject.next(username);
   }
 
@@ -24,6 +36,7 @@ export class ListingService {
   }
 
   setCurrentListingUuid(uuid: string): void {
+    sessionStorage.setItem('currentListingUuid', uuid);
     this.currentListingUuidSubject.next(uuid);
   }
 
