@@ -45,7 +45,7 @@ export class MessagesComponent implements OnInit {
   
     const requestData = {
       recipientEmail: this.listingUsername,
-      subject: "ResellU User: " + this.username + " Wants to Buy Your Item",
+      subject: "ResellU User: " + this.username + " | Wants to Buy Your Item",
       message: this.userMessage,
       sourceEmail: this.username, // Uses the logged in username and sends it to lambda to get email of specific user
       listingUuid: this.listingUuid
