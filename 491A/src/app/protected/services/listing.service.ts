@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ListingService {
 
   private currentListingUsernameSubject = new BehaviorSubject<string>('');
+  private currentListingUuidSubject = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
 
@@ -20,6 +21,14 @@ export class ListingService {
 
   getCurrentListingUsername(): Observable<string> {
     return this.currentListingUsernameSubject.asObservable();
+  }
+
+  setCurrentListingUuid(uuid: string): void {
+    this.currentListingUuidSubject.next(uuid);
+  }
+
+  getCurrentListingUuid(): Observable<string> {
+    return this.currentListingUuidSubject.asObservable();
   }
 
   getListingInfo( UUID: any): Observable<any> {

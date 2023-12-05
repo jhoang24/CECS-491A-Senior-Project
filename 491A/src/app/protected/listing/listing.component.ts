@@ -50,7 +50,10 @@ ngOnInit(): void {
           this.currentImage = this.imageUrls[0];
 
           if (this.listingData?.userName?.username) {
+            // Sets the current listing's username and uuid to be used in other components
             this.listingService.setCurrentListingUsername(this.listingData.userName.username);
+            this.listingService.setCurrentListingUuid(this.UUID);
+
             this.profileService.getProfileInfo(this.listingData.userName.username)
               .subscribe((profileRes) => {
                 console.log(profileRes);
