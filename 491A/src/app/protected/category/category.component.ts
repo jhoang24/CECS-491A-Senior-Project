@@ -1,44 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../services/product.service';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class CategoryComponent implements OnInit {
+
 
   products: Array<any> = []
 
   constructor(private router:Router, private productService: ProductService, private activatedRoute: ActivatedRoute) { }
 
-  query: string = '';
+  category: string = '';
   loading: boolean = true;
   sort = 'newest';
 
 
   ngOnInit(): void {
-    // Whenever the query params for activated route changes, then so will the display for the search page
+    // Whenever the query params for activated route changes, then so will the display for the category page
     this.activatedRoute.queryParams.subscribe(params => {
-      this.query = params['q'].toLowerCase();
-      this.fetchSearchedProducts();
+      this.category = params['q'];
+      this.fetchCategoryProducts();
     });
   }
 
-  fetchSearchedProducts() {
+  fetchCategoryProducts() {
     this.loading = true;
-    this.productService.getSearchedProduct(this.query)
+    this.productService.getCategory(this.category)
       .subscribe(
         (res) => {
-          console.log(res.body);
+          console.log(res.body.listings);
           this.products = res.body.listings;
           this.loading = false;
         }
       );
   }
-
   onSortUpdated(sortValue: string): void {
     switch (sortValue) {
       case 'price lowest':
@@ -57,6 +57,5 @@ export class SearchComponent implements OnInit {
     this.sort = sortValue
 
   }
-
 
 }

@@ -14,18 +14,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RegisterComponent {
 
-  csulbEmailValidator(control: AbstractControl) {
+  csuEmailValidator(control: AbstractControl): { [key: string]: any } | null {
     const email = control.value as string;
   
-    if (email && !email.toLowerCase().endsWith('csulb.edu')) {
-      return { csulbEmail: true }; // Return a validation error
+    // Check if the email ends with csu.edu or any subdomain under csu.edu
+    const csuEmailRegex = /csu[a-z0-9.-]*\.edu$/i;
+    if (email && !csuEmailRegex.test(email)) {
+      return { csuEmail: true }; // Return a validation error
     }
   
     return null; // No validation error
   }
 
   registerForm = new UntypedFormGroup({
-    email: new UntypedFormControl(null, [Validators.required, Validators.email, this.csulbEmailValidator]),
+    email: new UntypedFormControl(null, [Validators.required, Validators.email, this.csuEmailValidator]),
     username: new UntypedFormControl(null, [Validators.required]),
     firstname: new UntypedFormControl(null, [Validators.required]),
     lastname: new UntypedFormControl(null, [Validators.required]),
