@@ -15,22 +15,30 @@ export class MessagesComponent implements OnInit {
   username: any;
   picture: string = "data:image/png;base64,";
   messageSent: boolean = false;  // New variable to track whether the message is sent
+  listingUsername: any;
 
   constructor(private http: HttpClient, private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute) {
     this.username = this.auth.getLoggedInUser().username;
+
+    this.listingService.getCurrentListingUsername().subscribe(
+      (listingUsername) => {
+        this.listingUsername = listingUsername;
+      }
+    );
   }
 
   ngOnInit(): void {
+    console.log('Listing Username:', this.listingUsername);
   }
 
   sendEmail() {
     const apiGatewayUrl = 'https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/send-email';
   
     const requestData = {
-      recipientEmail: 'ale21100@gmail.com',
+      recipientEmail: this.listingUsername,
       subject: "ResellU User: " + this.username + " Wants to Buy Your Item",
       message: this.userMessage,
-      sourceEmail: this.username, // Uses the logged in username and sends it to lambda to use to get email of specific user
+      sourceEmail: this.username, // Uses the logged in username and sends it to lambda to get email of specific user
     };
   
     this.http.post(apiGatewayUrl, requestData).subscribe(

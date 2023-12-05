@@ -50,6 +50,7 @@ ngOnInit(): void {
           this.currentImage = this.imageUrls[0];
 
           if (this.listingData?.userName?.username) {
+            this.listingService.setCurrentListingUsername(this.listingData.userName.username);
             this.profileService.getProfileInfo(this.listingData.userName.username)
               .subscribe((profileRes) => {
                 console.log(profileRes);
