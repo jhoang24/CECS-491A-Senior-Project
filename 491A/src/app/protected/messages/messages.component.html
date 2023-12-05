@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="message-user-container">
-  <h2>Message User</h2>
+  <h2>Message User: {{this.listingUsername}}</h2>
   <input [(ngModel)]="userMessage" placeholder="Enter your message" />
   <button (click)="sendEmail()" mat-raised-button color="primary">Send</button>
   <div *ngIf="messageSent" class="message-sent-text">Message Sent!</div>
