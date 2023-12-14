@@ -16,24 +16,46 @@ import { MatDialog } from '@angular/material/dialog';
 export class SellingComponent implements OnInit {
   user: any;
   products: Array<any> = []
+  loading: boolean = true;
+  // Checks with listing's backend to see if it's sold or not
 
   constructor(private router:Router, private productService: ProductService, private auth: AuthService, private matDialog: MatDialog) { 
     this.user = this.auth.getLoggedInUser();
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.productService.getProductInfo(this.user.username)
     .subscribe(
       (res) => 
       {
         console.log(res)
         this.products=res.userSelling;
+        this.loading = false;
       }
     );
   }
 
+  
+  sell(listingID: any) {
+    this.productService.changeSoldState(listingID, true).subscribe(() => {
+      // Update the soldState locally without reloading the page
+      const updatedProduct = this.products.find(product => product.dynamoDBItem.uuid === listingID);
+      if (updatedProduct) {
+        updatedProduct.dynamoDBItem.soldState = true;
+      }
+    });
+  }
 
-
+  unsell(listingID: any) {
+    this.productService.changeSoldState(listingID, false).subscribe(() => {
+      // Update the soldState locally without reloading the page
+      const updatedProduct = this.products.find(product => product.dynamoDBItem.uuid === listingID);
+      if (updatedProduct) {
+        updatedProduct.dynamoDBItem.soldState = false;
+      }
+    });
+  }
   openDeleteConfirm(uuid: any){
     this.matDialog.open(DeleteConfirmationDialogComponent,{
       width:'220px',

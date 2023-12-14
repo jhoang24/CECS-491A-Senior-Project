@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { ProductService } from '../services/product.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
+
+import { FormGroup, FormControl, Validators, UntypedFormControl } from '@angular/forms';
 import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+
 
 @Component({
   selector: 'app-create-listing',
@@ -12,14 +17,78 @@ import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.compone
   styleUrls: ['./create-listing.component.scss']
 })
 export class CreateListingComponent {
-  // Array to hold the files you input
+  @ViewChild('imageInput') imageInput!: ElementRef;
+
   public files: File[] = [];
   email: any;
+  mainCategories = [
+    {
+      name: 'Electronics',
+      subCategories: [
+        { name: 'Computers', value: 'computers' },
+        { name: 'Phones', value: 'phones' },
+        { name: 'Consoles', value: 'consoles' },
+        { name: 'Chargers', value: 'chargers' },
+        { name: 'Accessories', value: 'accessories' },
+      ]
+    },
+    {
+      name: 'Clothing & Accessories',
+      subCategories: [
+        { name: 'Jackets', value: 'jackets' },
+        { name: 'Shirts', value: 'shirts' },
+        { name: 'Pants', value: 'pants' },
+        { name: 'Shoes', value: 'shoes' },
+        { name: 'Socks', value: 'socks' },
+      ]
+    },
+    {
+      name: 'Books',
+      subCategories: [
+        { name: 'Textbooks', value: 'textbooks' },
+        { name: 'Novels', value: 'novels' },
+        { name: 'Fiction', value: 'fiction' },
+        { name: 'Nonfiction', value: 'nonfiction' },
+        { name: 'Manga', value: 'manga' },
+      ]
+    },
+    {
+      name: 'School Appliances',
+      subCategories: [
+        { name: 'Notebooks', value: 'notebooks' },
+        { name: 'Pencils', value: 'pencils' },
+        { name: 'Backpacks', value: 'backpacks' },
+        { name: 'Erasers', value: 'erasers' },
+      ]
+    },
+    {
+      name: 'Furniture',
+      subCategories: [
+        { name: 'Tables', value: 'tables' },
+        { name: 'Chairs', value: 'chairs' },
+        { name: 'Lamps', value: 'lamps' },
+        { name: 'Beds', value: 'beds' },
+        { name: 'Drawers', value: 'drawers' },
+      ]
+    },
+    {
+      name: 'Sports & Outdoors',
+      subCategories: [
+        { name: 'Exercise', value: 'exercise' },
+        { name: 'Yoga', value: 'yoga' },
+        { name: 'Cycling', value: 'cycling' },
+        { name: 'Skateboarding', value: 'skateboarding' },
+        { name: 'Camping', value: 'camping' },
+      ]
+    },
+  ];
+
 
   constructor(
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     private authService: AuthService,
+    private router: Router,
     private productService: ProductService
   ) {
     // Gets the userName and sets it in dynamoDb
@@ -34,15 +103,66 @@ export class CreateListingComponent {
 
 
   }
-
-  onFilesSelected(event: any) {
-    const fileList: FileList | null = event.target.files;
   
+  async resizeImage(file: File, maxWidth: number, maxHeight: number): Promise<Blob> {
+    return new Promise<Blob>((resolve, reject) => {
+      const img = new Image();
+      img.src = URL.createObjectURL(file);
+
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d')!;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob((blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error('Error resizing image'));
+          }
+        }, file.type);
+      };
+
+      img.onerror = () => {
+        reject(new Error('Error loading image'));
+      };
+    });
+  }
+
+  async onFilesSelected(event: any) {
+    const fileList: FileList | null = event.target.files;
+
     if (fileList) {
-      this.files.push(...Array.from(fileList));
+      const resizedImages: File[] = [];
+
+      for (let i = 0; i < fileList.length; i++) {
+        const resizedBlob = await this.resizeImage(fileList[i], 500, 500); // Adjust the dimensions as needed
+        const resizedFile = new File([resizedBlob], fileList[i].name, { type: fileList[i].type });
+        resizedImages.push(resizedFile);
+      }
+      console.log("resized")
+
+      this.files.push(...resizedImages);
     }
   }
-  
   onFileChange(event: any) {
     const fileList: FileList | null = event?.target?.files;
   
@@ -82,7 +202,7 @@ export class CreateListingComponent {
     itemName: new FormControl(null, [Validators.required]),
     itemDescription: new FormControl(null, [Validators.required]),
     condition: new FormControl(null, [Validators.required]),
-    catagory: new FormControl(null, [Validators.required]),
+    category: new FormControl(null, [Validators.required]),
     price: new FormControl(null, [
       Validators.required,
       Validators.pattern(/^\d+(\.\d{1,2})?$/),
@@ -97,36 +217,41 @@ export class CreateListingComponent {
 
   upload(uuid: any) {
     const formData = new FormData();
-    var base64Images: string[] = [];
+    const base64Images: string[] = [];
   
-    const readFile = (file: File, index: number) => {
-      return new Promise<void>((resolve, reject) => {
+    const resizeAndReadFile = async (file: File, index: number) => {
+      const resizedBlob = await this.resizeImage(file, 500, 500); // Adjust dimensions as needed
+      formData.append(`images${index + 1}`, new File([resizedBlob], file.name, { type: file.type }));
+  
+      return new Promise<void>((resolve) => {
         const reader = new FileReader();
         reader.onload = (event: any) => {
           const base64String = event.target.result;
           base64Images.push(base64String);
           resolve();
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(resizedBlob);
       });
     };
   
     const filePromises = this.files.map(async (file, index) => {
       if (file instanceof File) {
-        formData.append(`images${index + 1}`, file);
-        await readFile(file, index);
+        await resizeAndReadFile(file, index);
       }
     });
   
     Promise.all<void>(filePromises).then(() => {
       console.log(base64Images);
-      this.productService.uploadImages(base64Images, uuid).subscribe(
+      this.productService.uploadImages(base64Images, uuid).pipe(
+        tap(() => this.router.navigate(['/protected/listing/' + uuid]))
+      ).subscribe(
         (res) => {
           console.log(res);
         }
       );
     });
   }
+  
   
   createListing() {
     if (!this.createListingForm.valid) {
@@ -148,6 +273,7 @@ export class CreateListingComponent {
       }
     );
     this.upload(uuid);
+    
   }
 
   

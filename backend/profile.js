@@ -89,6 +89,7 @@ async function get_profile(profile){
       body:  JSON.stringify({
          // Commented out user for testing
         user: dynamoUser.username,
+        email: dynamoUser.email,
         picture: fromS3.toString('base64')
             }),
     };
@@ -184,5 +185,44 @@ async function updateToken(username, token, used) {
     }
 }
 
+// async function getEmailForProfile(requestBody) {
+//   const username = requestBody.username;
+
+//   const params = {
+//     TableName: userTable,
+//     Key: {
+//       'username': username,
+//     },
+//   };
+
+//   try {
+//     const data = await dynamodb.get(params).promise();
+//     const user = data.Item;
+
+//     const response = {
+//       statusCode: 200,
+//       body: JSON.stringify(user),
+//       headers: {
+//         'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+//         'Access-Control-Allow-Credentials': true,
+//       },
+//     };
+
+//     return response;
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       statusCode: 500,
+//       body: JSON.stringify({ error: 'Internal Server Error' }),
+//       headers: {
+//         'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+//         'Access-Control-Allow-Credentials': true,
+//       },
+//     };
+//   }
+// }
+
+
 module.exports.edit_profile = edit_profile;
 module.exports.get_profile = get_profile;
+// module.exports.getEmailForProfile = getEmailForProfile;

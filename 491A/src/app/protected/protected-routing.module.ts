@@ -10,6 +10,11 @@ import { ProfileSettingComponent } from './profile-setting/profile-setting.compo
 import { ListingComponent } from './listing/listing.component';
 import { SellingComponent } from './selling/selling.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { SearchComponent } from './search/search.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { CategoryComponent } from './category/category.component';
+import { ReportUserComponent } from '../report-user/report-user.component';
+import { ReportListingComponent } from '../report-listing/report-listing.component';
 
 
 
@@ -72,7 +77,28 @@ const routes: Routes = [
   {
     path: 'listing/:uuid',
     component: ListingComponent
-  }
+  },
+  {
+    path: 'search',
+    component: SearchComponent
+  },
+  {
+    path: 'delete-account',
+    component: DeleteAccountComponent
+  }, 
+  {
+    path: 'category',
+    component: CategoryComponent
+  },
+  {
+    path: 'report-user',
+    component: ReportUserComponent
+  },
+  {
+    path: 'report-listing',
+    component: ReportListingComponent
+  },
+  
  
 ];
 

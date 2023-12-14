@@ -45,4 +45,18 @@ export class ProductService {
       }),
     );
   }
+
+  getSearchedProduct(listing: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/listing-search",{"listing":listing})
+  }
+
+  changeSoldState(listingID: any, soldState: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/selling",{"listingID":listingID, "soldState": soldState})
+  }
+
+  getCategory(category: any): Observable<any>{
+    return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/category",{"category":category})
+  }
+
+
 }

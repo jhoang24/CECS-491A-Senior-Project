@@ -16,7 +16,7 @@ export class ConfirmPasswordComponent{
   email!: string;
 
   confirmForm = new UntypedFormGroup({
-    password: new UntypedFormControl(null,Validators.required),/*  */
+    password: new UntypedFormControl(null,Validators.required),
     passwordConfirm: new UntypedFormControl(null, Validators.required)
   },
     {validators: CustomValidators.passwordsMatching}

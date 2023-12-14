@@ -7,9 +7,18 @@ const profileService = require('./profile')
 const forgotPasswordService = require('./forgot-password')
 const updatePasswordService = require('./update-password')
 const confirmEmailService = require('./confirm-email')
+const sendEmailService = require('./send-email')
 
 const listingService = require('./listing')
 const createListingService = require('./createlisting')
+const sellingService = require('./selling')
+const searchListingService = require('./search-listings')
+const homeService = require('./home')
+const categoryService = require('./category');
+const favoritesService = require('./favorites');
+const reportUserService = require('./report-user');
+const deleteAccountService = require('./delete-account');
+
 
 const util = require('./utils');
 
@@ -26,9 +35,23 @@ const editProfilePath = '/edit-profile';
 const forgotPasswordPath = '/forgot-password';
 const updatePasswordPath = '/update-password';
 const confirmEmailPath = '/confirm-email';
+const emailConfSendPath = '/send-conf-email';
 
 const createListing = '/createlisting';
+const searchListingPath = '/listing-search';
 const listingPath = '/listing';
+const sendEmailPath = '/send-email';
+const uploadImagesPath = '/upload-images';
+const sellingPath = '/selling';
+const homePath = '/home';
+const categoryPath = '/category';
+const favoritesPath = '/favorites';
+const addFavoritePath = '/add-favorite';
+const reportUserPath = '/report-user';
+const deleteAccountPath = '/delete-account';
+
+
+
 
 exports.handler = async(event) => {
     console.log(event);
@@ -40,6 +63,10 @@ exports.handler = async(event) => {
         case event.httpMethod === 'POST' && event.path === registerPath:
             const registerBody = JSON.parse(event.body);
             response = await registerService.register(registerBody);
+            break;
+        case event.httpMethod === 'POST' && event.path === emailConfSendPath:
+            const emailConfSendBody = JSON.parse(event.body);
+            response = await registerService.sendEmail(emailConfSendBody);
             break;
         case event.httpMethod === 'POST' && event.path === loginPath:
             const loginBody = JSON.parse(event.body);
@@ -79,62 +106,71 @@ exports.handler = async(event) => {
              response = await listingService.get_listing(listingBody);
             //response = util.buildResponse(200);
             break;
-            
-            
-        case event.httpMethod === 'GET' && event.path === listingPath:
-            const paramValue = event.queryStringParameters.uuid;
-            const dynamodb = new AWS.DynamoDB.DocumentClient();
-            
-    const params = {
-        TableName: '491_listings',
-        Key: {
-            'uuid': paramValue
-        }
-    };
-
-    try {
-        const data = await dynamodb.get(params).promise();
-        
-        if (data.Item) {
-            // Success response with CORS headers
-            return {
-                statusCode: 200,
-                headers: {
-                    'Access-Control-Allow-Origin': '*', // You can specify your allowed origins here
-                    'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
-                },
-                body: JSON.stringify(data.Item)
-            };
-        } else {
-            // Not Found response with CORS headers
-            return {
-                statusCode: 404,
-                headers: {
-                    'Access-Control-Allow-Origin': '*', // You can specify your allowed origins here
-                    'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
-                },
-                body: JSON.stringify({ error: 'Item not found' })
-            };
-        }
-    } catch (err) {
-        // Error response with CORS headers
-        return {
-            statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*', // You can specify your allowed origins here
-                'Access-Control-Allow-Methods': 'GET,OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
-            },
-            body: JSON.stringify({ error: 'Error retrieving data' })
-        };
-    }
-            
-            
+        case event.httpMethod === 'POST' && event.path === sendEmailPath:
+            const requestBody = JSON.parse(event.body);
+            response = await sendEmailService.send_email(requestBody);
+            break;
         case event.httpMethod === 'POST' && event.path === confirmEmailPath:
             const confirmEmail = JSON.parse(event.body);
              response = await confirmEmailService.verifyAccount(confirmEmail);
+            break;
+        case event.httpMethod === 'POST' && event.path === uploadImagesPath:
+            const uploadImagesBody = JSON.parse(event.body);
+             response = await createListingService.uploadImages(uploadImagesBody);
+            break
+        case event.httpMethod === 'POST' && event.path === sellingPath:
+            const sellingBody = JSON.parse(event.body);
+            
+            if (sellingBody.hasOwnProperty('listingID') && sellingBody.hasOwnProperty('soldState')) {
+                response = await sellingService.changeSoldState(sellingBody);
+            } else {
+                response = await sellingService.getItem(sellingBody);
+            }
+            break;
+        case event.httpMethod === 'DELETE' && event.path === sellingPath:
+            const username = event.queryStringParameters && event.queryStringParameters.username;
+            const listingID = event.queryStringParameters && event.queryStringParameters.listingID;
+            response = await sellingService.deleteListing(username, listingID);
+            break;
+            
+        case event.httpMethod === 'DELETE' && event.path === deleteAccountPath:
+            const deleteUser = event.queryStringParameters && event.queryStringParameters.username;
+            response = await deleteAccountService.deleteAccount(deleteUser)
+            break
+            
+        case event.httpMethod === 'POST' && event.path === deleteAccountPath:
+            const deleteAccountBody = JSON.parse(event.body);
+             response = await deleteAccountService.checkPasswordMatch(deleteAccountBody);
+            break
+            
+        case event.httpMethod === 'POST' && event.path === searchListingPath:
+            const searchBody = JSON.parse(event.body);
+            // response = util.buildResponse(200);
+             response = await searchListingService.search_listing(searchBody);
+            break
+        case event.httpMethod === 'GET' && event.path === homePath:
+            // response = util.buildResponse(200);
+             response = await homeService.get_listing();
+            break
+        case event.httpMethod == 'POST' && event.path == addFavoritePath:
+            const favoritesBody = JSON.parse(event.body);
+             response = await favoritesService.addFavorite(favoritesBody);//modified
+            break
+        case event.httpMethod === 'POST' && event.path === categoryPath:
+            const categoryBody = JSON.parse(event.body);
+
+            // response = util.buildResponse(200);
+             response = await categoryService.get_category(categoryBody);
+            break
+            
+        case event.httpMethod === 'POST' && event.path === profilePath:
+            const usernameBody = JSON.parse(event.body);
+            response = await profileService.getEmailForProfile(usernameBody);
+            break;
+            
+        case event.httpMethod === 'POST' && event.path === reportUserPath:
+            const reportBody = JSON.parse(event.body);
+            response = await reportUserService.send_report_email(reportBody);
             break;
         default:
             response = util.buildResponse(404, '404 not found');

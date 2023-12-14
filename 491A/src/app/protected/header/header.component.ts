@@ -7,22 +7,27 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GetProfileResponse } from 'src/app/public/interfaces';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit{
+  constructor(private router:Router, private profileService: ProfileService, private auth: AuthService,  private route: ActivatedRoute) { 
+    this.user = this.auth.getLoggedInUser();
+  }
+
   enteredButton = false;
   isMatMenuOpen = false;
   user: any;
   isSmallScreen = false;
   opened = false;
 
+  searchValue: string = '';
 
-  constructor(private router:Router, private profileService: ProfileService, private auth: AuthService) { 
-    this.user = this.auth.getLoggedInUser();
+  onSubmit(): void{
+    this.router.navigate(['/protected/search'], {queryParams: {q: this.searchValue}})
   }
 
   @HostListener('window:resize', ['$event'])

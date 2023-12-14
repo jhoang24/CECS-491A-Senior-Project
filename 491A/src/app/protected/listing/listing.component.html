@@ -16,12 +16,12 @@
         <p class="mat-body-1">Posted on: January 1, 2023</p>
         <p class="mat-body-1">Condition: {{listingData.condition}}</p>
         <p class="mat-body-1">Category: {{listingData.catagory}}</p>
-        <button class = "msg"mat-raised-button color="primary">Message Seller</button>
+        <button class="msg" mat-raised-button color="primary" (click)="redirectToMessages()">Message Seller</button>
         <div class="buttons">
           <button class="favorite" mat-stroked-button>
             Save <mat-icon>favorite_border</mat-icon>
           </button>
-          <button class="report" mat-stroked-button>
+          <button class="report" mat-stroked-button (click)="redirectToReport()">
             Report<mat-icon>report</mat-icon>
           </button>
         </div>
@@ -39,7 +39,6 @@
       <img [src]="picture+ imageUrl" alt="Thumbnail Image" class = "thumbnail-img" />
     </div>
   </div>
-
 <div class="description-container">
   <h2 class="description-title">Description</h2>
   <div>{{listingData.itemDescription}}</div>

@@ -3,7 +3,7 @@ function buildResponse(statusCode, body){
         statusCode: statusCode,
         headers: {
             "Access-Control-Allow-Origin": "*",
-            // 'Content-Type': 'image/jpeg'
+            "Access-Control-Allow-Methods": "*", 
             "Content-Type": "*"
         },
         body: JSON.stringify(body)

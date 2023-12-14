@@ -1,0 +1,23 @@
+<ng-container *ngIf="passwordMatch==true; else notMatchedContent">
+    <div mat-dialog-content>
+        <p><strong>YOUR ACCOUNT WILL BE DELETED! <br> DO YOU WANT TO CONFIRM? </strong></p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button
+        mat-dialog-close>Cancel</button>
+        <button mat-button cdkFocusInit ial
+        (click)="confirm()">Confirm</button>
+    </div>
+</ng-container> 
+
+<ng-template #notMatchedContent>
+    <div mat-dialog-content>
+        <p>Your password did not match in the database.</p>
+        <p>Please enter the correct password.</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button
+        mat-dialog-close>OK</button>
+
+    </div>
+</ng-template>
