@@ -144,9 +144,17 @@ a{
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  position: relative;
+  right: 10%;
+}
+
+.profile-button{
+  height:50px;
+  position: relative;
+  right: 40%;
 }
   .mat-button{
-  font-size: 14px; /* Adjust the font size as needed */
+  font-size: 18px; /* Adjust the font size as needed */
   padding: 0px 0px; /* Adjust the padding as needed */
 
   }

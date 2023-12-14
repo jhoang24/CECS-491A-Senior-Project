@@ -15,7 +15,6 @@
   <!-- Buttons for favorite, messages, and create listing-->
   <div>
     <a mat-button routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
-    <a mat-button routerLink="/protected/messages"> <mat-icon> message </mat-icon></a>
     <a mat-button [routerLink]="['/protected/create-listing']"><mat-icon> attach_money </mat-icon> </a>
   </div>
   
@@ -55,14 +54,11 @@
   <!-- Buttons for favorite, messages, and create listing-->
   <div class="navButton">
     <a mat-button class routerLink="/protected/favorites"> <mat-icon> favorite_border </mat-icon></a>
-    <a mat-button routerLink="/protected/messages"> <mat-icon> message </mat-icon></a>
+  
     <a mat-button [routerLink]="['/protected/create-listing']"><mat-icon> attach_money </mat-icon> </a>
   </div>
 
   <!-- Dropdown menu for profile-->
-  <button mat-button [matMenuTriggerFor]="dropdown"  #menuTrigger="matMenuTrigger"> 
-    <img [src]="picture"> 
-  </button>
   <div id="dropdown">
     <mat-menu #dropdown="matMenu">
       <span>

@@ -84,12 +84,10 @@ object-fit: contain;
   object-fit: cover;
 }
 
-
 .description-container{
   margin-left: 3.125rem;
   margin-right: 12rem;
   
-
 }
 .description-title{
   font-size: 30px;
@@ -157,9 +155,20 @@ object-fit: contain;
 
    
   }
+  .listing-image{
+    width:90%;
+  }
+ 
 
   .description-container{
     margin-left:1.125rem;
+  }
+  .image-thumbnails{
+    margin-left: 1.125rem;
+    
+  }
+  .thumbnail-container{
+    margin-right: 0%;
   }
  
 
