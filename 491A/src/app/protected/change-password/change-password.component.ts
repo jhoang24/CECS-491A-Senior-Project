@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 export class ChangePasswordComponent {
   success: string | null = null;
   error: string | null = null;
-
-  oldPassword: string = '';
+  username: any;
+  passwordMatch: boolean = false;
   changeForm = new UntypedFormGroup({
     oldPassword: new UntypedFormControl(null, Validators.required),
     password: new UntypedFormControl(null,Validators.required),
@@ -26,40 +26,37 @@ export class ChangePasswordComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService, 
+    
   ) {
    }
 
   ngOnInit(): void {
+    this.username = this.authService.getLoggedInUser().username;
   }
-  validateOldPassword(control: UntypedFormControl){
-    const inputOldPassword = control.value;
-    const isOldPasswordValid = this.authService.checkOldPassword(inputOldPassword);
-    return isOldPasswordValid ? null : {invalidOldPassword: true};
-  }
+
 
   confirm() {
     if (!this.changeForm.valid) {
       return;
     }
-    const enteredOldPassword = this.changeForm.get('oldPassword')?.value;
-    const newPassword = this.changeForm.get('password')?.value;
-    
-
-    //console.log('oldPassword:', oldPassword);
-    const token = this.authService.returnToken();
-    console.log('Token', token);
-
-    // Call your authentication service to check the old password
-    // if (this.authService.checkOldPassword(oldPassword)) {
-    //   // Password matches, proceed with updating the password
-    //   this.authService.updatePassword(newPassword).pipe(
-    //     tap(() => this.router.navigate(['']))
-    //   ).subscribe();
-    // } else {
-    //   // Password doesn't match, handle accordingly (e.g., show error message)
-    //   this.error = 'Invalid email address.'
-    // }
-    }
+    this.authService.changePassword(this.username, this.changeForm.value.oldPassword, this.changeForm.value.passwordConfirm)
+    .subscribe(
+      () => {
+        this.success = 'Password changed successfully';
+        this.error = null;
+      },
+      (error) => {
+        if (error.status === 403) {
+          this.success = null;
+          this.error = 'Incorrect old password. Please try again.';
+        } else {
+          this.success = null;
+          this.error = 'Failed to change password. Please try again later.';
+        }
+      }
+      
+    );
+  }
   }
 

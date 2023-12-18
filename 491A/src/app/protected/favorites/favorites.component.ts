@@ -1,10 +1,10 @@
 // favorites.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FavoritesService } from '../services/favorites.service';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { ListingService } from '../services/listing.service';
 import { ActivatedRoute } from '@angular/router';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-favorites',

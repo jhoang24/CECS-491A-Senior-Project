@@ -103,20 +103,7 @@ export class AuthService {
 
   }
   
-checkOldPassword(oldPassword: string): boolean {
-// Compare the oldPassword with the current user's password
-const storedToken = localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
-if (storedToken) {
-  const decodedToken = this.jwtService.decodeToken(storedToken);
-  console.log('decoded token', decodedToken);
-  if (decodedToken && decodedToken.password) {
-    const storedPassword = decodedToken.password;
-    console.log('Stored Password', storedPassword);
-    return oldPassword === decodedToken.password; // Compare the passwords
-  }
-}
-return false;
-}
+
 
 
 
@@ -152,6 +139,12 @@ return false;
 
 checkPasswordMatch(username: any, password: any): Observable<any>{
   return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/delete-account",{"username":username, "password":password})
+}
+
+changePassword(username: any, password: any, newPassword: any){
+
+  return this.http.post(" https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/change-password", {"username":username, "password":password, "newPassword":newPassword})
+
 }
   
 }
