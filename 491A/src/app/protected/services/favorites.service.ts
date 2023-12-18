@@ -4,7 +4,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class FavoritesServiceService{
+export class FavoritesService{
+
+   //All placeholders until backend is created
+   //Favorites return info should only need Title and Image
   private favorites: { text: string; imageUrl: string }[] = [];
 
   initializeDummyFavorites(): void {

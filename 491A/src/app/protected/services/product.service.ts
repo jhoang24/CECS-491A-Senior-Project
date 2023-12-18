@@ -58,5 +58,9 @@ export class ProductService {
     return this.http.post("https://gdl0m2hqx0.execute-api.us-east-1.amazonaws.com/dev/category",{"category":category})
   }
 
+  // getFavorites(username: any): Observable<any>{
+  //   return this.http.post()
+  // }
+
 
 }

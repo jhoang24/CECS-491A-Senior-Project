@@ -151,12 +151,12 @@
 
   
   .name {
-    margin-left: 24%;
+    margin-left: 10%;
     margin-top: 10%;
   }
   
   .name input[type="text"] {
-    font-size: 2vw;
+    font-size: 3vw;
     font-weight: bold;
     cursor: pointer;
   }
@@ -164,33 +164,9 @@
   .nameEdit {
     position: relative;
     bottom: 1.5%;
-    right: 14.5%;
+    right: 20%;
   }
   
-  .profile-picture {
-    margin-top: 2%;
-    margin-left: 10%;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .profile-picture img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: center center;
-  }
-  
-  .profile-picture-frame {
-    width: 12%;
-    height: 12%;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   
   .mat-icon-button {
     border-radius: 50%;
