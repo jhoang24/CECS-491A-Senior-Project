@@ -11,6 +11,8 @@
       <img [src]="picture" class="profile-image" />
       <p class="username">{{ username || localUsername }}</p>
       <p class="email">{{ email }}</p>
+      <!-- Display the college name -->
+      <p class="college" *ngIf="collegeName">{{ collegeName }}</p>
     </div>
   </mat-card-content>
 </mat-card>
