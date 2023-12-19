@@ -1,13 +1,28 @@
 <app-header></app-header>
 <div class="title">Favorites</div>
 <!-- favorites.component.html -->
-<div *ngFor="let post of favorites" class = "fav-container">
+<!-- <div *ngFor="let post of favorites" class = "fav-container">
  <div class = "details">
     <img [src]="post.imageUrl" alt="Post Image" />
       <span>{{ post.text }}</span>
       <button mat-button (click)="removeFromFavorites(post)"><mat-icon>favorite_border</mat-icon></button>
  </div>
+</div> -->
+
+<div class="product-grid">
+    
+  <div *ngFor="let product of products">
+    <mat-button [routerLink]="['/protected/listing', product.uuid]">
+        <mat-card class="product-tile">
+          <mat-card-content>
+            <p class="product-name">{{ product.itemName }}</p>
+        </mat-card-content>
+          <img mat-card-image [src]="product.image" loading="lazy" class="product-image">
+        </mat-card>
+    </mat-button>
+  </div>
 </div>
+
 
 
   

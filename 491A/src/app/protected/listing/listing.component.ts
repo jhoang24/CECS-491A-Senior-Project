@@ -6,7 +6,7 @@ import { GetProfileResponse } from 'src/app/public/interfaces';
 import { AuthService } from 'src/app/public/services/auth-service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
-import { FavoritesServiceService } from '../services/favorites-service.service';
+import { FavoritesService } from '../services/favorites.service';
 
 @Component({
   selector: 'app-listing',
@@ -37,7 +37,7 @@ export class ListingComponent implements OnInit {
   
 
   constructor(private http: HttpClient,private auth: AuthService, private listingService: ListingService, private route: ActivatedRoute, 
-    private router: Router, private profileService: ProfileService, private favoriteService: FavoritesServiceService) { 
+    private router: Router, private profileService: ProfileService, private favoriteService: FavoritesService) { 
     this.username = this.auth.getLoggedInUser().username;
     this.uuid = '';
   }
@@ -57,7 +57,6 @@ ngOnInit(): void {
           if (this.listingData?.userName?.username) {
             this.profileService.getProfileInfo(this.listingData.userName.username)
               .subscribe((profileRes) => {
-                console.log(profileRes);
                 this.picture1 = "data:image/png;base64," + profileRes.picture;
               });
           }
@@ -116,11 +115,14 @@ toggleFavorite() {
     this.isFavorite = false;
     //remove from favorites
     console.log(this.isFavorite);
+    this.favoriteService.removeFromFavorites('jhoang', 456).subscribe(() => {
+      console.log('Remove from favorite');
+    });
   } else {
     this.isFavorite = true;
     //add to favorites
     console.log(this.isFavorite);
-    this.favoriteService.addToFavorites('jhoang', 12345).subscribe(() => {
+    this.favoriteService.addToFavorites('jhoang', 456).subscribe(() => {
       console.log('Added to favorites');
     });
     //console.log(this.favoriteService.addToFavorites('jhoang', '1234'));
