@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges, HostListener } from '@angu
 import { LOCALSTORAGE_TOKEN_KEY } from 'src/app/app.module';
 import { Router } from '@angular/router';
 import { ProfileService } from '../services/profile.service';
+import { BehaviorSubject } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -16,7 +17,13 @@ import { ActivatedRoute } from '@angular/router';
 export class HeaderComponent implements OnInit{
   constructor(private router:Router, private profileService: ProfileService, private auth: AuthService,  private route: ActivatedRoute) { 
     this.user = this.auth.getLoggedInUser();
+    console.log(this.user);
+        
+    this.email = localStorage.getItem('email');
+    this.currentAddress = this.findAddress(this.email);
+    console.log(this.currentAddress)
   }
+
 
   enteredButton = false;
   isMatMenuOpen = false;
@@ -25,6 +32,8 @@ export class HeaderComponent implements OnInit{
   opened = false;
 
   searchValue: string = '';
+  email: any;
+  currentAddress: any;
 
   onSubmit(): void{
     this.router.navigate(['/protected/search'], {queryParams: {q: this.searchValue}})
@@ -49,7 +58,7 @@ export class HeaderComponent implements OnInit{
         {
           localStorage.setItem("picture", res.picture)
           localStorage.setItem("email", res.email)
-          this.picture += localStorage.getItem("picture")
+          this.picture += localStorage.getItem("picture")          
         }
       );
     }
@@ -107,6 +116,45 @@ export class HeaderComponent implements OnInit{
       }
     }, 100)
   }
+
+
+  findAddress(email: string){
+    const currentEmail = this.extractDomainSuffix(email);
+    const currentAddress = this.getFullAddressForCSU(currentEmail);
+    return currentAddress
+  }
+
+  getFullAddressForCSU(csuCode: any) {
+    const csuAddresses: { [key: string]: string } = {
+      'CSUB': 'California State University, Bakersfield',
+      'CSUC': 'California State University, Chico',
+      'CSUDH': 'California State University, Dominguez Hills',
+      'CSUF': 'California State University, Fullerton',
+      'CSUG': 'California State University, Fresno',
+      'CSULB': 'California State University, Long Beach',
+      'CSULA': 'California State University, Los Angeles',
+      'CSUM': 'California Maritime Academy',
+      'CSUN': 'California State University, Northridge',
+      'CSUPO': 'California State Polytechnic University, Pomona',
+      'CSUS': 'California State University, Sacramento',
+      'CSUSB': 'California State University, San Bernardino',
+      'CSUSM': 'California State University, San Marcos',
+      'CSUSC': 'California State University, Stanislaus',
+      // Add more CSU addresses as needed
+    };
+  
+    return csuAddresses[csuCode.toUpperCase()] || 'Address not found.';
+  }
+  extractDomainSuffix = (email: string): string | null => {
+    const domainRegex = /@.*\.(\w+)\.edu$/;
+    const match = email.match(domainRegex);
+  
+    if (match && match.length > 1) {
+      return match[1];
+    }
+  
+    return null;
+  };
 
 
     
